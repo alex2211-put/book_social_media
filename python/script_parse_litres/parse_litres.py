@@ -50,7 +50,7 @@ class Controller:
             p.join()
 
     def to_file(self):
-        _to_file("./book24_catalog.csv", self.values, book.Book.header())
+        _to_file("../../data/book24_catalog.csv", self.values, book.Book.header())
 
 
 def _to_file(
