@@ -92,23 +92,21 @@ def _editor_catalog(
         except:
             break
         tree = html.fromstring(page.content)
-        book_links = tree.xpath(path_in_tree.PROD_ID_PATH)
+        book_links = tree.xpath(path_in_tree.BOOK_LINKS_PATH)
         links = set(['https://book24.ru' + book_link for book_link in book_links])
         try:
             for link in links:
                 page = requests.get(link, headers=headers)
                 tree = html.fromstring(page.content)
-
                 characteristic_values = tree.xpath(path_in_tree.CHARACTERISTIC_VALUES_PATH)
                 characteristic_labels = tree.xpath(path_in_tree.CHARACTERISTIC_LABELS_PATH)
                 title = tree.xpath(path_in_tree.TITLE_PATH)[0].encode('l1').decode().strip()
                 annotation = tree.xpath(path_in_tree.ANNOTATION_PATH)
-                product_id = tree.xpath(path_in_tree.PROD_ID_PATH)[0].encode('l1').decode().strip().split(
+                product_id = tree.xpath(path_in_tree.PRODUCT_ID_PATH)[0].encode('l1').decode().strip().split(
                     'Артикул:')[1].strip()
 
                 characteristic_values_res = [autho.encode('l1').decode() for autho in characteristic_values]
                 characteristic_labels_res = [label.encode('l1').decode() for label in characteristic_labels]
-
                 ann_res = ' '.join([annotation_res.encode('l1').decode() for annotation_res in annotation])
                 dict_ = {}
                 if characteristic_labels:

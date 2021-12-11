@@ -1,4 +1,4 @@
-PROD_ID_PATH = "//div[@class='product-list__item']/article/div/a/@href"
+BOOK_LINKS_PATH = "//div[@class='product-list__item']/article/div/a/@href"
 
 CHARACTERISTIC_VALUES_PATH = "//ul[@class='product-characteristic__list']/li[" \
                              "@class='product-characteristic__item-holder']/div[" \
