@@ -107,7 +107,7 @@ def _editor_catalog(
 
                 characteristic_values_res = [autho.encode('l1').decode() for autho in characteristic_values]
                 characteristic_labels_res = [label.encode('l1').decode() for label in characteristic_labels]
-                ann_res = ' '.join([annotation_res.encode('l1').decode() for annotation_res in annotation])
+                ann_res = ' '.join([annotation_res.encode('l1').decode().replace('\n', ' ') for annotation_res in annotation])
                 dict_ = {}
                 if characteristic_labels:
                     for i in range(len(characteristic_labels)):
