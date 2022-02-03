@@ -8,7 +8,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "book")
 public class Book {
-    private int book_id;
+    private Integer book_id;
     private String title;
     private Date year_release;
     private String genre;
@@ -24,7 +24,7 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return book_id == book.book_id && age_restriction == book.age_restriction && number_pages == book.number_pages && title.equals(book.title) && year_release.equals(book.year_release) && Objects.equals(genre, book.genre) && link_internet.equals(book.link_internet) && Objects.equals(annotation, book.annotation);
+        return Objects.equals(book_id, book.book_id) && age_restriction == book.age_restriction && number_pages == book.number_pages && title.equals(book.title) && year_release.equals(book.year_release) && Objects.equals(genre, book.genre) && link_internet.equals(book.link_internet) && Objects.equals(annotation, book.annotation);
     }
 
     @Override

@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <jpa:repositories base-package="ru.iliya.repositories"
-                      base-class="ru.iliya.BaseRepositoryImpl"/>
+                      base-class="ru.iliya.repositories.BaseRepositoryImpl"/>
 
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
