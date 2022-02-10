@@ -4,25 +4,20 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "actors")
+@Table(name = "authors")
 public class Author {
-    private int id;
+
+    private int authorID;
     private String firstName;
     private String lastName;
     private Date birthdate;
     private String country;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getActorId() {
-        return this.id;
-    }
-
-    public void setActorId(int id) {
-        this.id = id;
-    }
+    @Column(name = "author_id")
+    public int getAuthorID() { return this.authorID; }
+    public void setAuthorID(int authorId) { this.authorID = authorId; }
 
     @Column(name = "firstName")
     public void setFirstName(String firstName) {
@@ -38,6 +33,7 @@ public class Author {
         this.lastName = lastName;
     }
 
+
     public String getLastName() {
         return this.lastName;
     }
@@ -45,7 +41,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
+                "authorID=" + authorID +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
@@ -57,7 +53,6 @@ public class Author {
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
-
     public Date getBirthdate() {
         return this.birthdate;
     }
@@ -66,9 +61,7 @@ public class Author {
     public void setCountry(String country) {
         this.country = country;
     }
-
     public String getCountry() {
         return this.country;
     }
 }
-

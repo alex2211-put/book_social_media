@@ -13,19 +13,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     private BookRepository bookRepository;
 
     @Override
-    public Book addBook(Book book) {
-        Book savedBook = bookRepository.saveAndFlush(book);
-        return savedBook;
-    }
-
-
-    @Override
     public Book getByTitle(String title) {
         return bookRepository.getByTitle(title);
-    }
-
-    @Override
-    public List<Book> getAll() {
-        return bookRepository.findAll();
     }
 }
