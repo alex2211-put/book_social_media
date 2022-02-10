@@ -4,50 +4,42 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "actors")
+@Table(name = "authors")
 public class Author {
-    private int id;
-    private String first_name;
-    private String last_name;
+    private int authorID;
+    private String firstName;
+    private String lastName;
     private Date birthdate;
     private String country;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    public int getActorId() {
-        return this.id;
-    }
-
-    public void setActorId(int id) {
-        this.id = id;
-    }
+    @Column(name = "author_id")
+    public int getAuthorID() { return this.authorID; }
+    public void setAuthorID(int authorId) { this.authorID = authorId; }
 
     @Column(name = "first_name")
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-
-    public String getFirst_name() {
-        return this.first_name;
+    public String getFirstName() {
+        return this.firstName;
     }
 
     @Column(name = "last_name")
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
-
-    public String getLast_name() {
-        return this.last_name;
+    public String getLastName() {
+        return this.lastName;
     }
 
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                "authorID=" + authorID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
                 ", country='" + country + '\'' +
                 '}';
@@ -57,7 +49,6 @@ public class Author {
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
-
     public Date getBirthdate() {
         return this.birthdate;
     }
@@ -66,9 +57,7 @@ public class Author {
     public void setCountry(String country) {
         this.country = country;
     }
-
     public String getCountry() {
         return this.country;
     }
 }
-
