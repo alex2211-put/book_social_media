@@ -7,8 +7,8 @@ import java.util.Date;
 @Table(name = "actors")
 public class Author {
     private int id;
-    private String first_name;
-    private String last_name;
+    private String firstName;
+    private String lastName;
     private Date birthdate;
     private String country;
 
@@ -24,30 +24,30 @@ public class Author {
         this.id = id;
     }
 
-    @Column(name = "first_name")
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    @Column(name = "firstName")
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getFirst_name() {
-        return this.first_name;
+    public String getFirstName() {
+        return this.firstName;
     }
 
-    @Column(name = "last_name")
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    @Column(name = "lastName")
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getLast_name() {
-        return this.last_name;
+    public String getLastName() {
+        return this.lastName;
     }
 
     @Override
     public String toString() {
         return "Author{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
                 ", country='" + country + '\'' +
                 '}';
