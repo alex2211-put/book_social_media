@@ -10,6 +10,7 @@ import ru.iliya.entities.Author;
 import ru.iliya.repositories.AuthorRepository;
 import ru.iliya.repositories.BaseRepository;
 
+// TODO: назвать иначе
 
 @SpringBootApplication
 public class SpringApplicationData {
@@ -22,35 +23,6 @@ public class SpringApplicationData {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringApplicationData.class, args);
-    }
-
-    @Bean
-    public CommandLineRunner springdata() {
-        return(args) -> {
-            Author authorA = new Author();
-            authorA.setCountry("Russia");
-            authorA.setFirstName("Alex");
-            authorA.setLastName("Putin");
-
-            Author authorB = new Author();
-            authorB.setCountry("USA");
-            authorB.setFirstName("Roma");
-            authorB.setLastName("Putin");
-
-            Author authorC = new Author();
-            authorC.setCountry("Russia");
-            authorC.setFirstName("Ilia");
-            authorC.setLastName("O");
-
-            authorRepository.save(authorA);
-            authorRepository.save(authorB);
-            authorRepository.save(authorC);
-
-            System.out.println(authorRepository.findByLastNameLike("%in"));
-            System.out.println(authorRepository.findПлизByFirstNameLike("%l%"));
-
-            System.out.println("-------end--------");
-        };
     }
 
 }
