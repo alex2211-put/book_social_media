@@ -6,6 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "authors")
 public class Author {
+
     private int authorID;
     private String firstName;
     private String lastName;
@@ -18,18 +19,21 @@ public class Author {
     public int getAuthorID() { return this.authorID; }
     public void setAuthorID(int authorId) { this.authorID = authorId; }
 
-    @Column(name = "first_name")
+    @Column(name = "firstName")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getFirstName() {
         return this.firstName;
     }
 
-    @Column(name = "last_name")
+    @Column(name = "lastName")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+
     public String getLastName() {
         return this.lastName;
     }
