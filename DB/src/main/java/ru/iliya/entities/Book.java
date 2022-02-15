@@ -7,7 +7,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "book")
 public class Book {
-    private Integer book_id;
+    private Integer bookID;
     private String title;
     private String year_release;
     private String genre;
@@ -23,30 +23,26 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(book_id, book.book_id) && age_restriction == book.age_restriction && number_pages == book.number_pages && title.equals(book.title) && year_release.equals(book.year_release) && Objects.equals(genre, book.genre) && link_internet.equals(book.link_internet) && Objects.equals(annotation, book.annotation);
+        return Objects.equals(bookID, book.bookID) && ageRestriction == book.ageRestriction && numberPages == book.numberPages && title.equals(book.title) && yearRelease.equals(book.yearRelease) && Objects.equals(genre, book.genre) && linkInternet.equals(book.linkInternet) && Objects.equals(annotation, book.annotation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(book_id, title, year_release, genre, link_internet, age_restriction, number_pages, annotation, number_pages);
+        return Objects.hash(bookID, title, yearRelease, genre, linkInternet, ageRestriction, numberPages, annotation, numberPages);
     }
 
 
     @Id
     @Column(name = "book_id", unique = true)
-    public int getBook_id() {
-        return book_id;
-    }
-
-    public void setBook_id(int book_id) {
-        this.book_id = book_id;
+    public int getBookID() { return bookID; }
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
     }
 
     @Column(name = "title")
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
@@ -59,6 +55,7 @@ public class Book {
 
     public void setYear_release(String year_release) {
         this.year_release = year_release;
+
     }
 
     @Column(name = "genre")
@@ -83,25 +80,24 @@ public class Book {
     @Override
     public String toString() {
         return "Book{" +
-                "book_id=" + book_id +
+                "bookID=" + bookID +
                 ", title='" + title + '\'' +
-                ", year_release=" + year_release +
+                ", yearRelease=" + yearRelease +
                 ", genre='" + genre + '\'' +
-                ", link_internet='" + link_internet + '\'' +
-                ", age_restriction=" + age_restriction +
-                ", number_pages=" + number_pages +
+                ", linkInternet='" + linkInternet + '\'' +
+                ", ageRestriction=" + ageRestriction +
+                ", numberPages=" + numberPages +
                 ", annotation='" + annotation + '\'' +
                 ", authors=" + authors +
                 '}';
     }
 
     @Column(name = "link_internet")
-    public String getLink_internet() {
-        return link_internet;
+    public String getLinkInternet() {
+        return linkInternet;
     }
-
-    public void setLink_internet(String link_internet) {
-        this.link_internet = link_internet;
+    public void setLinkInternet(String linkInternet) {
+        this.linkInternet = linkInternet;
     }
 
     @Column(name = "age_restriction")
@@ -114,19 +110,17 @@ public class Book {
     }
 
     @Column(name = "number_pages")
-    public int getNumber_pages() {
-        return number_pages;
+    public int getNumberPages() {
+        return numberPages;
     }
-
-    public void setNumber_pages(int number_pages) {
-        this.number_pages = number_pages;
+    public void setNumberPages(int number_pages) {
+        this.numberPages = number_pages;
     }
 
     @Column(name = "annotation")
     public String getAnnotation() {
         return annotation;
     }
-
     public void setAnnotation(String annotation) {
         this.annotation = annotation;
     }

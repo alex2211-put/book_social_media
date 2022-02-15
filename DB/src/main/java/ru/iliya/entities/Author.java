@@ -12,17 +12,12 @@ public class Author {
     private Date birthdate;
     private String country;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "author_id")
-    public int getActorId() {
-        return this.author_id;
-    }
 
-    public void setActorId(int author_id) {
-        this.author_id = author_id;
-    }
+    public int getAuthorID() { return this.authorID; }
+    public void setAuthorID(int authorId) { this.authorID = authorId; }
 
     @Column(name = "firstName")
     public void setFirstName(String firstName) {
@@ -37,6 +32,7 @@ public class Author {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 
     public String getLastName() {
         return this.lastName;
@@ -57,7 +53,6 @@ public class Author {
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
-
     public Date getBirthdate() {
         return this.birthdate;
     }
@@ -66,9 +61,7 @@ public class Author {
     public void setCountry(String country) {
         this.country = country;
     }
-
     public String getCountry() {
         return this.country;
     }
 }
-
