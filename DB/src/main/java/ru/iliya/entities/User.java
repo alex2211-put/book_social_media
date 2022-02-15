@@ -1,6 +1,5 @@
 package ru.iliya.entities;
 
-import jdk.nashorn.internal.runtime.regexp.joni.ast.StringNode;
 
 import javax.persistence.*;
 import java.util.Date;

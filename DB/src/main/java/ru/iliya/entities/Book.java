@@ -9,11 +9,11 @@ import java.util.Objects;
 public class Book {
     private Integer bookID;
     private String title;
-    private String year_release;
+    private String yearRelease;
     private String genre;
-    private String link_internet;
-    private String age_restriction;
-    private int number_pages;
+    private String linkInternet;
+    private String ageRestriction;
+    private int numberPages;
     private String annotation;
     private List<Author> authors;
 
@@ -23,7 +23,7 @@ public class Book {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(bookID, book.bookID) && ageRestriction == book.ageRestriction && numberPages == book.numberPages && title.equals(book.title) && yearRelease.equals(book.yearRelease) && Objects.equals(genre, book.genre) && linkInternet.equals(book.linkInternet) && Objects.equals(annotation, book.annotation);
+        return Objects.equals(bookID, book.bookID) && Objects.equals(ageRestriction, book.ageRestriction) && numberPages == book.numberPages && title.equals(book.title) && yearRelease.equals(book.yearRelease) && Objects.equals(genre, book.genre) && linkInternet.equals(book.linkInternet) && Objects.equals(annotation, book.annotation);
     }
 
     @Override
@@ -50,11 +50,11 @@ public class Book {
 
     @Column(name = "year_release")
     public String getYear_release() {
-        return year_release;
+        return yearRelease;
     }
 
-    public void setYear_release(String year_release) {
-        this.year_release = year_release;
+    public void setYear_release(String yearRelease) {
+        this.yearRelease = yearRelease;
 
     }
 
@@ -102,11 +102,11 @@ public class Book {
 
     @Column(name = "age_restriction")
     public String getAge_restriction() {
-        return age_restriction;
+        return ageRestriction;
     }
 
-    public void setAge_restriction(String age_restriction) {
-        this.age_restriction = age_restriction;
+    public void setAge_restriction(String ageRestriction) {
+        this.ageRestriction = ageRestriction;
     }
 
     @Column(name = "number_pages")

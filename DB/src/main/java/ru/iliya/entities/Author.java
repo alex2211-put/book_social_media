@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "author")
 public class Author {
-    private int author_id;
+    private int authorID;
     private String firstName;
     private String lastName;
     private Date birthdate;
@@ -41,7 +41,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + author_id +
+                "id=" + authorID +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
