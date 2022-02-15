@@ -4,9 +4,9 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "actors")
+@Table(name = "author")
 public class Author {
-    private int id;
+    private int author_id;
     private String firstName;
     private String lastName;
     private Date birthdate;
@@ -15,13 +15,13 @@ public class Author {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "author_id")
     public int getActorId() {
-        return this.id;
+        return this.author_id;
     }
 
-    public void setActorId(int id) {
-        this.id = id;
+    public void setActorId(int author_id) {
+        this.author_id = author_id;
     }
 
     @Column(name = "firstName")
@@ -45,7 +45,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author{" +
-                "id=" + id +
+                "id=" + author_id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", birthdate=" + birthdate +
