@@ -1,7 +1,6 @@
 package ru.iliya.entities;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,11 +9,11 @@ import java.util.Objects;
 public class Book {
     private Integer bookID;
     private String title;
-    private Date yearRelease;
+    private String year_release;
     private String genre;
-    private String linkInternet;
-    private int ageRestriction;
-    private int numberPages;
+    private String link_internet;
+    private String age_restriction;
+    private int number_pages;
     private String annotation;
     private List<Author> authors;
 
@@ -49,12 +48,14 @@ public class Book {
     }
 
 
-    @Column(name = "yearRelease")
-    public Date getYearRelease() {
-        return yearRelease;
+    @Column(name = "year_release")
+    public String getYear_release() {
+        return year_release;
     }
-    public void setYearRelease(Date year_release) {
-        this.yearRelease = year_release;
+
+    public void setYear_release(String year_release) {
+        this.year_release = year_release;
+
     }
 
     @Column(name = "genre")
@@ -68,7 +69,7 @@ public class Book {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "Books_Authors", joinColumns = {@JoinColumn(name = "book_id", updatable = false)},
-            inverseJoinColumns = {@JoinColumn(name = "id", nullable = false, updatable = false)})
+            inverseJoinColumns = {@JoinColumn(name = "author_id", nullable = false, updatable = false)})
     public List<Author> getAuthors() {
         return authors;
     }
@@ -100,11 +101,12 @@ public class Book {
     }
 
     @Column(name = "age_restriction")
-    public int getAge_restriction() {
-        return ageRestriction;
+    public String getAge_restriction() {
+        return age_restriction;
     }
-    public void setAge_restriction(int ageRestriction) {
-        this.ageRestriction = ageRestriction;
+
+    public void setAge_restriction(String age_restriction) {
+        this.age_restriction = age_restriction;
     }
 
     @Column(name = "number_pages")
