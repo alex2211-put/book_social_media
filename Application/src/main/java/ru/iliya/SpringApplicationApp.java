@@ -13,6 +13,8 @@ public class SpringApplicationApp {
     @Autowired
     BookSearchService bookSearchService;
     @Autowired
+    CommentService commentService;
+    @Autowired
     SpringApplicationData springApplicationData;
 
     public static void main(String[] args) {
@@ -24,6 +26,8 @@ public class SpringApplicationApp {
 
             System.out.println("-------StartTest--------");
             System.out.println(bookSearchService.findBooksByGenre("Русские детективы"));
+            commentService.setCommentByBookId(6038852, "Very nice book, love it");
+            System.out.println(commentService.findCommentsByBookId(6038852));
 
             System.out.println("----------end-----------");
         };

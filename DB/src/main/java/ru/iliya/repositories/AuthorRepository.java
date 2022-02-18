@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
-    List<Author> findПлизByFirstNameLike(String firstName);
+    List<Author> findByFirstNameLike(String firstName);
 
     List<Author> findByLastNameLike(String secondName);
     Author findAuthorByFirstNameAndLastName(String firstname, String lastName);

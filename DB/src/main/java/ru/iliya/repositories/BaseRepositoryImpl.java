@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.iliya.entities.Author;
 import ru.iliya.entities.Book;
+import ru.iliya.entities.Comments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,8 @@ public class BaseRepositoryImpl implements BaseRepository{
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private CommentRepository commentRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -44,5 +47,20 @@ public class BaseRepositoryImpl implements BaseRepository{
     @Override
     public List <Book> findByGenre(String genre) {
         return bookRepository.findBooksByGenre(genre);
+    }
+
+    @Override
+    public List <Comments> findCommentsByBookId(Integer bookId) {
+        Book book = bookRepository.findBookByBookID(bookId);
+        return commentRepository.findCommentsByBook(book);
+    }
+
+    @Override
+    public void setCommentByBookId(Integer bookId, String comment) {
+        Book book = bookRepository.findBookByBookID(bookId);
+        Comments comments = new Comments();
+        comments.setBook(book);
+        comments.setComment(comment);
+        commentRepository.save(comments);
     }
 }
