@@ -7,6 +7,16 @@ import javax.persistence.*;
 public class Comments {
     private Integer commentId;
     private String comment;
+
+    @Override
+    public String toString() {
+        return "Comments{" +
+                "commentId=" + commentId +
+                ", comment='" + comment + '\'' +
+                ", book=" + book +
+                '}';
+    }
+
     private Book book;
 
     @Id
