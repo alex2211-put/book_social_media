@@ -23,18 +23,15 @@ public class MessageService implements CommandLineRunner {
 
         // fetch all customers
         System.out.println("Customers found with findAll():");
-        System.out.println("-------------------------------");
         for (Message message : repository.findAll()) {
             System.out.println(message);
         }
+        System.out.println("-------------------------------");
         System.out.println();
-
         // fetch an individual customer
-        System.out.println("Customer found with findByFirstName('Alice'):");
-        System.out.println("--------------------------------");
+        System.out.println("Customer found with findById('123_456'):");
         System.out.println(repository.findById("123_456"));
 
-        System.out.println("Customers found with findByLastName('Smith'):");
         System.out.println("--------------------------------");
 
         }

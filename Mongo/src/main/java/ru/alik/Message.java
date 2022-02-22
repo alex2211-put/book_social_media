@@ -9,6 +9,12 @@ public class Message {
     public String id;
 
     public String message;
+    public String user1id;
+    public String user2id;
+
+    public Message(){
+
+    };
 
 
     public Message(String user1id, String user2id, String message) {
@@ -18,6 +24,7 @@ public class Message {
         } else {
             id = user2id + '_' + user1id;
         }
+        this.message = message;
     }
 
     @Override
