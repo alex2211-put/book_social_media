@@ -14,4 +14,5 @@ public interface BaseRepository{
     List<Book> getAll();
     Marks findByBookIdAndUserId(Integer bookId, Integer userId);
     void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark);
+
 }

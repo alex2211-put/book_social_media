@@ -12,6 +12,7 @@ public class Marks {
     private int userId;
     private int mark;
 
+
     public Marks(int bookId, int userId, int mark) {
         this.userId = userId;
         this.bookId = bookId;

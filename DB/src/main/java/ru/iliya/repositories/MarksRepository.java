@@ -12,4 +12,5 @@ public interface MarksRepository extends JpaRepository<Marks, Integer> {
     Marks findMarksByBookIdAndUserId(Integer bookId, Integer userIid);
 
 
+
 }

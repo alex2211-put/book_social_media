@@ -60,4 +60,5 @@ public class BaseRepositoryImpl implements BaseRepository{
             marksRepository.saveAndFlush(new Marks(bookId, userId, mark));
         }
     }
+
 }

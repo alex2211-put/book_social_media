@@ -33,7 +33,6 @@ public class SpringApplicationApp {
            marksService.setMarksByBookIdAndUserId(bookId, 1234, 228);
            System.out.println(marksService.findByBookIdAndUserId(bookId, 1234));
 
-
             System.out.println("----------end-----------");
         };
     }
