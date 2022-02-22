@@ -17,7 +17,6 @@ public class SpringApplicationApp {
     @Autowired
     MarksService marksService;
 
-
     public static void main(String[] args) {
         SpringApplication.run(SpringApplicationApp.class, args);
     }
