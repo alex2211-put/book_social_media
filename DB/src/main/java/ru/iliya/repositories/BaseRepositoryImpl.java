@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.iliya.entities.Author;
 import ru.iliya.entities.Book;
+import ru.iliya.entities.Marks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,12 @@ public class BaseRepositoryImpl implements BaseRepository{
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    MarksRepository marksRepository;
 
     @Override
     public Book addBook(Book book) {
-        Book savedBook = bookRepository.saveAndFlush(book);
-        return savedBook;
+        return bookRepository.saveAndFlush(book);
     }
 
 
@@ -44,5 +46,15 @@ public class BaseRepositoryImpl implements BaseRepository{
     @Override
     public List <Book> findByGenre(String genre) {
         return bookRepository.findBooksByGenre(genre);
+    }
+
+    @Override
+    public List<Marks> findByBookIdAndUserId(Integer bookId, Integer userId) {
+        return marksRepository.findMarksByBookIdAndUserId(bookId, userId);
+    }
+
+    @Override
+    public void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {
+        marksRepository.saveAndFlush(new Marks(bookId, userId, mark));
     }
 }

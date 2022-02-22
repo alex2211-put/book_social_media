@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ru.iliya.entities.Author;
+import ru.iliya.entities.Book;
 import ru.iliya.repositories.BookRepository;
 
 
@@ -14,10 +15,8 @@ public class SpringApplicationApp {
     @Autowired
     BookSearchService bookSearchService;
     @Autowired
-    SpringApplicationData springApplicationData;
+    MarksService marksService;
 
-    @Autowired
-    BookRepository bookRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringApplicationApp.class, args);
@@ -29,8 +28,11 @@ public class SpringApplicationApp {
 
             System.out.println("-------StartTest--------");
             //System.out.println(bookSearchService.findBooksByGenre("Русские детективы"));
-            System.out.println(bookSearchService.findBookByTitle("Часы Зигмунда Фрейда"));
-            System.out.println(bookSearchService.findBooksByAuthor("Александр", "Левитас"));
+           Book book = bookSearchService.findBookByTitle("Часы Зигмунда Фрейда");
+           int bookId = book.getBookID();
+           marksService.setMarksByBookIdAndUserId(bookId, 1234, 228);
+           System.out.println(marksService.findByBookIdAndUserId(bookId, 1234));
+
 
             System.out.println("----------end-----------");
         };
