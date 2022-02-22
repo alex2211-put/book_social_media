@@ -11,7 +11,7 @@ import java.util.List;
 public class MarksService {
     @Autowired
     BaseRepository baseRepository;
-    List<Marks> findByBookIdAndUserId(Integer bookId, Integer userId) {
+    Marks findByBookIdAndUserId(Integer bookId, Integer userId) {
         return baseRepository.findByBookIdAndUserId(bookId, userId);
     }
     void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {

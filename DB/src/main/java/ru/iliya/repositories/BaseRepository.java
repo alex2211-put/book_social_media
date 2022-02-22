@@ -12,6 +12,6 @@ public interface BaseRepository{
     List <Book> findByAuthor(String firstname, String lastName);
     List <Book> findByGenre(String genre);
     List<Book> getAll();
-    List<Marks> findByBookIdAndUserId(Integer bookId, Integer userId);
+    Marks findByBookIdAndUserId(Integer bookId, Integer userId);
     void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark);
 }

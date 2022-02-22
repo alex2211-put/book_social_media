@@ -49,12 +49,15 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
 
     @Override
-    public List<Marks> findByBookIdAndUserId(Integer bookId, Integer userId) {
+    public Marks findByBookIdAndUserId(Integer bookId, Integer userId) {
         return marksRepository.findMarksByBookIdAndUserId(bookId, userId);
     }
 
     @Override
     public void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {
-        marksRepository.saveAndFlush(new Marks(bookId, userId, mark));
+        Marks marks = marksRepository.findMarksByBookIdAndUserId(bookId, userId);
+        if (marks == null) {
+            marksRepository.saveAndFlush(new Marks(bookId, userId, mark));
+        }
     }
 }

@@ -1,6 +1,7 @@
 package ru.iliya.entities;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "marks")
@@ -44,5 +45,18 @@ public class Marks {
                 ", userId=" + userId +
                 ", mark=" + mark +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Marks)) return false;
+        Marks marks = (Marks) o;
+        return bookId == marks.bookId && userId == marks.userId && mark == marks.mark;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(markId, bookId, userId, mark);
     }
 }
