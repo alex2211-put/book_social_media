@@ -1,4 +1,4 @@
-package ru.alik;
+package ru.iliya.entities;
 
 import org.springframework.data.annotation.Id;
 

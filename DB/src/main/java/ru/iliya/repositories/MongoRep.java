@@ -1,6 +1,7 @@
-package ru.alik;
+package ru.iliya.repositories;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import ru.iliya.entities.Message;
 
 import java.util.Optional;
 
