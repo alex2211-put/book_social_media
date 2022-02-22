@@ -208,6 +208,8 @@ values  (1088, 'Александр', 'Левитас', null, null),
         (1125, '', 'Гущин', null, null),
         (1109, '', 'Ширер', null, null),
         (1123, '', 'Демидова', null, null);
+insert into comments (comment, book_id)
+values ('Very nice book, love it', 6038852);
 insert into books_authors (author_id, book_id)
 values  (1193, 6038852),
         (1124, 6059275),

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import ru.iliya.entities.Author;
 import ru.iliya.entities.Book;
 import ru.iliya.entities.Marks;
+import ru.iliya.entities.Comments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     private AuthorRepository authorRepository;
     @Autowired
     MarksRepository marksRepository;
+    private CommentRepository commentRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -61,4 +63,17 @@ public class BaseRepositoryImpl implements BaseRepository{
         }
     }
 
+    public List <Comments> findCommentsByBookId(Integer bookId) {
+        Book book = bookRepository.findBookByBookID(bookId);
+        return commentRepository.findCommentsByBook(book);
+    }
+
+    @Override
+    public void setCommentByBookId(Integer bookId, String comment) {
+        Book book = bookRepository.findBookByBookID(bookId);
+        Comments comments = new Comments();
+        comments.setBook(book);
+        comments.setComment(comment);
+        commentRepository.save(comments);
+    }
 }
