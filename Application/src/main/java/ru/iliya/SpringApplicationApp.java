@@ -15,7 +15,7 @@ public class SpringApplicationApp {
 
     @Autowired
     BookSearchService bookSearchService;
-    @Autowire
+    @Autowired
     MarksService marksService;
 
     CommentService commentService;
