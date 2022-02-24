@@ -9,7 +9,6 @@ import ru.iliya.entities.Book;
 import ru.iliya.repositories.BookRepository;
 
 
-
 @SpringBootApplication
 public class SpringApplicationApp {
 
