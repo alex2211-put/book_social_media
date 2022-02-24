@@ -9,22 +9,24 @@ public class Message {
     public String id;
 
     public String message;
-    public String user1id;
-    public String user2id;
+    public String from;
+    public String to;
 
     public Message(){
 
     };
 
 
-    public Message(String user1id, String user2id, String message) {
-        int i = user1id.compareTo(user2id);
+    public Message(String from, String to, String message) {
+        int i = from.compareTo(to);
         if (i < 0) {
-            id = user1id + '_' + user2id;
+            id = from + '_' + to;
         } else {
-            id = user2id + '_' + user1id;
+            id = to + '_' + from;
         }
         this.message = message;
+        this.from = from;
+        this.to = to;
     }
 
     @Override
@@ -32,6 +34,8 @@ public class Message {
         return "Message{" +
                 "id='" + id + '\'' +
                 ", message='" + message + '\'' +
+                ", from='" + from + '\'' +
+                ", to='" + to + '\'' +
                 '}';
     }
 }

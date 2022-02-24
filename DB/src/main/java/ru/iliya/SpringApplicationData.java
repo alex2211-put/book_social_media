@@ -8,14 +8,14 @@ import org.springframework.boot.SpringApplication;
 import ru.iliya.entities.Message;
 import ru.iliya.repositories.AuthorRepository;
 import ru.iliya.repositories.BaseRepository;
-import ru.iliya.repositories.MongoRep;
+import ru.iliya.repositories.MongoMessageRepository;
 
 // TODO: назвать иначе
 
 @SpringBootApplication
 public class SpringApplicationData implements CommandLineRunner {
     @Autowired
-    private MongoRep repository;
+    private MongoMessageRepository repository;
     @Autowired
     BaseRepository baseRepository;
 
