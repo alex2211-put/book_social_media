@@ -29,7 +29,7 @@ public class SpringApplicationData implements CommandLineRunner {
     public void run(String... args) throws Exception {
         repository.deleteAll();
         repository.save(new Message("123", "456", "Привет"));
-        repository.save(new Message("234", "567", "Как дела"));
+        repository.save(new Message("234", "567", "Как дела?"));
 
         // fetch all customers
         System.out.println("Messages found with findAll():");
