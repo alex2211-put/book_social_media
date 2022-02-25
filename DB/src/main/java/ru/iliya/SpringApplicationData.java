@@ -28,7 +28,7 @@ public class SpringApplicationData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         repository.deleteAll();
-        repository.save(new Message("123", "456", "Привет"));
+        repository.save(new Message("123", "456", "Привет!"));
         repository.save(new Message("234", "567", "Как дела?"));
 
         // fetch all customers
