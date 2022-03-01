@@ -7,26 +7,44 @@ import java.util.Date;
 @Table(name = "blocked_users")
 public class BlockedUsers {
     private int blockID;
-    private int userIDMain;
+    private int userID;
     private int userIDBlocked;
     private Date dateBlock;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "block_id")
-    public int getBlockID() { return this.blockID; }
-    public void setBlockID(int authorId) { this.blockID = blockID; }
+    public int getBlockID() {
+        return this.blockID;
+    }
 
-    @Column(name = "user_id_main")
-    public int getUserIDMain() { return this.userIDMain; }
-    public void setUserIDMain(int userIDMain) { this.userIDMain = userIDMain; }
+    public void setBlockID(int blockID) {
+        this.blockID = blockID;
+    }
+
+    @Column(name = "user_id")
+    public int getUserID() {
+        return this.userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     @Column(name = "user_id_blocked")
-    public int getUserIDBlocked() { return this.userIDBlocked; }
-    public void setUserIDBlocked(int userIDBlocked) { this.userIDBlocked = userIDBlocked; }
+    public int getUserIDBlocked() {
+        return this.userIDBlocked;
+    }
+
+    public void setUserIDBlocked(int userIDBlocked) {
+        this.userIDBlocked = userIDBlocked;
+    }
 
     @Column(name = "date_block")
-    public void setDateBlock(Date dateBlock) { this.dateBlock = dateBlock; }
+    public void setDateBlock(Date dateBlock) {
+        this.dateBlock = dateBlock;
+    }
+
     public Date getDateBlock() {
         return this.dateBlock;
     }
@@ -35,9 +53,21 @@ public class BlockedUsers {
     public String toString() {
         return "BlockedUsers{" +
                 "blockID=" + blockID +
-                ", userIDMain='" + userIDMain + '\'' +
+                ", userIDMain='" + userID + '\'' +
                 ", userIDBlocked='" + userIDBlocked + '\'' +
                 ", dateBlock=" + dateBlock +
                 '}';
+    }
+
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userIDmain")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User User) {
+        this.user = user;
     }
 }
