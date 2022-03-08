@@ -16,9 +16,10 @@ public class MessageService {
     @Autowired
     MongoRepository mongoRepository;
 
-    public ArrayList<String> getDialogsForUser(String owner) {
+    public List<Document> getDialogsForUser(String owner) {
         List<Document> documents = mongoRepository.getDialogsForCollection(owner);
-        return docsToStrings(documents);
+        System.out.println(docsToStrings(documents));
+        return documents;
     }
 
     public void writeToUser(Message message) {
