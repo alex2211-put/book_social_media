@@ -20,6 +20,7 @@
         <module>API</module>
         <module>DB</module>
         <module>Application</module>
+        <module>Mongo</module>
     </modules>
 
     <properties>

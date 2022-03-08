@@ -3,6 +3,8 @@ package ru.iliya.repositories;
 import ru.iliya.entities.*;
 
 import java.util.Date;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface BaseRepository{
@@ -12,8 +14,11 @@ public interface BaseRepository{
     List <Book> findByGenre(String genre);
     List<Book> getAll();
 
-    void setCommentByBookId(Integer bookId, String comment);
+    Marks findByBookIdAndUserId(Integer bookId, Integer userId);
+    void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark);
+
     List <Comments> findCommentsByBookId(Integer bookId);
+    void setCommentByBookId(Integer bookId, String comment);
     void deleteCommentsByCommentId(int commentId);
 
     void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID);

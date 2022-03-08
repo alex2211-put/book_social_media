@@ -5,13 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee8489d6-bd7d-4366-94bd-d18f219a9da5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/API/src/main/java/ru/iliya/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/ru/iliya/UserServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mongodb_mongo_java_driver_3_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_data_spring_data_mongodb_2_1_2_RELEASE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/API/src/main/java/ru/iliya/MarksService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/entities/Marks.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/entities/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/MarksRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/MongoMessageRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/API.iml" beforeDir="false" afterPath="$PROJECT_DIR$/API/API.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API/src/main/java/ru/iliya/BookSearchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/API/src/main/java/ru/iliya/BookSearchService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/Application.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Application/Application.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/src/main/java/ru/iliya/SpringApplicationApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/java/ru/iliya/SpringApplicationApp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Application/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Application/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Application/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Application/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/DB.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DB/DB.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/DB/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/SpringApplicationData.java" beforeDir="false" afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/SpringApplicationData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/entities/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/BaseRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/BaseRepositoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/BaseRepositoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/DB/src/main/java/ru/iliya/repositories/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DB/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/DB/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/SpringApplicationData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/Author.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/BlockedUsers.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/Book.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/Comments.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/Favourites.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/Friends.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/Recommendations.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/entities/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/AuthorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/BaseRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/BaseRepositoryImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/BlockedUsersRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/BookRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/CommentRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/FavouritesRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/FriendsRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/RecommendationsRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/RoleRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DB/target/classes/ru/iliya/repositories/UserRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +99,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect" value="PostgreSQL" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Application/src/main/resources" />
@@ -202,7 +240,7 @@
       <workItem from="1644908435012" duration="6200000" />
       <workItem from="1645082813673" duration="55261000" />
       <workItem from="1645968503461" duration="696000" />
-      <workItem from="1646144192734" duration="8614000" />
+      <workItem from="1646144192734" duration="9496000" />
     </task>
     <servers />
   </component>
