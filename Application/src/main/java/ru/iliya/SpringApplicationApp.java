@@ -19,9 +19,6 @@ public class SpringApplicationApp {
 
     @Autowired
     CommentService commentService;
-    @Autowired
-    SpringApplicationData springApplicationData;
-
 
     public static void main(String[] args) {
         SpringApplication.run(SpringApplicationApp.class, args);

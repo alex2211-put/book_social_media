@@ -64,6 +64,7 @@ public class BaseRepositoryImpl implements BaseRepository{
         }
     }
 
+    @Override
     public List <Comments> findCommentsByBookId(Integer bookId) {
         Book book = bookRepository.findBookByBookID(bookId);
         return commentRepository.findCommentsByBook(book);
@@ -76,5 +77,50 @@ public class BaseRepositoryImpl implements BaseRepository{
         comments.setBook(book);
         comments.setComment(comment);
         commentRepository.save(comments);
+    }
+
+    @Override
+    public List <Book> findBooksByTitleAndAuthorsAndGenre(String title,
+                                                   List <Author> authors,
+                                                   String genre) {
+        List <Book> books = bookRepository.findBooksByTitleAndAuthorsAndGenre(title, authors, genre);
+        if (!books.isEmpty()) {
+            return books;
+        }
+        else {return bookRepository.findBooksByTitleLikeAndAuthorsAndGenre(
+                title + "%", authors, genre);}
+    }
+    @Override
+    public List <Book> findBooksByTitleAndAuthors(String title,
+                                           List <Author> authors) {
+        List <Book> books = bookRepository.findBooksByTitleAndAuthors(title, authors);
+        if (!books.isEmpty()) {
+            return books;
+        }
+        else {return bookRepository.findBooksByTitleLikeAndAuthors(title + "%", authors);}
+    }
+    @Override
+    public List <Book> findBooksByTitleAndGenre(String title,
+                                         String genre){
+        List <Book> books = bookRepository.findBooksByTitleAndGenre(title, genre);
+        if (!books.isEmpty()) {
+            return books;
+        }
+        else { return bookRepository.findBooksByTitleLikeAndGenre(title + "%", genre);}
+    }
+    @Override
+    public List <Book> findBooksByAuthorsAndGenre(List <Author> authors,
+                                           String genre) {
+        return bookRepository.findBooksByAuthorsAndGenre(authors, genre);
+    }
+    @Override
+    public List <Book> findBooksByTitle(String title) {
+        List <Book> books = bookRepository.findBooksByTitle(title);
+        if (!books.isEmpty()) {
+            return books;
+        }
+        else {
+            return bookRepository.findBooksByTitleLike(title + "%");
+        }
     }
 }
