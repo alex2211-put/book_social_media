@@ -4,9 +4,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import ru.iliya.entities.Author;
 import ru.iliya.entities.Book;
-import ru.iliya.repositories.BookRepository;
+import ru.iliya.services.BookSearchService;
+import ru.iliya.services.CommentService;
+import ru.iliya.services.MarksService;
 
 
 @SpringBootApplication
