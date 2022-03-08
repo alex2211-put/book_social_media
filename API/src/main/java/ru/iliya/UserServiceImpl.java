@@ -2,8 +2,6 @@ package ru.iliya;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.iliya.entities.BlockedUsers;
-import ru.iliya.entities.Recommendations;
 import ru.iliya.entities.User;
 import ru.iliya.repositories.BaseRepository;
 
@@ -27,10 +25,9 @@ public class UserServiceImpl implements UserService {
         baseRepository.setUserByParams(nickname, firstName, lastName, birthdate, email, openProfile, hashPassword, roleID);
     }
 
-
     @Override
-    public List<User> findUserByLastName(String firstName) {
-        return null;
+    public List<User> findUserByLastName(String lastName) {
+        return baseRepository.findUserByLastName(lastName);
     }
 
     @Override

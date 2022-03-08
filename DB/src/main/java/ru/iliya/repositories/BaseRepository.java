@@ -18,6 +18,7 @@ public interface BaseRepository{
 
     void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID);
     List<User> findUserByFirstName(String firstName);
+    List<User> findUserByLastName(String lastName);
     User findUserByEmail(String email);
     User findUserByNickname(String nickname);
     User findUserByID(int userID);

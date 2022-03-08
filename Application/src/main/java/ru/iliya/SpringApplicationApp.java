@@ -35,15 +35,16 @@ public class SpringApplicationApp {
             System.out.println(bookSearchService.findBooksByGenre("Русские детективы"));
             commentService.setCommentByBookId(6038852, "Very nice book, love it");
             System.out.println(commentService.findCommentsByBookId(6038852));
-            userService.setUserByParams( "xaero", "Roma", "Mikhailov",   null,
-                    "ziroxxx3@gmail.com", true, "sdgdg", 1);
-            userService.setUserByParams( "ziro", "Sasha", "Putin",   null,
-                    "putin@gmail.com", true, "sdgdf", 2);
+            userService.setUserByParams( "xxx", "xxx", "xxx",   null,
+                    "xxx@gmail.com", true, "sdgdg", 1);
+            userService.setUserByParams( "yyy", "yyy", "yyy",   null,
+                    "yyy@gmail.com", true, "sdgdf", 2);
 //            System.out.println(userService.findUserByFirstName("Roma"));
 //            System.out.println(userService.findUserByEmail("ziroxxx3@gmail.com"));
 //            System.out.println(userService.findUserByNickname("xaero"));
 //            System.out.println(userService.findUserByUserID(1));
 //            System.out.println(userService.findUserByUserID(2));
+            System.out.println(userService.findUserByLastName("xxx"));
             blockedUsersService.setBlockedUsersByParams(1, 2);
             System.out.println(blockedUsersService.findByUserIDBlocked(2));
             blockedUsersService.deleteBlockedUsersByBlockID(1);

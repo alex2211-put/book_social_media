@@ -27,7 +27,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     @Autowired
     private BlockedUsersRepository blockedUsersRepository;
 
-    //книги
+    //books
     @Override
     public Book addBook(Book book) {
         Book savedBook = bookRepository.saveAndFlush(book);
@@ -59,7 +59,7 @@ public class BaseRepositoryImpl implements BaseRepository{
 
 
 
-    //комментарии
+    //comments
     @Override
     public List <Comments> findCommentsByBookId(Integer bookId) {
         Book book = bookRepository.findBookByBookID(bookId);
@@ -82,7 +82,7 @@ public class BaseRepositoryImpl implements BaseRepository{
 
 
 
-    //юзеры
+    //users
     @Override
     public void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID) {
         User user = new User();
@@ -103,6 +103,11 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
 
     @Override
+    public List<User> findUserByLastName(String lastName) {
+        return userRepository.findByLastName(lastName);
+    }
+
+    @Override
     public User findUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
@@ -119,7 +124,7 @@ public class BaseRepositoryImpl implements BaseRepository{
 
 
 
-    //избранное
+    //favourites
     @Override
     public void setFavouritesByParams(int userID, int bookID) {
         Favourites favourites = new Favourites();
@@ -143,7 +148,7 @@ public class BaseRepositoryImpl implements BaseRepository{
 
 
 
-    //рекомендации
+    //recommendations
     @Override
     public void setRecommendationsByParams(int userID, int bookID) {
         Recommendations recommendations = new Recommendations();
@@ -167,7 +172,7 @@ public class BaseRepositoryImpl implements BaseRepository{
 
 
 
-    //заблокированные пользователи
+    //blocked users
     @Override
     public void setBlockedUsersByParams(int userID, int userIDBlocked) {
         BlockedUsers blockedUsers = new BlockedUsers();
