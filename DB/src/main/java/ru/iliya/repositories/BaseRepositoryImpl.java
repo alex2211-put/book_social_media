@@ -19,6 +19,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     private AuthorRepository authorRepository;
     @Autowired
     MarksRepository marksRepository;
+    @Autowired
     private CommentRepository commentRepository;
 
     @Override
@@ -51,7 +52,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
 
     @Override
-    public Marks findByBookIdAndUserId(Integer bookId, Integer userId) {
+    public Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId) {
         return marksRepository.findMarksByBookIdAndUserId(bookId, userId);
     }
 
