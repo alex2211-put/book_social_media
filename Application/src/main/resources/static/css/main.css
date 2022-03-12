@@ -14,6 +14,7 @@ strong {
 }
 
 .table_block {
+    font-family: 'Bradley Hand', sans-serif bold;
     margin-top: 5%;
     margin-left: 25%;
     margin-right: 25%;
@@ -24,10 +25,14 @@ strong {
     -khtml-border-radius: 10px;
     border: 1px solid grey;
     background: linear-gradient(45deg, whitesmoke, #C5DDE8);
+
 }
 
 /*table td:first-child {text-align: center;}*/
-.table_header {height: 30px; vertical-align: top;}
+.table_header {
+    height: 30px;
+    vertical-align: top;
+}
 
 td {
     border: 0 solid grey;
@@ -65,24 +70,31 @@ th {
 
 .message {
     height: 60px;
-    font-family: 'Bradley Hand', sans-serif bold;
     font-size: 25px;
     color: black;
     padding: 9px 8px;
 }
 
+.message_table {
+    border-bottom: 1px solid #ccc;
+    color: #669;
+    transition: .3s linear;
+}
+
 .messageFromOwnertrue {
+    width: 75%;
     text-align: right;
-    padding-right: 15%;
     height: 60px;
     font-family: 'Bradley Hand', sans-serif bold;
     font-size: 25px;
     color: black;
-    padding-bottom: 1%;
-    padding-top: 1%;
+    padding: 1% 4% 1% 1%;
+    margin: auto;
+
 }
 
 .messageFromOwnerfalse {
+    width: 75%;
     height: 60px;
     font-family: 'Bradley Hand', sans-serif bold;
     font-size: 25px;
@@ -90,5 +102,33 @@ th {
     text-align: left;
     padding-bottom: 1%;
     padding-top: 1%;
-    padding-left: 15%;
+    padding-left: 4%;
+}
+
+.user_icon_from {
+    width: 60px;
+    margin-right: 5px;
+    margin-left: 5px;
+    background-color: #6678b1;
+    border-radius: 50%;
+}
+
+.user_icon_to {
+    width: 60px;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: darkseagreen;
+    border-radius: 50%;
+}
+
+.user_icon_from_no {
+    width: 25px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.user_icon_to_no {
+    width: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
 }

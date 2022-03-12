@@ -13,22 +13,44 @@
 
 <body>
 
+<div class="scroll-table">
 
-<div style="text-align: center;">
-    <table class="table_block">
-        <thead>
-        <tr>
-            <th valign="middle" colspan="1" class="table_header">
-                <div class="title">Chat</div>
-            </th>
-        </tr>
-        </thead>
-        <tbody th:each="message, iStat : ${ownerDialog.messages}" >
-        <td th:text="${message.message}" th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})"></td>
-        </tbody>
-    </table>
+    <div style="text-align: center;">
+        <table class="table_block">
+            <thead>
+            <tr>
+                <th valign="middle" colspan="3" class="table_header">
+                    <div class="title">Chat</div>
+                </th>
+            </tr>
+            </thead>
+            <div class="scroll-table-body">
+                <tbody th:each="message, iStat : ${ownerDialog.messages}">
+                <td th:text="( (${ownerDialog.ownerId} != ${message.from})? ${message.from} : '')"
+                    th:class="((${ownerDialog.ownerId} != ${message.from}))? 'user_icon_to' : 'user_icon_to_no'"></td>
+                <td th:text="${message.message}"
+                    th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})"></td>
+                <td th:text="( (${ownerDialog.ownerId} == ${message.from})? ${message.from} : '')"
+                    th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'"></td>
+                </tbody>
+            </div>
+            <tr>
+                <td class="write_message" colspan="3">
+                    <form id="add-form-3" th:action="@{/user/dialogs}" th:method="get">
+                        <div>
+                            <label>
+                                <input type="text" th:name="message" th:placeholder="message"/>
+                            </label>
+                        </div>
+                        <div class="row">
+                            <button id="" type="submit" th:text="smth" class="message_cell"></button>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
-
 
 </body>
 </html>
