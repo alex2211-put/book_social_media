@@ -26,7 +26,7 @@ strong {
     background: linear-gradient(45deg, whitesmoke, #C5DDE8);
 }
 
-table td:first-child {text-align: center;}
+/*table td:first-child {text-align: center;}*/
 .table_header {height: 30px; vertical-align: top;}
 
 td {
@@ -72,12 +72,14 @@ th {
 }
 
 .messageFromOwnertrue {
+    text-align: right;
+    padding-right: 15%;
     height: 60px;
     font-family: 'Bradley Hand', sans-serif bold;
     font-size: 25px;
     color: black;
-    padding: 9px 8px;
-    text-align: right;
+    padding-bottom: 1%;
+    padding-top: 1%;
 }
 
 .messageFromOwnerfalse {
@@ -85,6 +87,8 @@ th {
     font-family: 'Bradley Hand', sans-serif bold;
     font-size: 25px;
     color: black;
-    padding: 9px 8px;
     text-align: left;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left: 15%;
 }

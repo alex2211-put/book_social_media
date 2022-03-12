@@ -10,6 +10,7 @@ import ru.iliya.entities.User;
 import ru.iliya.repositories.BaseRepositoryImpl;
 import ru.iliya.repositories.MongoRepository;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +48,7 @@ public class MessageService {
         }
     }
 
-    public List<String> getAllMessagesForDialog(String owner, String partner) {
+    public List<Document> getAllMessagesForDialog(String owner, String partner) {
         String id;
         int i = partner.compareTo(owner);
         if (i < 0) {
@@ -55,8 +56,7 @@ public class MessageService {
         } else {
             id = owner + '_' + partner;
         }
-        List<Document> documents = mongoRepository.getMessagesForCollection(id);
-        return docsToStrings(documents);
+        return mongoRepository.getMessagesForCollection(id);
     }
 
     private ArrayList<String> docsToStrings(List<Document> documents) {

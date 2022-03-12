@@ -7,10 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.iliya.entities.Message;
 import ru.iliya.entities.User;
 import ru.iliya.repositories.MongoRepositoryImpl;
 import ru.iliya.services.MessageService;
 
+import org.bson.Document;
+
+import javax.print.Doc;
+import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +39,9 @@ public class MessagesController {
 
     public static class OwnerDialog {
         public String ownerId;
-        public List<String> messages;
+        public List<Message> messages;
 
-        public OwnerDialog(String ownerId, List<String> messages) {
+        public OwnerDialog(String ownerId, List<Message> messages) {
             this.ownerId = ownerId;
             this.messages = messages;
         }
@@ -61,8 +66,16 @@ public class MessagesController {
     public String showMessagesForUser(@PathVariable(name = "owner") String owner,
                                       @PathVariable(name = "person") String person,
                                       Model model) {
-        List<String> messages = messageService.getAllMessagesForDialog(owner, person);
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages));
+        List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
+        List<Message> messages1 = new ArrayList<>();
+        for (Document document : messages) {
+            messages1.add(new Message(
+                    document.get("text").toString(),
+                    document.get("from").toString(),
+                    document.get("to").toString(),
+                    "2022"));
+        }
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages1));
         return "p2p-dialog";
     }
 

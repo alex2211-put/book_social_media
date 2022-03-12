@@ -24,7 +24,7 @@
         </tr>
         </thead>
         <tbody th:each="message, iStat : ${ownerDialog.messages}" >
-        <td th:text="${message.message}" th:class="'messageFromOwner' + (${ownerDialog.ownerId} == message.from)"></td>
+        <td th:text="${message.message}" th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})"></td>
         </tbody>
     </table>
 </div>
