@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+</head>
+
+<body>
+
+
+<div style="text-align: center;">
+    <table class="table_block">
+        <thead>
+        <tr>
+            <th valign="middle" colspan="1" class="table_header">
+                <div class="title">Chat</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody th:each="message, iStat : ${ownerDialog.messages}" >
+        <td th:text="${message.message}" th:class="'messageFromOwner' + (${ownerDialog.ownerId} == message.from)"></td>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
