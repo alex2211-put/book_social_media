@@ -49,6 +49,7 @@ public class MessagesController {
         List<User> users = messageService.getDialogsForUser(userId);
         List<LastMessage> lastMessages = new ArrayList<>();
         for (User user1 : users) {
+            System.out.println(users);
             String message = messageService.getLastMessage(userId, user1);
             lastMessages.add(new LastMessage(user1, message, userId));
         }

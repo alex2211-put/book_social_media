@@ -16,7 +16,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     @Autowired
     private AuthorRepository authorRepository;
     @Autowired
-    MarksRepository marksRepository;
+    private MarksRepository marksRepository;
     @Autowired
     private CommentRepository commentRepository;
     @Autowired

@@ -5,14 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ru.iliya.entities.Book;
+import ru.iliya.entities.Message;
 import ru.iliya.services.MessageService;
 
 
 @SpringBootApplication
 public class SpringApplicationApp {
 
-    @Autowired
-    SpringApplicationData springApplicationData;
     @Autowired
     MessageService messageService;
 
@@ -24,8 +23,9 @@ public class SpringApplicationApp {
     @Bean
     public CommandLineRunner springdata() {
         return(args) -> {
-            System.out.println(messageService.getDialogsForUser("1").get(0).get("user"));
-
+            System.out.println(messageService.getDialogsForUser("1").get(0));
+            Message message = new Message("Hi", "1", "123", "2022");
+            messageService.writeToUser(message);
             System.out.println("-------StartTest--------");
 
 
