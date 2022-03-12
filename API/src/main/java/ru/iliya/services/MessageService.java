@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Message;
+import ru.iliya.entities.User;
+import ru.iliya.repositories.BaseRepositoryImpl;
 import ru.iliya.repositories.MongoRepository;
 
 import java.util.ArrayList;
@@ -15,11 +17,21 @@ import java.util.List;
 public class MessageService {
     @Autowired
     MongoRepository mongoRepository;
+    @Autowired
+    BaseRepositoryImpl baseRepository;
 
-    public List<Document> getDialogsForUser(String owner) {
+    public List<User> getDialogsForUser(String owner) {
         List<Document> documents = mongoRepository.getDialogsForCollection(owner);
         System.out.println(docsToStrings(documents));
-        return documents;
+        List<User> users = new ArrayList<>();
+        for (Document document : documents) {
+            String[] user_ids = document.get("user").toString().replaceAll("[ \\[\\]]", "").split(",");
+            for (String user_id : user_ids) {
+                User user = baseRepository.findUserByID(Integer.parseInt(user_id));
+                users.add(user);
+            }
+        }
+        return users;
     }
 
     public void writeToUser(Message message) {
@@ -51,5 +63,17 @@ public class MessageService {
         ArrayList<String> docStrings = new ArrayList<>();
         documents.forEach((Document doc) -> docStrings.add(doc.toString()));
         return docStrings;
+    }
+
+    public String getLastMessage(String userId, User user1) {
+        String id;
+        String partner = String.valueOf(user1.getUserID());
+        int i = partner.compareTo(userId);
+        if (i < 0) {
+            id = partner + '_' + userId;
+        } else {
+            id = userId + '_' + partner;
+        }
+        return mongoRepository.getLastMessagesForCollection(id);
     }
 }

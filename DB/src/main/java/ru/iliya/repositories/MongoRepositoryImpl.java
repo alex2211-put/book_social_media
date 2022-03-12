@@ -5,6 +5,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.operation.OrderBy;
 import org.bson.Document;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -91,6 +92,17 @@ public class MongoRepositoryImpl implements MongoRepository {
     public List<Document> getDialogsForCollection(String collection) {
         MongoDatabase db = getDb("dialogs");
         return getDocuments(collection, db);
+    }
+
+    @Override
+    public String getLastMessagesForCollection(String collection) {
+        MongoDatabase db = getDb("messages");
+        MongoCollection<Document> collection1 = db.getCollection(collection);
+        FindIterable<Document> cursor = collection1.find().sort(new BasicDBObject("_id", OrderBy.DESC.getIntRepresentation())).limit(1);
+        for (Document document : cursor) {
+            return (String) document.get("text");
+        }
+        return "";
     }
 
 }

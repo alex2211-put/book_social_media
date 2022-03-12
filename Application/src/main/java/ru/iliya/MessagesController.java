@@ -4,10 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.iliya.entities.User;
 import ru.iliya.repositories.MongoRepositoryImpl;
 import ru.iliya.services.MessageService;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MessagesController {
@@ -15,21 +20,49 @@ public class MessagesController {
     @Autowired
     MessageService messageService;
 
-    String title;
-    @GetMapping("/all_dialogs_for_user") //book/search
-    public String showAllDialogsForUser(@RequestParam(name = "user") String user,
-                                   Model model) {
-        model.addAttribute("dialogs",
-                messageService.getDialogsForUser(user));
-        return "all-dialogs-for-user"; //view
+    public class LastMessage {
+        public User user;
+        public String message;
+        public String ownerId;
+
+        public LastMessage(User user, String message, String ownerId) {
+            this.user = user;
+            this.message = message;
+            this.ownerId = ownerId;
+        }
     }
 
-//    @GetMapping("/book-by-title")
-//    public String searchBookByTitle(@RequestParam(name = "title") String title) {
-//        this.title = title;
-//
-//        return "redirect:/book-by-title";
-//    }
+    public class OwnerDialog {
+        public String ownerId;
+        public List<String> messages;
 
+        public OwnerDialog(String ownerId, List<String> messages) {
+            this.ownerId = ownerId;
+            this.messages = messages;
+        }
+    }
+
+
+    @GetMapping("/user/dialogs")
+    public String showAllDialogsForUser(@RequestParam(name = "user", required = false, defaultValue = "1") String userId,
+                                        Model model) {
+        List<User> users = messageService.getDialogsForUser(userId);
+        List<LastMessage> lastMessages = new ArrayList<>();
+        for (User user1 : users) {
+            String message = messageService.getLastMessage(userId, user1);
+            lastMessages.add(new LastMessage(user1, message, userId));
+        }
+        model.addAttribute("lastMessages", lastMessages);
+        return "all-dialogs-for-user";
+    }
+
+    @GetMapping("/user/chat/{owner}/{person}")
+    public String showMessagesForUser(@PathVariable(name = "owner") String owner,
+                                      @PathVariable(name = "person") String person,
+                                      Model model) {
+        List<String> messages = messageService.getAllMessagesForDialog(owner, person);
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages));
+        return "p2p-dialog";
+    }
 
 }
