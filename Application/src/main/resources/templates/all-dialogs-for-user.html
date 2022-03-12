@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<form id="add-form-2" th:action="@{/all_dialogs_for_user}" th:method="get">
+    <div class="row">
+
+        <input type="text" th:name="user"  th:placeholder="user"/>
+    </div>
+    <div class="row">
+        <button id="" type="submit">Найти</button>
+    </div>
+</form>
+<table>
+    <tbody th:each="user, iStat : ${dialogs.get(0).user.replace('[', '').replace(']', '').split(',')}">
+        <td th:text="${iStat.index}+1"></td>
+        <td th:text="${user}"></td>
+    </tbody>
+</table>
+
+</body>
+</html>
