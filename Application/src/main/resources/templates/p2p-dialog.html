@@ -24,29 +24,31 @@
                 </th>
             </tr>
             </thead>
-            <div class="scroll-table-body">
-                <tbody th:each="message, iStat : ${ownerDialog.messages}">
-                <td th:text="( (${ownerDialog.ownerId} != ${message.from})? ${message.from} : '')"
-                    th:class="((${ownerDialog.ownerId} != ${message.from}))? 'user_icon_to' : 'user_icon_to_no'"></td>
-                <td th:text="${message.message}"
-                    th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})"></td>
-                <td th:text="( (${ownerDialog.ownerId} == ${message.from})? ${message.from} : '')"
-                    th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'"></td>
-                </tbody>
-            </div>
+            <tbody th:each="message, iStat : ${ownerDialog.messages}">
+            <td th:text="( (${ownerDialog.ownerId} != ${message.from})? ${message.from} : '')"
+                th:class="((${ownerDialog.ownerId} != ${message.from}))? 'user_icon_to' : 'user_icon_to_no'"></td>
+            <td th:text="${message.message}"
+                th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})"></td>
+            <td th:text="( (${ownerDialog.ownerId} == ${message.from})? ${message.from} : '')"
+                th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'"></td>
+            </tbody>
             <tr>
-                <td class="write_message" colspan="3">
-                    <form id="add-form-3" th:action="@{/user/dialogs}" th:method="get">
+                <form id="add-form-3" th:action="@{/user/dialogs}" th:method="get">
+                    <td colspan="2">
                         <div>
                             <label>
-                                <input type="text" th:name="message" th:placeholder="message"/>
+                                <input type="text" th:name="message" th:placeholder="message"
+                                       class="write_message_text"/>
                             </label>
                         </div>
-                        <div class="row">
-                            <button id="" type="submit" th:text="smth" class="message_cell"></button>
-                        </div>
-                    </form>
-                </td>
+                    </td>
+                    <td class="button_message_text">
+                        <button id="" type="submit" class="message_cell" float-right>
+                            <img src="/static/img/apple-touch-icon.png" alt="Отправить сообщение">
+                        </button>
+                    </td>
+                </form>
+
             </tr>
         </table>
     </div>
