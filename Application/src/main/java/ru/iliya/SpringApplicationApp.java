@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ru.iliya.entities.Book;
+import ru.iliya.entities.Message;
 import ru.iliya.services.MessageService;
 
 
@@ -24,7 +25,6 @@ public class SpringApplicationApp {
     @Bean
     public CommandLineRunner springdata() {
         return(args) -> {
-            System.out.println(messageService.getDialogsForUser("1").get(0).get("user"));
 
             System.out.println("-------StartTest--------");
 
