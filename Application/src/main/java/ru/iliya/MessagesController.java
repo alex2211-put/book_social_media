@@ -20,7 +20,7 @@ public class MessagesController {
     @Autowired
     MessageService messageService;
 
-    public class LastMessage {
+    public static class LastMessage {
         public User user;
         public String message;
         public String ownerId;
@@ -32,7 +32,7 @@ public class MessagesController {
         }
     }
 
-    public class OwnerDialog {
+    public static class OwnerDialog {
         public String ownerId;
         public List<String> messages;
 
