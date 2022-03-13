@@ -13,6 +13,7 @@ public class SpringApplicationApp {
 
     @Autowired
     SpringApplicationData springApplicationData;
+    private String r;
     @Autowired
     MessageService messageService;
 
