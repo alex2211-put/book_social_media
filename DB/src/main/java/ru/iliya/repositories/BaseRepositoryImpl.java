@@ -18,7 +18,8 @@ public class BaseRepositoryImpl implements BaseRepository{
     @Autowired
     private AuthorRepository authorRepository;
     @Autowired
-    MarksRepository marksRepository;
+    private MarksRepository marksRepository;
+    @Autowired
     private CommentRepository commentRepository;
     @Autowired
     private UserRepository userRepository;
@@ -28,6 +29,12 @@ public class BaseRepositoryImpl implements BaseRepository{
     private RecommendationsRepository recommendationsRepository;
     @Autowired
     private BlockedUsersRepository blockedUsersRepository;
+    @Autowired
+    private MarksRepository marksRepository;
+    @Autowired
+    private CommentRepository commentRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -171,8 +178,6 @@ public class BaseRepositoryImpl implements BaseRepository{
     public User findUserByID(int userID) {
         return userRepository.findByUserID(userID);
     }
-
-
 
     //favourites
     @Override

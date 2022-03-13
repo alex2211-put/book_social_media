@@ -1,10 +1,11 @@
 package ru.iliya.repositories;
 
-import ru.iliya.entities.*;
+import ru.iliya.entities.Book;
+import ru.iliya.entities.Marks;
+import ru.iliya.entities.Comments;
+import ru.iliya.entities.User;
 
 import java.util.Date;
-
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface BaseRepository{
@@ -19,6 +20,7 @@ public interface BaseRepository{
 
     List <Comments> findCommentsByBookId(Integer bookId);
     void setCommentByBookId(Integer bookId, String comment);
+
     List <Book> findBooksByTitleAndAuthorsAndGenre(String title,
                                                    List <Author> authors,
                                                    String genre);
@@ -33,6 +35,7 @@ public interface BaseRepository{
     void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID);
     List<User> findUserByFirstName(String firstName);
     List<User> findUserByLastName(String lastName);
+
     List<User> findUserByEmail(String email);
     User findUserByNickname(String nickname);
     User findUserByID(int userID);
@@ -48,5 +51,4 @@ public interface BaseRepository{
     void deleteBlockedUsersByBlockID(int blockID);
     List<BlockedUsers> findByUserIDBlocked(int userIDBlocked);
     void setBlockedUsersByParams(int userID, int userIDBlocked);
-
 }

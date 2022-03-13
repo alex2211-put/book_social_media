@@ -13,6 +13,10 @@ public class Message {
     private String to;
     private String date;
 
+    public String getMessage() {
+        return message;
+    }
+
     public String getFrom() {
         return from;
     }
