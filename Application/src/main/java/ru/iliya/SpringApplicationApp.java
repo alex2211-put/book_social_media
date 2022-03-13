@@ -4,21 +4,17 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import ru.iliya.entities.Author;
 import ru.iliya.entities.Book;
-import ru.iliya.repositories.BookRepository;
+import ru.iliya.services.MessageService;
 
 
 @SpringBootApplication
 public class SpringApplicationApp {
 
     @Autowired
-    BookSearchService bookSearchService;
+    SpringApplicationData springApplicationData;
     @Autowired
-    MarksService marksService;
-
-    @Autowired
-    CommentService commentService;
+    MessageService messageService;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringApplicationApp.class, args);
@@ -27,16 +23,10 @@ public class SpringApplicationApp {
     @Bean
     public CommandLineRunner springdata() {
         return(args) -> {
+            System.out.println(messageService.getDialogsForUser("1").get(0).get("user"));
 
             System.out.println("-------StartTest--------");
-            //System.out.println(bookSearchService.findBooksByGenre("Русские детективы"));
-           Book book = bookSearchService.findBookByTitle("Часы Зигмунда Фрейда");
-           int bookId = book.getBookID();
-           marksService.setMarksByBookIdAndUserId(bookId, 1234, 228);
-           System.out.println(marksService.findByBookIdAndUserId(bookId, 1234));
-            System.out.println(bookSearchService.findBooksByGenre("Русские детективы"));
-            commentService.setCommentByBookId(6038852, "Very nice book, love it");
-            System.out.println(commentService.findCommentsByBookId(6038852));
+
 
             System.out.println("----------end-----------");
         };

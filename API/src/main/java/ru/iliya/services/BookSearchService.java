@@ -1,9 +1,9 @@
-package ru.iliya;
+package ru.iliya.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.iliya.entities.Author;
+
 import ru.iliya.entities.Book;
 import ru.iliya.repositories.BaseRepository;
 
