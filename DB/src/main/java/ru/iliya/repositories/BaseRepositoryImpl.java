@@ -2,12 +2,12 @@ package ru.iliya.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.iliya.entities.Author;
-import ru.iliya.entities.Book;
-import ru.iliya.entities.Marks;
-import ru.iliya.entities.Comments;
+import ru.iliya.entities.*;
 
+
+import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -19,8 +19,15 @@ public class BaseRepositoryImpl implements BaseRepository{
     private AuthorRepository authorRepository;
     @Autowired
     MarksRepository marksRepository;
-    @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private FavouritesRepository favouritesRepository;
+    @Autowired
+    private RecommendationsRepository recommendationsRepository;
+    @Autowired
+    private BlockedUsersRepository blockedUsersRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -81,8 +88,8 @@ public class BaseRepositoryImpl implements BaseRepository{
 
     @Override
     public List <Book> findBooksByTitleAndAuthorsAndGenre(String title,
-                                                   List <Author> authors,
-                                                   String genre) {
+                                                          List <Author> authors,
+                                                          String genre) {
         List <Book> books = bookRepository.findBooksByTitleAndAuthorsAndGenre(title, authors, genre);
         if (!books.isEmpty()) {
             return books;
@@ -92,7 +99,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
     @Override
     public List <Book> findBooksByTitleAndAuthors(String title,
-                                           List <Author> authors) {
+                                                  List <Author> authors) {
         List <Book> books = bookRepository.findBooksByTitleAndAuthors(title, authors);
         if (!books.isEmpty()) {
             return books;
@@ -101,7 +108,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
     @Override
     public List <Book> findBooksByTitleAndGenre(String title,
-                                         String genre){
+                                                String genre){
         List <Book> books = bookRepository.findBooksByTitleAndGenre(title, genre);
         if (!books.isEmpty()) {
             return books;
@@ -110,7 +117,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
     @Override
     public List <Book> findBooksByAuthorsAndGenre(List <Author> authors,
-                                           String genre) {
+                                                  String genre) {
         return bookRepository.findBooksByAuthorsAndGenre(authors, genre);
     }
     @Override
@@ -122,5 +129,118 @@ public class BaseRepositoryImpl implements BaseRepository{
         else {
             return bookRepository.findBooksByTitleLike(title + "%");
         }
+    }
+
+
+    //users
+    @Override
+    public void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID) {
+        User user = new User();
+        user.setNickname(nickname);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setBirthDate(birthdate);
+        user.setEmail(email);
+        user.setOpenProfile(openProfile);
+        user.setHashPassword(hashPassword);
+        user.setRoleID(roleID);
+        userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public List<User> findUserByFirstName(String firstName) {
+        return userRepository.findByFirstName(firstName);
+    }
+
+    @Override
+    public List<User> findUserByLastName(String lastName) {
+        return userRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public List<User> findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findUserByNickname(String nickname) {
+        return userRepository.findByNickname(nickname);
+    }
+
+    @Override
+    public User findUserByID(int userID) {
+        return userRepository.findByUserID(userID);
+    }
+
+
+
+    //favourites
+    @Override
+    public void setFavouritesByParams(int userID, int bookID) {
+        Favourites favourites = new Favourites();
+        favourites.setBookID(bookID);
+        favourites.setUserID(userID);
+        Date current = new Date();
+        favourites.setDateFavourite(current);
+        favouritesRepository.save(favourites);
+    }
+
+    @Override
+    public List<Favourites> findFavouritesByUserID(int userID) {
+        return favouritesRepository.findByUserID(userID);
+    }
+
+    @Override
+    @Transactional
+    public void deleteFavouritesByLinkID(int linkID) {
+        favouritesRepository.deleteFavouritesByLinkID(linkID);
+    }
+
+
+
+    //recommendations
+    @Override
+    public void setRecommendationsByParams(int userID, int bookID) {
+        Recommendations recommendations = new Recommendations();
+        recommendations.setBookID(bookID);
+        recommendations.setUserID(userID);
+        Date current = new Date();
+        recommendations.setDateRecommendation(current);
+        recommendationsRepository.save(recommendations);
+    }
+
+    @Override
+    public List<Recommendations> findRecommendationsByUserID(int userID) {
+        return recommendationsRepository.findByUserID(userID);
+    }
+
+    @Override
+    @Transactional
+    public void deleteRecommendationsByRecommendationsID(int recommendationsID) {
+        recommendationsRepository.deleteRecommendationsByRecommendationID(recommendationsID);
+    }
+
+
+
+    //blocked users
+    @Override
+    public void setBlockedUsersByParams(int userID, int userIDBlocked) {
+        BlockedUsers blockedUsers = new BlockedUsers();
+        blockedUsers.setUserIDBlocked(userIDBlocked);
+        blockedUsers.setUserID(userID);
+        Date current = new Date();
+        blockedUsers.setDateBlock(current);
+        blockedUsersRepository.save(blockedUsers);
+    }
+
+    @Override
+    public List<BlockedUsers> findByUserIDBlocked(int userIDBlocked) {
+        return blockedUsersRepository.findByUserIDBlocked(userIDBlocked);
+    }
+
+    @Override
+    @Transactional
+    public void deleteBlockedUsersByBlockID(int blockID) {
+        blockedUsersRepository.deleteBlockedUsersByBlockID(blockID);
     }
 }

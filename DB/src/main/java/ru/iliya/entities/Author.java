@@ -19,21 +19,18 @@ public class Author {
     public int getAuthorID() { return this.authorID; }
     public void setAuthorID(int authorId) { this.authorID = authorId; }
 
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public String getFirstName() {
         return this.firstName;
     }
 
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
     public String getLastName() {
         return this.lastName;
     }

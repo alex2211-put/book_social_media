@@ -1,14 +1,14 @@
 package ru.iliya.repositories;
 
-import ru.iliya.entities.Author;
-import ru.iliya.entities.Book;
-import ru.iliya.entities.Marks;
-import ru.iliya.entities.Comments;
+import ru.iliya.entities.*;
+
+import java.util.Date;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public interface BaseRepository{
+
     Book addBook(Book book);
     Book getByTitle(String title);
     List <Book> findByAuthor(String firstname, String lastName);
@@ -29,4 +29,24 @@ public interface BaseRepository{
     List <Book> findBooksByAuthorsAndGenre(List <Author> authors,
                                            String genre);
     List <Book> findBooksByTitle(String title);
+
+    void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID);
+    List<User> findUserByFirstName(String firstName);
+    List<User> findUserByLastName(String lastName);
+    List<User> findUserByEmail(String email);
+    User findUserByNickname(String nickname);
+    User findUserByID(int userID);
+
+    void setFavouritesByParams(int userID, int bookID);
+    List<Favourites> findFavouritesByUserID(int userID);
+    void deleteFavouritesByLinkID(int linkID);
+
+    void setRecommendationsByParams(int userID, int bookID);
+    List<Recommendations> findRecommendationsByUserID(int userID);
+    void deleteRecommendationsByRecommendationsID(int recommendationsID);
+
+    void deleteBlockedUsersByBlockID(int blockID);
+    List<BlockedUsers> findByUserIDBlocked(int userIDBlocked);
+    void setBlockedUsersByParams(int userID, int userIDBlocked);
+
 }
