@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import ru.iliya.entities.Marks;
 import ru.iliya.repositories.BaseRepository;
 
+import java.util.List;
+
 @Service
 public class MarksService {
     @Autowired
