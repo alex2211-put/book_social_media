@@ -14,8 +14,6 @@ public class SpringApplicationApp {
     @Autowired
     SpringApplicationData springApplicationData;
     private String r;
-    @Autowired
-    MessageService messageService;
 
 
     public static void main(String[] args) {
@@ -25,12 +23,6 @@ public class SpringApplicationApp {
     @Bean
     public CommandLineRunner springdata() {
         return(args) -> {
-            System.out.println(messageService.getDialogsForUser("1").get(0).get("user"));
-
-            System.out.println("-------StartTest--------");
-
-
-            System.out.println("----------end-----------");
         };
     }
 
