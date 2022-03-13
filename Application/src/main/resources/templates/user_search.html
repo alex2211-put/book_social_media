@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<form id="add-form-2" th:action="@{/user_search}" th:method="get">
+    <div class="row">
+
+        <input type="text" th:name="email"  th:placeholder="email"/>
+    </div>
+    <div class="row">
+        <button id="" type="submit">Найти</button>
+    </div>
+</form>
+<table>
+ 
+    <tbody th:each="user, iStat : ${users}">
+    <tr th:style="${iStat.odd}? 'font-weight: bold;'">
+        <td th:text="${iStat.index}+1"></td>
+        <td th:text="${user.firstName}"></td>
+<!--        <td th:text="${user.first_name}"></td>-->
+<!--        <td th:text="${user.last_name}"></td>-->
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

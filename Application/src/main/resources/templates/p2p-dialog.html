@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat</title>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+</head>
+
+<body>
+
+<div class="scroll-table">
+
+    <div style="text-align: center;">
+        <table class="table_block" id="scroll">
+            <thead>
+            <tr>
+                <th valign="middle" colspan="3" class="table_header">
+                    <div class="title">Chat</div>
+                </th>
+            </tr>
+            </thead>
+            <tbody th:each="message, iStat : ${ownerDialog.messages}">
+            <td th:text="( (${ownerDialog.ownerId} != ${message.from})? ${message.from} : '')"
+                th:class="((${ownerDialog.ownerId} != ${message.from}))? 'user_icon_to' : 'user_icon_to_no'"></td>
+            <td th:text="${message.message}"
+                th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})"></td>
+            <td th:text="( (${ownerDialog.ownerId} == ${message.from})? ${message.from} : '')"
+                th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'"></td>
+            </tbody>
+            <tr th:height="25"></tr>
+            <tr>
+                <form id="add-form-3" th:action="@{/user/chat/__${ownerDialog.ownerId}__/__${ownerDialog.partnerId}__/write}" th:method="post">
+                    <td colspan="2">
+                        <div>
+                            <label>
+                                <input type="text" th:name="message" th:placeholder="message"
+                                       class="write_message_text"/>
+                            </label>
+                        </div>
+                    </td>
+                    <td>
+                        <button id="" type="submit" float-right class="button_message_text">
+                            <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить сообщение" width="75" height="75">
+                        </button>
+                    </td>
+                </form>
+
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
