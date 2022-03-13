@@ -17,7 +17,6 @@ public class Book {
     private String annotation;
     private List<Author> authors;
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,10 +30,12 @@ public class Book {
         return Objects.hash(bookID, title, yearRelease, genre, linkInternet, ageRestriction, numberPages, annotation, numberPages);
     }
 
-
     @Id
     @Column(name = "book_id", unique = true)
-    public int getBookID() { return bookID; }
+    public int getBookID() {
+        return bookID;
+    }
+
     public void setBookID(int bookID) {
         this.bookID = bookID;
     }
@@ -43,6 +44,7 @@ public class Book {
     public String getTitle() {
         return title;
     }
+
     public void setTitle(String title) {
         this.title = title;
     }
@@ -73,6 +75,7 @@ public class Book {
     public List<Author> getAuthors() {
         return authors;
     }
+
     public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
@@ -96,6 +99,7 @@ public class Book {
     public String getLinkInternet() {
         return linkInternet;
     }
+
     public void setLinkInternet(String linkInternet) {
         this.linkInternet = linkInternet;
     }
@@ -113,6 +117,7 @@ public class Book {
     public int getNumberPages() {
         return numberPages;
     }
+
     public void setNumberPages(int number_pages) {
         this.numberPages = number_pages;
     }
@@ -121,9 +126,9 @@ public class Book {
     public String getAnnotation() {
         return annotation;
     }
+
     public void setAnnotation(String annotation) {
         this.annotation = annotation;
     }
-
 }
 

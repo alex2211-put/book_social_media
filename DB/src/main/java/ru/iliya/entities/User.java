@@ -1,11 +1,9 @@
 package ru.iliya.entities;
 
-
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-
 @Table(name="\"user\"")
 public class User {
     private int userID;
@@ -24,18 +22,25 @@ public class User {
     public int getUserID() {
         return this.userID;
     }
+
     public void setUserID(int userID) {
         this.userID = userID;
     }
 
     @Column(name = "nickname")
-    public void setNickname(String nickname) { this.nickname = nickname; }
-    public String getNickname() {return this.nickname; }
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getNickname() {
+        return this.nickname;
+    }
 
     @Column(name = "first_name")
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getFirstName() {
         return this.firstName;
     }
@@ -44,14 +49,16 @@ public class User {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     public String getLastName() {
         return this.lastName;
     }
 
-    @Column(name = "birthDate")
+    @Column(name = "birth_date")
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
+
     public Date getBirthDate() {
         return this.birthDate;
     }
@@ -60,24 +67,34 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-    public String getEmail() { return this.email;}
+
+    public String getEmail() {
+        return this.email;
+    }
 
     @Column(name = "open_profile")
-    public void setOpenProfile(boolean openProfile) { this.openProfile = openProfile;}
+    public void setOpenProfile(boolean openProfile) {
+        this.openProfile = openProfile;
+    }
+
     public boolean getOpenProfile() {
         return this.openProfile;
     }
 
     @Column(name = "hash_password")
-    public void setHashPassword(String hashPassword) { this.hashPassword = hashPassword;}
+    public void setHashPassword(String hashPassword) {
+        this.hashPassword = hashPassword;
+    }
+
     public String getHashPassword() {
         return this.hashPassword;
     }
 
-    @Column(name = "role_id")
+    @Column(name = "roleid")
     public void setRoleID(int roleID) {
         this.roleID = roleID;
     }
+
     public int getRoleID() {
         return this.roleID;
     }

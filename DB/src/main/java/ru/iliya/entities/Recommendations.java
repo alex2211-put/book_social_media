@@ -14,21 +14,37 @@ public class Recommendations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recommendation_id")
-    public int getRecommendationID() { return this.recommendationID; }
-    public void setRecommendationID(int recommendationID) { this.recommendationID = recommendationID; }
+    public int getRecommendationID() {
+        return this.recommendationID;
+    }
+
+    public void setRecommendationID(int recommendationID) {
+        this.recommendationID = recommendationID;
+    }
 
     @Column(name = "user_id")
-    public int getUserID() { return this.userID; }
-    public void setUserID(int userID) { this.userID = userID; }
+    public int getUserID() {
+        return this.userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     @Column(name = "book_id")
-    public int getBookID() { return this.bookID; }
-    public void setBookID(int bookID) { this.bookID = bookID; }
+    public int getBookID() {
+        return this.bookID;
+    }
+
+    public void setBookID(int bookID) {
+        this.bookID = bookID;
+    }
 
     @Column(name = "date_recommendation")
     public void setDateRecommendation(Date dateRecommendation) {
         this.dateRecommendation = dateRecommendation;
     }
+
     public Date getDateRecommendation() {
         return this.dateRecommendation;
     }
@@ -41,5 +57,17 @@ public class Recommendations {
                 ", bookID='" + bookID + '\'' +
                 ", dateRecommendation=" + dateRecommendation +
                 '}';
+    }
+
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userID")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

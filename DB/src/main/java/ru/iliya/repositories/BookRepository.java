@@ -20,17 +20,17 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
     List<Book> findBooksByGenre(String genre);
     Book findBookByBookID(Integer bookId);
     List <Book> findBooksByTitleLikeAndAuthorsAndGenre(String title,
-                                                   List <Author> authors,
-                                                   String genre);
+                                                       List <Author> authors,
+                                                       String genre);
     List <Book> findBooksByTitleAndAuthorsAndGenre(String title,
                                                    List <Author> authors,
                                                    String genre);
     List <Book> findBooksByTitleLikeAndAuthors(String title,
-                                           List <Author> authors);
+                                               List <Author> authors);
     List <Book> findBooksByTitleAndAuthors(String title,
                                            List <Author> authors);
     List <Book> findBooksByTitleLikeAndGenre(String title,
-                                         String genre);
+                                             String genre);
     List <Book> findBooksByTitleAndGenre(String title,
                                          String genre);
     List <Book> findBooksByAuthorsAndGenre(List <Author> authors,
