@@ -32,6 +32,7 @@
             <td th:text="( (${ownerDialog.ownerId} == ${message.from})? ${message.from} : '')"
                 th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'"></td>
             </tbody>
+            <tr th:height="25"></tr>
             <tr>
                 <form id="add-form-3" th:action="@{/user/chat/__${ownerDialog.ownerId}__/__${ownerDialog.partnerId}__/write}" th:method="post">
                     <td colspan="2">
@@ -42,9 +43,9 @@
                             </label>
                         </div>
                     </td>
-                    <td class="button_message_text">
-                        <button id="" type="submit" class="message_cell" float-right>
-                            <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить сообщение">
+                    <td>
+                        <button id="" type="submit" float-right class="button_message_text">
+                            <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить сообщение" width="75" height="75">
                         </button>
                     </td>
                 </form>

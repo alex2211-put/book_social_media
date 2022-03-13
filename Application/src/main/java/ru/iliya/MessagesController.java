@@ -87,6 +87,8 @@ public class MessagesController {
                                         @PathVariable(name = "person") String person,
                                         @RequestParam(name = "message") String message,
                                         Model model) {
+        if (message.isEmpty())
+            return "redirect:/user/chat/{owner}/{person}";
         Message message1 = new Message(message, owner, person, "2022");
         messageService.writeToUser(message1);
         messages2.add(message1);
