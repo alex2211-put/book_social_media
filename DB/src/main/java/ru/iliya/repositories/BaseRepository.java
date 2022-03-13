@@ -1,9 +1,6 @@
 package ru.iliya.repositories;
 
-import ru.iliya.entities.Book;
-import ru.iliya.entities.Marks;
-import ru.iliya.entities.Comments;
-import ru.iliya.entities.User;
+import ru.iliya.entities.*;
 
 import java.util.Date;
 import java.util.List;
