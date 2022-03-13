@@ -2,12 +2,10 @@ package ru.iliya.repositories;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.iliya.entities.Author;
-import ru.iliya.entities.Book;
-import ru.iliya.entities.Marks;
-import ru.iliya.entities.Comments;
+import ru.iliya.entities.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -18,9 +16,11 @@ public class BaseRepositoryImpl implements BaseRepository{
     @Autowired
     private AuthorRepository authorRepository;
     @Autowired
-    MarksRepository marksRepository;
+    private MarksRepository marksRepository;
     @Autowired
     private CommentRepository commentRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -76,5 +76,44 @@ public class BaseRepositoryImpl implements BaseRepository{
         comments.setBook(book);
         comments.setComment(comment);
         commentRepository.save(comments);
+    }
+
+    @Override
+    public void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID) {
+        User user = new User();
+        user.setNickname(nickname);
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setBirthDate(birthdate);
+        user.setEmail(email);
+        user.setOpenProfile(openProfile);
+        user.setHashPassword(hashPassword);
+        user.setRoleID(roleID);
+        userRepository.saveAndFlush(user);
+    }
+
+    @Override
+    public List<User> findUserByFirstName(String firstName) {
+        return userRepository.findByFirstName(firstName);
+    }
+
+    @Override
+    public List<User> findUserByLastName(String lastName) {
+        return userRepository.findByLastName(lastName);
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public User findUserByNickname(String nickname) {
+        return userRepository.findByNickname(nickname);
+    }
+
+    @Override
+    public User findUserByID(int userID) {
+        return userRepository.findByUserID(userID);
     }
 }

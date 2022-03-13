@@ -15,4 +15,6 @@ public interface MongoRepository {
     List<Document> getMessagesForCollection(String collection);
     void addDialogsToMongoDB(String userFrom, String userTo) throws JSONException;
     List<Document> getDialogsForCollection(String collection);
+    String getLastMessagesForCollection(String collection);
+
 }
