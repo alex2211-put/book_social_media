@@ -1,4 +1,5 @@
 package ru.iliya;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,7 +23,7 @@ public class SpringApplicationApp {
 
     @Bean
     public CommandLineRunner springdata() {
-        return(args) -> {
+        return (args) -> {
             System.out.println(messageService.getDialogsForUser("1").get(0));
 //            Message message = new Message("Hello", "123", "1", "2022");
 //            messageService.writeToUser(message);

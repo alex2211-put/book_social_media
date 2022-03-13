@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/static/favicon/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 </head>
@@ -16,7 +16,7 @@
 <div class="scroll-table">
 
     <div style="text-align: center;">
-        <table class="table_block">
+        <table class="table_block" id="scroll">
             <thead>
             <tr>
                 <th valign="middle" colspan="3" class="table_header">
@@ -33,7 +33,7 @@
                 th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'"></td>
             </tbody>
             <tr>
-                <form id="add-form-3" th:action="@{/user/dialogs}" th:method="get">
+                <form id="add-form-3" th:action="@{/user/chat/__${ownerDialog.ownerId}__/__${ownerDialog.partnerId}__/write}" th:method="post">
                     <td colspan="2">
                         <div>
                             <label>
@@ -44,7 +44,7 @@
                     </td>
                     <td class="button_message_text">
                         <button id="" type="submit" class="message_cell" float-right>
-                            <img src="/static/img/apple-touch-icon.png" alt="Отправить сообщение">
+                            <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить сообщение">
                         </button>
                     </td>
                 </form>

@@ -39,11 +39,13 @@ public class MessagesController {
 
     public static class OwnerDialog {
         public String ownerId;
+        public String partnerId;
         public List<Message> messages;
 
-        public OwnerDialog(String ownerId, List<Message> messages) {
+        public OwnerDialog(String ownerId, List<Message> messages, String partnerId) {
             this.ownerId = ownerId;
             this.messages = messages;
+            this.partnerId = partnerId;
         }
     }
 
@@ -61,22 +63,35 @@ public class MessagesController {
         model.addAttribute("lastMessages", lastMessages);
         return "all-dialogs-for-user";
     }
-
+    private List<Message> messages2  = new ArrayList<>();
     @GetMapping("/user/chat/{owner}/{person}")
     public String showMessagesForUser(@PathVariable(name = "owner") String owner,
                                       @PathVariable(name = "person") String person,
                                       Model model) {
         List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
-        List<Message> messages1 = new ArrayList<>();
-        for (Document document : messages) {
-            messages1.add(new Message(
-                    document.get("text").toString(),
-                    document.get("from").toString(),
-                    document.get("to").toString(),
-                    "2022"));
+        if (messages2.isEmpty()) {
+            for (Document document : messages) {
+                messages2.add(new Message(
+                        document.get("text").toString(),
+                        document.get("from").toString(),
+                        document.get("to").toString(),
+                        "2022"));
+            }
         }
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages1));
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person));
         return "p2p-dialog";
+    }
+
+    @PostMapping("/user/chat/{owner}/{person}/write")
+    public String showAllDialogsForUser(@PathVariable(name = "owner") String owner,
+                                        @PathVariable(name = "person") String person,
+                                        @RequestParam(name = "message") String message,
+                                        Model model) {
+        Message message1 = new Message(message, owner, person, "2022");
+        messageService.writeToUser(message1);
+        messages2.add(message1);
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person));
+        return "redirect:/user/chat/{owner}/{person}";
     }
 
 }
