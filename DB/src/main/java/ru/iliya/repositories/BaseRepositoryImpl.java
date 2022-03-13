@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class BaseRepositoryImpl implements BaseRepository{
+public class BaseRepositoryImpl implements BaseRepository {
 
     @Autowired
     private BookRepository bookRepository;
@@ -29,12 +29,6 @@ public class BaseRepositoryImpl implements BaseRepository{
     private RecommendationsRepository recommendationsRepository;
     @Autowired
     private BlockedUsersRepository blockedUsersRepository;
-    @Autowired
-    private MarksRepository marksRepository;
-    @Autowired
-    private CommentRepository commentRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -53,15 +47,39 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
 
     @Override
-    public List <Book> findByAuthor(String firstname, String lastName) {
+    public List<Book> findByAuthor(String firstname, String lastName) {
         Author author = authorRepository.findAuthorByFirstNameAndLastName(firstname, lastName);
-        List <Author> authors = new ArrayList<>();
+        List<Author> authors = new ArrayList<>();
         authors.add(author);
         return bookRepository.findByAuthors(authors);
     }
 
     @Override
-    public List <Book> findByGenre(String genre) {
+    public List<Book> findBooksByTitleAndAuthorsAndGenre(String title,
+                                                         List<Author> authors,
+                                                         String genre) {
+        List<Book> books = bookRepository.findBooksByTitleAndAuthorsAndGenre(title, authors, genre);
+        if (!books.isEmpty()) {
+            return books;
+        } else {
+            return bookRepository.findBooksByTitleLikeAndAuthorsAndGenre(
+                    title + "%", authors, genre);
+        }
+    }
+
+    @Override
+    public List<Book> findBooksByTitleAndAuthors(String title,
+                                                 List<Author> authors) {
+        List<Book> books = bookRepository.findBooksByTitleAndAuthors(title, authors);
+        if (!books.isEmpty()) {
+            return books;
+        } else {
+            return bookRepository.findBooksByTitleLikeAndAuthors(title + "%", authors);
+        }
+    }
+
+    @Override
+    public List<Book> findByGenre(String genre) {
         return bookRepository.findBooksByGenre(genre);
     }
 
@@ -79,7 +97,7 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
 
     @Override
-    public List <Comments> findCommentsByBookId(Integer bookId) {
+    public List<Comments> findCommentsByBookId(Integer bookId) {
         Book book = bookRepository.findBookByBookID(bookId);
         return commentRepository.findCommentsByBook(book);
     }
@@ -94,46 +112,28 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
 
     @Override
-    public List <Book> findBooksByTitleAndAuthorsAndGenre(String title,
-                                                          List <Author> authors,
-                                                          String genre) {
-        List <Book> books = bookRepository.findBooksByTitleAndAuthorsAndGenre(title, authors, genre);
-        if (!books.isEmpty()) {
-            return books;
-        }
-        else {return bookRepository.findBooksByTitleLikeAndAuthorsAndGenre(
-                title + "%", authors, genre);}
-    }
-    @Override
-    public List <Book> findBooksByTitleAndAuthors(String title,
-                                                  List <Author> authors) {
-        List <Book> books = bookRepository.findBooksByTitleAndAuthors(title, authors);
-        if (!books.isEmpty()) {
-            return books;
-        }
-        else {return bookRepository.findBooksByTitleLikeAndAuthors(title + "%", authors);}
-    }
-    @Override
-    public List <Book> findBooksByTitleAndGenre(String title,
-                                                String genre){
-        List <Book> books = bookRepository.findBooksByTitleAndGenre(title, genre);
-        if (!books.isEmpty()) {
-            return books;
-        }
-        else { return bookRepository.findBooksByTitleLikeAndGenre(title + "%", genre);}
-    }
-    @Override
-    public List <Book> findBooksByAuthorsAndGenre(List <Author> authors,
-                                                  String genre) {
+    public List<Book> findBooksByAuthorsAndGenre(List<Author> authors,
+                                                 String genre) {
         return bookRepository.findBooksByAuthorsAndGenre(authors, genre);
     }
+
     @Override
-    public List <Book> findBooksByTitle(String title) {
-        List <Book> books = bookRepository.findBooksByTitle(title);
+    public List<Book> findBooksByTitleAndGenre(String title,
+                                               String genre) {
+        List<Book> books = bookRepository.findBooksByTitleAndGenre(title, genre);
         if (!books.isEmpty()) {
             return books;
+        } else {
+            return bookRepository.findBooksByTitleLikeAndGenre(title + "%", genre);
         }
-        else {
+    }
+
+    @Override
+    public List<Book> findBooksByTitle(String title) {
+        List<Book> books = bookRepository.findBooksByTitle(title);
+        if (!books.isEmpty()) {
+            return books;
+        } else {
             return bookRepository.findBooksByTitleLike(title + "%");
         }
     }
@@ -202,7 +202,6 @@ public class BaseRepositoryImpl implements BaseRepository{
     }
 
 
-
     //recommendations
     @Override
     public void setRecommendationsByParams(int userID, int bookID) {
@@ -224,7 +223,6 @@ public class BaseRepositoryImpl implements BaseRepository{
     public void deleteRecommendationsByRecommendationsID(int recommendationsID) {
         recommendationsRepository.deleteRecommendationsByRecommendationID(recommendationsID);
     }
-
 
 
     //blocked users
