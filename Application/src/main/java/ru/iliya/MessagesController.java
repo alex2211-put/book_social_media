@@ -64,12 +64,14 @@ public class MessagesController {
         return "all-dialogs-for-user";
     }
     private List<Message> messages2  = new ArrayList<>();
+    String person = null;
     @GetMapping("/user/chat/{owner}/{person}")
     public String showMessagesForUser(@PathVariable(name = "owner") String owner,
                                       @PathVariable(name = "person") String person,
                                       Model model) {
         List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
-        if (messages2.isEmpty()) {
+        if (this.person == null || !person.equals(owner)) {
+            messages2  = new ArrayList<>();
             for (Document document : messages) {
                 messages2.add(new Message(
                         document.get("text").toString(),
@@ -77,6 +79,7 @@ public class MessagesController {
                         document.get("to").toString(),
                         "2022"));
             }
+            this.person = owner;
         }
         model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person));
         return "p2p-dialog";

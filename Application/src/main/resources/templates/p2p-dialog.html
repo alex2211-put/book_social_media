@@ -8,10 +8,17 @@
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
     <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
     <link th:href="@{/css/main.css}" rel="stylesheet"/>
-    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+    <link th:href="@{/js/actions.js}" rel="text/javascript"/>
+    <script type="text/javascript">
+        function winLoad() {
+            window.scrollTo(0,document.body.scrollHeight);
+        }
+    </script>
+<!--    <script type="text/javascript" th:src="https://zengabor.github.io/zenscroll/zenscroll.js"></script>-->
+
 </head>
 
-<body>
+<body th:onload="winLoad()">
 
 <div class="scroll-table">
 
