@@ -70,7 +70,6 @@ public class MessagesController {
                                       @PathVariable(name = "person") String person,
                                       Model model) {
         List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
-        System.out.println(owner +  person);
         if (this.person == null || !person.equals(owner)) {
             messages2  = new ArrayList<>();
             for (Document document : messages) {
@@ -80,7 +79,6 @@ public class MessagesController {
                         document.get("to").toString(),
                         "2022"));
             }
-            System.out.println(1);
             this.person = owner;
         }
         model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person));
