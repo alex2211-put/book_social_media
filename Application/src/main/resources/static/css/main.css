@@ -59,6 +59,7 @@ td {
     background: none;
     border: none;
     width: 100%;
+    background: red;
 }
 
 th {
