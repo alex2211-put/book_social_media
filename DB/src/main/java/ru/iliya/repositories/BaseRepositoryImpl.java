@@ -42,6 +42,11 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
+    public Book findBookByBookID(Integer bookId) {
+        return bookRepository.findBookByBookID(bookId);
+    }
+
+    @Override
     public List<Book> getAll() {
         return bookRepository.findAll();
     }

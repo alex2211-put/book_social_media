@@ -17,6 +17,10 @@ public class BookSearchService {
     @Autowired
     BaseRepository baseRepository;
 
+    public Book findBookById(String bookId) {
+        return baseRepository.findBookByBookID(Integer.parseInt(bookId));
+    }
+
     public Book findBookByTitle(String title) {
         return baseRepository.getByTitle(title);
     }

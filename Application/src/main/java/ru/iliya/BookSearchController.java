@@ -34,5 +34,12 @@ public class BookSearchController {
 //
 //        return "redirect:/book-by-title";
 //    }
+    @GetMapping("/book/info")
+    public String showBookInfo(@RequestParam(name = "book_id", required = false, defaultValue = "6047063") String book_id,
+                               Model model) {
+        model.addAttribute("book",
+                bookSearchService.findBookById(book_id));
+        return "book";
+    }
 
 }

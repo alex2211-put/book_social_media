@@ -2,9 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Book</title>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/book.css}" rel="stylesheet"/>
+    <link th:href="@{/js/actions.js}" rel="text/javascript"/>
 </head>
 <body>
+<div style="text-align: center;">
+    <table class="table_all_data">
+        <thead>
+        <tr>
+            <th valign="middle" colspan="2" class="table_head">
+                <div class="title">Book information</div>
+            </th>
+        </tr>
+        </thead>
+        <tr style="height: 10px"></tr>
+        <tbody>
+        <tr>
+            <td rowspan="4">
+                <img th:src="@{/img/prest.webp}" alt="book image" class="book_photo" width="260" height="420">
+            </td>
+            <td>
+                <div class="description">
+                    <div style="display: inline-block; font-weight: bold;">Автор:</div>
+                    <div style="display: inline-block;"
+                         th:text="${book.authors.get(0).firstName} + ' ' + ${book.authors.get(0).lastName}"></div>
 
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Название:</div>
+                    <div th:text="${book.title}" style="display: inline-block;"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="description">
+                    <div style="display: inline-block; font-weight: bold;">Жанр:</div>
+                    <div style="display: inline-block;"
+                         th:text="${book.genre}"></div>
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Число страниц:</div>
+                    <div th:text="${book.numberPages}" style="display: inline-block;"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="description">
+                    <div style="display: inline-block; font-weight: bold;">Возрастное ограничение:</div>
+                    <div style="display: inline-block;"
+                         th:text="${book.age_restriction}"></div>
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Год выпуска:</div>
+                    <div th:text="${book.year_release}" style="display: inline-block;"></div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="description">
+                    <div style="display: inline-block; font-weight: bold;">Ссылка на книгу:</div>
+                    <a style="display: inline-block;"
+                       th:href="${book.linkInternet}" th:text="${book.linkInternet}"></a>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2" class="annotation">
+                <div style="font-weight: bold; color: black;">Аннотация</div>
+                <div style="font-weight: normal;" th:text="${book.annotation}"></div>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
