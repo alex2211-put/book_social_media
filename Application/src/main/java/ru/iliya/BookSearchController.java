@@ -18,7 +18,7 @@ public class BookSearchController {
     BookSearchService bookSearchService;
 
     String title;
-    @GetMapping("/book/search") //book/search
+    @GetMapping("/book-by-title") //book/search
     public String showBooksByTitle(@RequestParam(name = "title", required = false, defaultValue = "") String title,
                                    @RequestParam(name = "name", required = false, defaultValue = "") String name,
                                    @RequestParam(name = "genre", required = false, defaultValue = "") String genre,
