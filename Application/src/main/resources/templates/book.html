@@ -23,17 +23,17 @@
         <tr style="height: 10px"></tr>
         <tbody>
         <tr>
-            <td rowspan="4">
+            <td rowspan="5">
                 <img th:src="@{/img/prest.webp}" alt="book image" class="book_photo" width="260" height="420">
             </td>
             <td>
                 <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Автор:</div>
+                    <div style="display: inline-block; font-weight: bold;">Author:</div>
                     <div style="display: inline-block;"
                          th:text="${book.authors.get(0).firstName} + ' ' + ${book.authors.get(0).lastName}"></div>
 
                     <div></div>
-                    <div style="display: inline-block; font-weight: bold;">Название:</div>
+                    <div style="display: inline-block; font-weight: bold;">Title:</div>
                     <div th:text="${book.title}" style="display: inline-block;"></div>
                 </div>
             </td>
@@ -41,12 +41,12 @@
         <tr>
             <td>
                 <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Жанр:</div>
+                    <div style="display: inline-block; font-weight: bold;">Genre:</div>
                     <div style="display: inline-block;"
                          th:text="${book.genre}"></div>
 
                     <div></div>
-                    <div style="display: inline-block; font-weight: bold;">Число страниц:</div>
+                    <div style="display: inline-block; font-weight: bold;">Number of pages:</div>
                     <div th:text="${book.numberPages}" style="display: inline-block;"></div>
                 </div>
             </td>
@@ -54,12 +54,12 @@
         <tr>
             <td>
                 <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Возрастное ограничение:</div>
+                    <div style="display: inline-block; font-weight: bold;">Age restriction</div>
                     <div style="display: inline-block;"
                          th:text="${book.age_restriction}"></div>
 
                     <div></div>
-                    <div style="display: inline-block; font-weight: bold;">Год выпуска:</div>
+                    <div style="display: inline-block; font-weight: bold;">Year release:</div>
                     <div th:text="${book.year_release}" style="display: inline-block;"></div>
                 </div>
             </td>
@@ -67,12 +67,24 @@
         <tr>
             <td>
                 <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Ссылка на книгу:</div>
+                    <div style="display: inline-block; font-weight: bold;">Link:</div>
                     <a style="display: inline-block;"
                        th:href="${book.linkInternet}" th:text="${book.linkInternet}"></a>
                 </div>
             </td>
         </tr>
+
+        <tr>
+            <td>
+                <form id="add-form-2" th:action="@{/book/info/addFavourites/__${book.bookID}__/__${favourites}__}"
+                      th:method="post">
+                    <div class="row">
+                        <button id="" type="submit" th:text="${favourites}" class="click_me"></button>
+                    </div>
+                </form>
+            </td>
+        </tr>
+        <tr style="height: 10px"></tr>
         <tr>
             <th colspan="2" class="annotation">
                 <div style="font-weight: bold; color: black;">Аннотация</div>
