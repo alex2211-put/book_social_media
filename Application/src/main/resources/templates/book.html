@@ -23,7 +23,7 @@
         <tr style="height: 10px"></tr>
         <tbody>
         <tr>
-            <td rowspan="5">
+            <td rowspan="6">
                 <img th:src="@{/img/prest.webp}" alt="book image" class="book_photo" width="260" height="420">
             </td>
             <td>
@@ -73,7 +73,22 @@
                 </div>
             </td>
         </tr>
-
+        <tr>
+            <td>
+                <div class="rating-area">
+                    <input type="radio" id="star-5" name="rating" value="5">
+                    <label for="star-5" title="Оценка «5»"></label>
+                    <input type="radio" id="star-4" name="rating" value="4">
+                    <label for="star-4" title="Оценка «4»"></label>
+                    <input type="radio" id="star-3" name="rating" value="3">
+                    <label for="star-3" title="Оценка «3»"></label>
+                    <input type="radio" id="star-2" name="rating" value="2">
+                    <label for="star-2" title="Оценка «2»"></label>
+                    <input type="radio" id="star-1" name="rating" value="1">
+                    <label for="star-1" title="Оценка «1»"></label>
+                </div>
+            </td>
+        </tr>
         <tr>
             <td>
                 <form id="add-form-2" th:action="@{/book/info/addFavourites/__${book.bookID}__/__${favourites}__}"
