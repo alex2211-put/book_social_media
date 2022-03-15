@@ -318,8 +318,7 @@ values  (1193, 6038852),
         (1186, 6022043),
         (1194, 6052664),
         (1195, 5936584);
-
-insert into user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, roleid)
+insert into public.user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, roleid)
 values  (1, '2022-03-15 18:10:10.000000', 'xxx@mail.ru', 'alik', '123', 'put', 'alik_put', true, 1),
         (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1),
         (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1);
