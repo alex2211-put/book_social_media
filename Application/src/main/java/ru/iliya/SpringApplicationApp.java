@@ -7,9 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import ru.iliya.entities.Book;
 import ru.iliya.entities.Message;
+import ru.iliya.repositories.BookRepository;
 import ru.iliya.services.BookSearchService;
 import ru.iliya.services.MarksService;
 import ru.iliya.services.MessageService;
+
+import java.util.List;
 
 
 @SpringBootApplication
@@ -32,6 +35,8 @@ public class SpringApplicationApp {
     SpringApplicationData springApplicationData;
     @Autowired
     MessageService messageService;
+    @Autowired
+    BookRepository bookRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(SpringApplicationApp.class, args);
@@ -41,11 +46,12 @@ public class SpringApplicationApp {
     public CommandLineRunner springdata() {
         return (args) -> {
             System.out.println("-------StartTest--------");
-            System.out.println(userService.findUserByEmail("x@gmail.com"));
-            System.out.println(userService.findUserByLastName("Boba"));
-            System.out.println(userService.findUserByFirstName("Biba"));
-            System.out.println(userService.findUserByUserID(1));
-            System.out.println(userService.findUserByNickname("xxx"));
+            List<Book> books = bookRepository.findAll();
+            for (Book book : books) {
+                if (book.getAuthors().size() >= 2) {
+                    System.out.println(book);
+                }
+            }
             System.out.println("----------end-----------");
         };
     }
