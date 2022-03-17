@@ -322,7 +322,11 @@ insert into public.user (user_id, birth_date, email, first_name, hash_password, 
 values  (1, '2022-03-15 18:10:10.000000', 'xxx@mail.ru', 'alik', '123', 'put', 'alik_put', true, 1),
         (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1),
         (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1);
-insert into favourites (link_id, book_id, date_favourite, user_id, bookid, userid)
-values (1, 6020523, '2008-10-23 10:37:22', 1, 6020523, 1),
-       (2, 5942392, '2008-10-23 10:37:22', 123, 5942392, 123),
-       (3, 6052664, CURRENT_TIMESTAMP , 123, 6052664, 123);
+insert into favourites (link_id, book_id, date_favourite, user_id)
+values (1, 6020523, '2008-10-23 10:37:22', 1),
+       (2, 5942392, '2008-10-23 10:37:22', 123),
+       (3, 6052664, CURRENT_TIMESTAMP , 123);
+insert into recommendations(recommendation_id, user_id, book_id, date_recommendation)
+values (1, 1, 6020523, CURRENT_TIMESTAMP ),
+       (2, 123, 6020523, '2008-10-23 10:37:22'),
+       (3, 123, 6052664, '2008-10-23 10:37:22');

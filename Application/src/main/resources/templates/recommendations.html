@@ -16,13 +16,13 @@
         <thead>
         <tr>
             <th valign="middle" colspan="3" class="table_header">
-                <div class="title">Favourites</div>
+                <div class="title">Recommendations</div>
             </th>
         </tr>
         </thead>
 
     </table>
-    <table class="table_block" th:if="${favorites.size()}">
+    <table class="table_block" th:if="${reccoms.size()}">
         <tbody>
         <tr>
             <td>№</td>
@@ -30,12 +30,12 @@
             <td>date</td>
         </tr>
         </tbody>
-        <tbody th:each="fav, iStat : ${favorites}" th:with="book = ${fav.getBook()}" >
+        <tbody th:each="rec, iStat : ${reccoms}" th:with="book = ${rec.getBook()}" >
         <td th:text="${iStat.index}+1" ></td>
         <td>
-            <a th:href="@{/book/info?book=__${fav.getBook().bookID}__}" th:text="${book.title}"></a>
+            <a th:href="@{/book/info?book=__${rec.book.getBookID()}__}" th:text="${book.title}"></a>
         </td>
-        <td th:with="date = ${fav.getDateFavourite()}"
+        <td th:with="date = ${rec.getDateRecommendation()}"
             th:text="${date.year} + ' ' + ${date.getYear()} + ' ' + ${date.month} + ${date.getMonth()}"></td>
         </tbody>
     </table>
