@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/bookSearch.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+</head>
+<body>
+
+
+<div style="text-align: center;">
+    <table class="table_block">
+        <thead>
+        <tr>
+            <th valign="middle" colspan="3" class="table_header">
+                <div class="title">Find book</div>
+            </th>
+        </tr>
+        </thead>
+
+    </table>
+    <table class="table_block" th:if="${favorites.size()}">
+        <tbody>
+        <tr>
+            <td>№</td>
+            <td>title</td>
+            <td>date</td>
+        </tr>
+        </tbody>
+        <tbody th:each="fav, iStat : ${favorites}" th:with="book = ${fav.getBook()}" >
+        <td th:text="${iStat.index}+1" ></td>
+        <td>
+            <a th:href="@{/book/info?book=__${fav.bookID}__}" th:text="${book.title}"></a>
+        </td>
+        <td th:with="date = ${fav.getDateFavourite()}"
+            th:text="${date.year} + ' ' + ${date.getYear()} + ' ' + ${date.month} + ${date.getMonth()}"></td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
