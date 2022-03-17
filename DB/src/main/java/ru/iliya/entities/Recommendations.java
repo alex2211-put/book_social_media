@@ -7,9 +7,9 @@ import java.util.Date;
 @Table(name = "recommendations")
 public class Recommendations {
     private int recommendationID;
-    private int userID;
-    private int bookID;
     private Date dateRecommendation;
+    private User user;
+    private Book book;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,24 +20,6 @@ public class Recommendations {
 
     public void setRecommendationID(int recommendationID) {
         this.recommendationID = recommendationID;
-    }
-
-    @Column(name = "user_id")
-    public int getUserID() {
-        return this.userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
-    @Column(name = "book_id")
-    public int getBookID() {
-        return this.bookID;
-    }
-
-    public void setBookID(int bookID) {
-        this.bookID = bookID;
     }
 
     @Column(name = "date_recommendation")
@@ -53,21 +35,29 @@ public class Recommendations {
     public String toString() {
         return "Recommendations{" +
                 "recommendationID=" + recommendationID +
-                ", userID='" + userID + '\'' +
-                ", bookID='" + bookID + '\'' +
                 ", dateRecommendation=" + dateRecommendation +
+                ", user=" + user +
+                ", book=" + book +
                 '}';
     }
 
-    private User user;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userID")
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "book_id")
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }
