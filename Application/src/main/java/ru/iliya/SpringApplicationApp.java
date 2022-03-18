@@ -46,12 +46,8 @@ public class SpringApplicationApp {
     public CommandLineRunner springdata() {
         return (args) -> {
             System.out.println("-------StartTest--------");
-            List<Book> books = bookRepository.findAll();
-            for (Book book : books) {
-                if (book.getAuthors().size() >= 2) {
-                    System.out.println(book);
-                }
-            }
+            System.out.println("adm1nadm!n".hashCode());
+            System.out.println("!devel0per".hashCode());
             System.out.println("----------end-----------");
         };
     }

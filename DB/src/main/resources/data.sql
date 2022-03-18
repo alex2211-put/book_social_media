@@ -318,10 +318,19 @@ values  (1193, 6038852),
         (1186, 6022043),
         (1194, 6052664),
         (1195, 5936584);
+insert into public.role (role_id, name, mask)
+values (1, "default", 1),
+       (127, "developer", 127),
+       (255, "admin", 255);
 insert into public.user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, roleid)
 values  (1, '2022-03-15 18:10:10.000000', 'xxx@mail.ru', 'alik', '123', 'put', 'alik_put', true, 1),
         (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1),
-        (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1);
+        (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1),
+        (4, '2001-09-04', 'osipov.ia@phystech.edu', 'Илья', '-1766081936', 'Осипов', 'Riernish', true, 255),
+        (5, '2001-01-01', 'mikhailov.ra@phystech.edu', 'Роман', '2022431080', 'Михайлов', 'RomanMikhailovDASR', true, 127),
+        (6, '2001-01-20', 'putin.al@phystech.edu', 'Александр', '2022431080', 'Путин', 'alik_put', true, 127),
+        (8, '1988-12-14', 'zabivaka88@bk.ru', 'Григорий', '2022431080', 'Тарасов', '4ERTEHbI|_|_|', true, 1),
+        (7, '2007-08-31', 'alexmmas@mail.ru', 'Станислав', '2022431080', 'Петров', 'DyadyaDeda', true, 1);
 insert into favourites (link_id, book_id, date_favourite, user_id)
 values (1, 6020523, '2008-10-23 10:37:22', 1),
        (2, 5942392, '2008-10-23 10:37:22', 123),
