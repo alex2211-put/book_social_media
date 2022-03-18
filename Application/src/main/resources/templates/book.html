@@ -24,13 +24,14 @@
         <tbody>
         <tr>
             <td rowspan="6">
-                <img th:src="@{/img/prest.webp}" alt="book image" class="book_photo" width="260" height="420">
+                <img th:src="${book.imageLink}" alt="book image" class="book_photo" width="260" height="420">
             </td>
             <td>
                 <div class="description">
                     <div style="display: inline-block; font-weight: bold;">Author:</div>
                     <div style="display: inline-block;"
-                         th:text="${book.authors.get(0).firstName} + ' ' + ${book.authors.get(0).lastName}"></div>
+                         th:each="author : ${book.authors}" th:text="${author.firstName} + ' ' + ${author.lastName}">
+                    </div>
 
                     <div></div>
                     <div style="display: inline-block; font-weight: bold;">Title:</div>

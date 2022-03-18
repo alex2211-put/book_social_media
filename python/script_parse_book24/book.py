@@ -2,7 +2,7 @@ from typing import NamedTuple
 
 
 class Book(NamedTuple):
-    product_id: int
+    product_id: str
     book_name: str
     authors: str
     edition_year: int
@@ -11,12 +11,13 @@ class Book(NamedTuple):
     genre: str
     link: str
     annotation: str
+    img: str
 
     def __hash__(self):
         return id(self)
 
     def to_csv_str(self, delimiter: str = ';') -> str:
-        return f"{self.product_id}{delimiter}" \
+        return f"{int(self.product_id.replace('p', ''))}{delimiter}" \
                f"{self.book_name}{delimiter}" \
                f"{self.authors}{delimiter}" \
                f"{self.edition_year}{delimiter}" \
@@ -24,12 +25,13 @@ class Book(NamedTuple):
                f"{self.number_pages}{delimiter}" \
                f"{self.genre}{delimiter}" \
                f"{self.link}{delimiter}" \
-               f"{self.annotation}"
+               f"{self.annotation}{delimiter}" \
+               f"{self.img}{delimiter}"
 
     def book_str(self, sep: str = ';'):
         return "{1}{0}{2}{0}{3}{0}{4}{0}{5}".format(
             sep,
-            self.product_id,
+            self.product_id.replace('p', ''),
             self.book_name,
             self.edition_year,
             self.age_restriction,
@@ -46,15 +48,17 @@ class Book(NamedTuple):
                "number_pages{0}" \
                "genre{0}" \
                "link{0}" \
-               "annotation".format(delimiter)
+               "annotation{0}" \
+               "image{0}".format(delimiter)
 
     @staticmethod
     def book_header(sep: str = ';'):
-        return "{1}{0}{2}{0}{3}{0}{4}{0}{5}".format(
+        return "{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}x".format(
             sep,
             "book_id",
             "book_name",
             "price",
             "edition_year",
             "editor_name",
+            "image",
         )

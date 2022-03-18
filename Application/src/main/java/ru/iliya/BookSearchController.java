@@ -37,7 +37,7 @@ public class BookSearchController {
 //        return "redirect:/book-by-title";
 //    }
     @GetMapping("/book/info")
-    public String showBookInfo(@RequestParam(name = "book_id", required = false, defaultValue = "6047063") String book_id,
+    public String showBookInfo(@RequestParam(name = "book_id", required = false, defaultValue = "5944307") String book_id,
                                @RequestParam(name = "favourites", required = false, defaultValue = "Add to favourites") String favourites,
                                Model model) {
         model.addAttribute("book",
