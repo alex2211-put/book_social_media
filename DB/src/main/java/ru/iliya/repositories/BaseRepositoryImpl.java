@@ -170,7 +170,7 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
-    public User findUserByNickname(String nickname) {
+    public List<User> findUserByNickname(String nickname) {
         return userRepository.findByNickname(nickname);
     }
 
