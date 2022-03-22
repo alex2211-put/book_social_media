@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/user.css}" rel="stylesheet"/>
+    <link th:href="@{/js/actions.js}" rel="text/javascript"/>
+</head>
+<body>
+<div style="text-align: center;">
+    <table class="table_all_data">
+        <thead>
+        <tr>
+            <th valign="middle" colspan="2" class="table_head">
+                <div class="title">User information</div>
+            </th>
+        </tr>
+        </thead>
+        <tr style="height: 10px"></tr>
+        <tbody>
+        <tr>
+            <td rowspan="6">
+                <img th:src="${user.imageLink}" alt="book image" class="book_photo" width="360" height="420">
+            </td>
+            <td>
+                <div class="description">
+<!--                    <div style="display: inline-block; font-weight: bold;">Author:</div>-->
+<!--                    <div style="display: inline-block;"-->
+<!--                         th:each="author : ${book.authors}" th:text="${author.firstName} + ' ' + ${author.lastName}">-->
+<!--                    </div>-->
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Ник:</div>
+                    <div th:text="${user.nickname}" style="display: inline-block;"></div>
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Имя:</div>
+                    <div th:text="${user.firstName}" style="display: inline-block;"></div>
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Фамилия:</div>
+                    <div th:text="${user.lastName}" style="display: inline-block;"></div>
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Дата рождения:</div>
+                    <div th:text="${user.birthDate}" style="display: inline-block;"></div>
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Электронная почта:</div>
+                    <div th:text="${user.email}" style="display: inline-block;"></div>
+
+                    <div></div>
+                    <div style="display: inline-block; font-weight: bold;">Рекомендации:</div>
+<!--                    <div th:text="${user.email}" style="display: inline-block;"></div>-->
+                </div>
+            </td>
+<!--            <td>-->
+<!--                <div class="description">-->
+<!--                    <div></div>-->
+<!--                    <div style="display: inline-block; font-weight: bold;">First name:</div>-->
+<!--                    <div th:text="${user.firstName}" style="display: inline-block;"></div>-->
+<!--                </div>-->
+<!--            </td>-->
+        </tr>
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <div class="description">-->
+<!--                    <div style="display: inline-block; font-weight: bold;">Genre:</div>-->
+<!--                    <div style="display: inline-block;"-->
+<!--                         th:text="${book.genre}"></div>-->
+
+<!--                    <div></div>-->
+<!--                    <div style="display: inline-block; font-weight: bold;">Number of pages:</div>-->
+<!--                    <div th:text="${book.numberPages}" style="display: inline-block;"></div>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <div class="description">-->
+<!--                    <div style="display: inline-block; font-weight: bold;">Age restriction</div>-->
+<!--                    <div style="display: inline-block;"-->
+<!--                         th:text="${book.age_restriction}"></div>-->
+
+<!--                    <div></div>-->
+<!--                    <div style="display: inline-block; font-weight: bold;">Year release:</div>-->
+<!--                    <div th:text="${book.year_release}" style="display: inline-block;"></div>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <div class="description">-->
+<!--                    <div style="display: inline-block; font-weight: bold;">Link:</div>-->
+<!--                    <a style="display: inline-block;"-->
+<!--                       th:href="${book.linkInternet}" th:text="${book.linkInternet}"></a>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <div class="rating-area">-->
+<!--                    <input type="radio" id="star-5" name="rating" value="5">-->
+<!--                    <label for="star-5" title="Оценка «5»"></label>-->
+<!--                    <input type="radio" id="star-4" name="rating" value="4">-->
+<!--                    <label for="star-4" title="Оценка «4»"></label>-->
+<!--                    <input type="radio" id="star-3" name="rating" value="3">-->
+<!--                    <label for="star-3" title="Оценка «3»"></label>-->
+<!--                    <input type="radio" id="star-2" name="rating" value="2">-->
+<!--                    <label for="star-2" title="Оценка «2»"></label>-->
+<!--                    <input type="radio" id="star-1" name="rating" value="1">-->
+<!--                    <label for="star-1" title="Оценка «1»"></label>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                <form id="add-form-2" th:action="@{/book/info/addFavourites/__${book.bookID}__/__${favourites}__}"-->
+<!--                      th:method="post">-->
+<!--                    <div class="row">-->
+<!--                        <button id="" type="submit" th:text="${favourites}" class="click_me"></button>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--        <tr style="height: 10px"></tr>-->
+<!--        <tr>-->
+<!--            <th colspan="2" class="annotation">-->
+<!--                <div style="font-weight: bold; color: black;">Аннотация</div>-->
+<!--                <div style="font-weight: normal;" th:text="${book.annotation}"></div>-->
+<!--            </th>-->
+<!--        </tr>-->
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
