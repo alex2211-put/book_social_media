@@ -188,8 +188,9 @@ public class BaseRepositoryImpl implements BaseRepository {
     @Override
     public void setFavouritesByParams(int userID, int bookID) {
         Favourites favourites = new Favourites();
-        favourites.setBookID(bookID);
-        favourites.setUserID(userID);
+        Book book = bookRepository.findBookByBookID(bookID);
+        favourites.setBook(book);
+        favourites.setUser(userRepository.findByUserID(userID));
         Date current = new Date();
         favourites.setDateFavourite(current);
         favouritesRepository.save(favourites);
@@ -197,7 +198,7 @@ public class BaseRepositoryImpl implements BaseRepository {
 
     @Override
     public List<Favourites> findFavouritesByUserID(int userID) {
-        return favouritesRepository.findByUserID(userID);
+        return favouritesRepository.findByUser(userRepository.findByUserID(userID));
     }
 
     @Override
@@ -211,8 +212,8 @@ public class BaseRepositoryImpl implements BaseRepository {
     @Override
     public void setRecommendationsByParams(int userID, int bookID) {
         Recommendations recommendations = new Recommendations();
-        recommendations.setBookID(bookID);
-        recommendations.setUserID(userID);
+        recommendations.setBook(bookRepository.findBookByBookID(bookID));
+        recommendations.setUser(userRepository.findByUserID(userID));
         Date current = new Date();
         recommendations.setDateRecommendation(current);
         recommendationsRepository.save(recommendations);
@@ -220,7 +221,7 @@ public class BaseRepositoryImpl implements BaseRepository {
 
     @Override
     public List<Recommendations> findRecommendationsByUserID(int userID) {
-        return recommendationsRepository.findByUserID(userID);
+        return recommendationsRepository.findByUser(userRepository.findByUserID(userID));
     }
 
     @Override

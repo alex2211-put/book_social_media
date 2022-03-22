@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/bookSearch.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+</head>
+<body>
+
+
+<div style="text-align: center;">
+    <table class="table_block">
+        <thead>
+        <tr>
+            <th valign="middle" colspan="3" class="table_header">
+                <div class="title">Найти книгу</div>
+            </th>
+        </tr>
+        </thead>
+        <td class="row">
+            <form id="add-form-2" th:action="@{/book/search}" th:method="get">
+                <div class="row">
+
+                    <input type="text" th:name="title"  th:placeholder="title"/>
+                    <input type="text" th:name="author" th:placeholder="author"/>
+                    <input type="text" th:name="genre"  th:placeholder="genre"/>
+                </div>
+                <div class="row">
+                    <button id="" type="submit">Найти</button>
+                </div>
+            </form>
+        </td>
+    </table>
+    <table class="table_block" th:if="${books.size()}">
+        <tbody>
+            <tr>
+                <td>№</td>
+                <td>Название</td>
+                <td>Год издания</td>
+                <td>Жанр</td>
+                <td>Авторы</td>
+            </tr>
+        </tbody>
+        <tbody th:each="book, iStat : ${books}" >
+        <td th:text="${iStat.index}+1" ></td>
+        <td>
+            <a th:href="@{/book/info?book=__${book.bookID}__}" th:text="${book.title}"></a>
+        </td>
+        <td th:text="${book.year_release}"></td>
+        <td th:text="${book.genre}"></td>
+        <td style="display: inline-block; margin-left: 5px;" th:each="author, iterStat : ${book.authors}">
+            <a th:text="${author.firstName} + ' ' + ${author.lastName} + ${!iterStat.last ? ', ' : ''}"></a>
+        </td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
