@@ -15,7 +15,7 @@ public class UserSearchController {
 
     String email;
     @GetMapping("/user_search") //user/search        value   showUsers
-    public String showUsersByEmail(@RequestParam(name = "найти", required = false, defaultValue = "") String search,
+    public String showUsersByEmail(@RequestParam(name = "search", required = false, defaultValue = "") String search,
                                    Model model) {
         model.addAttribute("users",
                 userService.findUserByFirstNameLastNameNickNameEmail(search));
