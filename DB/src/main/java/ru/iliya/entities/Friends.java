@@ -22,7 +22,7 @@ public class Friends {
         this.friendID = friendID;
     }
 
-    @Column(name = "user_id")
+    @Column(name = "user1_id")
     public int getUserID() {
         return this.userID;
     }

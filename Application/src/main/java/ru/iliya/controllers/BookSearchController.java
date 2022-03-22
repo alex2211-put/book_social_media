@@ -1,4 +1,4 @@
-package ru.iliya;
+package ru.iliya.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class BookSearchController {
     @Autowired
     BookSearchService bookSearchService;
 
-    String title;
 
+    String title;
     @GetMapping("/book/search") //book/search
     public String showBooksByTitle(@RequestParam(name = "title", required = false, defaultValue = "") String title,
                                    @RequestParam(name = "name", required = false, defaultValue = "") String name,
@@ -29,7 +29,7 @@ public class BookSearchController {
                                    Model model) {
         model.addAttribute("books",
                 bookSearchService.findBooksByTitleAuthorGenre(title, name, genre));
-        return "book-by-title"; //view
+        return "book-search"; //view
     }
 
     //    @GetMapping("/book-by-title")
