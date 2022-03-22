@@ -18,3 +18,5 @@ ANNOTATION_PATH = "//div[@class='product-about product-detail-page__product-abou
 
 PRODUCT_ID_PATH = "//div[@class='product-detail-page__main-holder']/div[" \
                   "@class='product-detail-page__title-holder']/p[@class='product-detail-page__article']/text() "
+
+IMAGE_PATH = "//div[@class='product-poster__main-slide']//img/@src"

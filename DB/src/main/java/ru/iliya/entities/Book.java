@@ -16,6 +16,7 @@ public class Book {
     private int numberPages;
     private String annotation;
     private List<Author> authors;
+    private String imageLink;
 
     @Override
     public boolean equals(Object o) {
@@ -47,6 +48,15 @@ public class Book {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Column(name = "image_link")
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
 
 
