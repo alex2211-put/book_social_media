@@ -1,3 +1,5 @@
+*{transition: all 0.3s linear;}
+
 .title {
     font-weight: normal;
     /*padding: 10px 8px;*/
@@ -69,7 +71,7 @@ th {
 .rating-area {
     overflow: hidden;
     width: 50%;
-    margin-left: 24%;
+    margin-left: 5%;
 }
 .rating-area:not(:checked) > input {
     display: none;
@@ -105,4 +107,67 @@ th {
 }
 .rate-area > label:active {
     position: relative;
+}
+.like{
+    font-family: 'Bradley Hand', sans-serif bold;
+}
+.like-toggle{
+    margin-left: 20px;
+    margin-bottom: 5px;
+    outline:none;
+    box-shadow:none;
+    border: none;
+    width: 40px;
+    height: 30px;
+    font-size: 1.3em;
+    border-radius: 100px;
+}
+
+.like-active{
+    background: green;
+    outline:none;
+    box-shadow:none;
+    border: none;
+    width: 50px;
+    height: 40px;
+    font-size: 1.4em;
+    border-radius: 100px;
+}
+.hidden{
+    font-size: 0;
+}
+
+.write_message_text {
+    margin-bottom: 15px;
+    margin-left: 3%;
+    width: 97%;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: cornflowerblue;
+    height: 45px;
+    /*background-color: #6678b1;*/
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 15px;
+    opacity: 0.4;
+    line-height: 1.25;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.write_message_text:focus {
+    outline: 0;
+    opacity: 1;
+    border-bottom: 1px solid #03a9f4;
+    box-shadow: none;
+    background-color: #eee;
+}
+.button_message_text {
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 15px;
+    width: 60px;
+    border: none;
+    border-radius: 50%;
+    background: none;
 }
