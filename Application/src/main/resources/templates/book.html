@@ -122,11 +122,11 @@
                 <div style="font-weight: bold; color: black;">Комментарии</div>
             </th>
         </tr>
-        <div th:each="comment, iStat : ${comments}" class="comments">
-
-            <tr th:text="${comment.comment}" class="comment_one"></tr>
-        </div>
-
+        <tbody>
+        <tr th:each="comment, iStat : ${comments}" class="comments">
+            <td th:text="${comment.comment}" class="comment_one"></td>
+        </tr>
+        </tbody>
         <tr>
             <form id="add-form-3"
                   th:action="@{/book/info/addComment/__${book.bookID}__}"

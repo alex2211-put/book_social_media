@@ -9,6 +9,7 @@ import ru.iliya.entities.Comments;
 import ru.iliya.services.BookSearchService;
 import ru.iliya.repositories.BaseRepository;
 
+import javax.websocket.server.PathParam;
 import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,10 +39,11 @@ public class BookSearchController {
 //
 //        return "redirect:/book-by-title";
 //    }
-    @GetMapping("/book/info")
-    public String showBookInfo(@RequestParam(name = "book_id", required = false, defaultValue = "5944307") String book_id,
+    @GetMapping("/book/info/{book_id}")
+    public String showBookInfo(@PathVariable(name = "book_id") String book_id,
                                @RequestParam(name = "favourites", required = false, defaultValue = "Add to favourites") String favourites,
                                Model model) {
+        System.out.println(book_id);
         List<Comments> comments = bookSearchService.getComments(book_id);
         model.addAttribute("comments", comments);
         model.addAttribute("book",
@@ -67,6 +69,6 @@ public class BookSearchController {
                              @RequestParam(name = "comment") String comment,
                                 Model model) {
         bookSearchService.addComment(book_id, comment);
-        return "redirect:/book/info?book_id=" + book_id;
+        return "redirect:/book/info/" + book_id;
     }
 }
