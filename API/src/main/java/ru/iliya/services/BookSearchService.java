@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.iliya.entities.Author;
 
 import ru.iliya.entities.Book;
+import ru.iliya.entities.Comments;
 import ru.iliya.repositories.BaseRepository;
 
 import java.util.ArrayList;
@@ -71,5 +72,13 @@ public class BookSearchService {
             else { return baseRepository.findBooksByTitleAndAuthorsAndGenre(title, authors, genre);}
         }
         return new ArrayList<>();
+    }
+
+    public List<Comments> getComments(String bookId) {
+        return baseRepository.findCommentsByBookId(Integer.parseInt(bookId));
+    }
+
+    public void addComment(String bookId, String comment) {
+        baseRepository.setCommentByBookId(Integer.parseInt(bookId), comment);
     }
 }
