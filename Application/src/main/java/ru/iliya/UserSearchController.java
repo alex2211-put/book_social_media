@@ -15,10 +15,10 @@ public class UserSearchController {
 
     String email;
     @GetMapping("/user_search") //user/search        value   showUsers
-    public String showUsersByEmail(@RequestParam(name = "email", required = false, defaultValue = "") String email,
+    public String showUsersByEmail(@RequestParam(name = "search", required = false, defaultValue = "") String search,
                                    Model model) {
         model.addAttribute("users",
-                userService.findUserByEmail(email));
+                userService.findUserByFirstNameLastNameNickNameEmail(search));
         return "user_search"; //view
     }
 
@@ -28,5 +28,13 @@ public class UserSearchController {
 //
 //        return "redirect:/book-by-title";
 //    }
+
+    @GetMapping("/user/info")
+    public String showBookInfo(@RequestParam(name = "user_id", required = false, defaultValue = "1") int user_id,
+                               Model model) {
+        model.addAttribute("user",
+                userService.findUserByUserID(user_id));
+        return "user";
+    }
 
 }

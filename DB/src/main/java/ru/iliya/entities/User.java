@@ -15,6 +15,7 @@ public class User {
     private boolean openProfile;
     private String hashPassword;
     private int roleID;
+    private String imageLink;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,6 +98,15 @@ public class User {
 
     public int getRoleID() {
         return this.roleID;
+    }
+
+    @Column(name = "image_link")
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    public String getImageLink() {
+        return this.imageLink;
     }
 
     @Override

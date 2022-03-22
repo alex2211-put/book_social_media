@@ -30,12 +30,12 @@ public interface BaseRepository{
                                            String genre);
     List <Book> findBooksByTitle(String title);
 
-    void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID);
+    void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID, String imageLink);
     List<User> findUserByFirstName(String firstName);
     List<User> findUserByLastName(String lastName);
 
     List<User> findUserByEmail(String email);
-    User findUserByNickname(String nickname);
+    List<User> findUserByNickname(String nickname);
     User findUserByID(int userID);
 
     void setFavouritesByParams(int userID, int bookID);

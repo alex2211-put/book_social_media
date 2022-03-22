@@ -1,0 +1,28 @@
+strong {
+    font-weight: 700;
+    background-color: yellow;
+}
+.table_block {
+    font-family: 'Bradley Hand', sans-serif bold;
+    margin-top: 5%;
+    margin-left: 25%;
+    margin-right: 25%;
+    border-radius: 10px;
+    width: 50%;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    border: 1px solid grey;
+    background: linear-gradient(45deg, whitesmoke, #C5DDE8);
+
+}
+
+.title {
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 45px;
+    color: darkgray;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    font-stretch: expanded;
+    font-style: initial;
+}
