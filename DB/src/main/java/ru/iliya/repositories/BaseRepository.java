@@ -9,6 +9,7 @@ public interface BaseRepository{
 
     Book addBook(Book book);
     Book getByTitle(String title);
+    Book findBookByBookID(Integer bookId);
     List <Book> findByAuthor(String firstname, String lastName);
     List <Book> findByGenre(String genre);
     List<Book> getAll();

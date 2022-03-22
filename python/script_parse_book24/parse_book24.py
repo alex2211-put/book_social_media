@@ -1,3 +1,5 @@
+import enum
+
 import book
 from lxml import html
 import path_in_tree
@@ -29,17 +31,32 @@ class Controller:
             headers: Dict[str, str],
             no_page_exception: bool = False,
     ):
-        editor = _editor_catalog(url, start_page, end_page, headers, no_page_exception=no_page_exception)
+        editor = _editor_catalog(
+            url,
+            start_page,
+            end_page,
+            headers,
+            no_page_exception=no_page_exception,
+        )
         for ed in editor:
             self.values.append(ed.to_csv_str())
 
-    def start(self, url: str, headers: Dict[str, str], start_page: int, end_page: int,
-              process_pages: int):
+    def start(
+            self,
+            url: str,
+            headers: Dict[str, str],
+            start_page: int,
+            end_page: int,
+            process_pages: int,
+    ):
         cur_start_page = start_page
         cur_end_page = (start_page + process_pages)
         while cur_start_page < end_page:
             self.processes.append(
-                Thread(target=self.scanner, args=(url, cur_start_page, cur_end_page, headers,)),
+                Thread(
+                    target=self.scanner,
+                    args=(url, cur_start_page, cur_end_page, headers,),
+                ),
             )
             self.processes[-1].start()
             cur_start_page += process_pages + 1
@@ -50,7 +67,9 @@ class Controller:
             p.join()
 
     def to_file(self):
-        _to_file("../../data/book24_catalog.csv", self.values, book.Book.header())
+        _to_file(
+            "../../data/book24_catalog.csv", self.values, book.Book.header(),
+        )
 
 
 def _to_file(
@@ -67,8 +86,8 @@ def _to_file(
         for line in data:
             try:
                 wr.write(f"\n{line}")
-            except:
-                print(line)
+            except IOError as exc:
+                print(line, exc)
                 pass
 
 
@@ -89,7 +108,7 @@ def _editor_catalog(
                     raise Exception
                 else:
                     break
-        except:
+        except Exception:
             break
         tree = html.fromstring(page.content)
         book_links = tree.xpath(path_in_tree.BOOK_LINKS_PATH)
@@ -104,14 +123,14 @@ def _editor_catalog(
                 annotation = tree.xpath(path_in_tree.ANNOTATION_PATH)
                 product_id = tree.xpath(path_in_tree.PRODUCT_ID_PATH)[0].encode('l1').decode().strip().split(
                     'Артикул:')[1].strip()
-
+                img = tree.xpath(path_in_tree.IMAGE_PATH)[0].strip()
                 characteristic_values_res = [autho.encode('l1').decode() for autho in characteristic_values]
                 characteristic_labels_res = [label.encode('l1').decode() for label in characteristic_labels]
                 ann_res = ' '.join([annotation_res.encode('l1').decode().replace('\n', ' ') for annotation_res in annotation])
                 dict_ = {}
                 if characteristic_labels:
                     for i in range(len(characteristic_labels)):
-                        dict_[characteristic_labels_res[i]] = characteristic_values_res[i]
+                        dict_[characteristic_labels_res[i]] = characteristic_values_res[i].strip()
                 yield book.Book(
                     product_id=product_id,
                     book_name=title,
@@ -122,6 +141,7 @@ def _editor_catalog(
                     genre=dict_[' Раздел: '],
                     link=link,
                     annotation=ann_res,
+                    img=img,
                 )
         except:
             pass
