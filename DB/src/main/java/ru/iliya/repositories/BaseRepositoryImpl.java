@@ -146,7 +146,7 @@ public class BaseRepositoryImpl implements BaseRepository {
 
     //users
     @Override
-    public void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID) {
+    public void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID, String imageLink) {
         User user = new User();
         user.setNickname(nickname);
         user.setFirstName(firstName);
@@ -156,6 +156,7 @@ public class BaseRepositoryImpl implements BaseRepository {
         user.setOpenProfile(openProfile);
         user.setHashPassword(hashPassword);
         user.setRoleID(roleID);
+        user.setImageLink(imageLink);
         userRepository.saveAndFlush(user);
     }
 
@@ -175,7 +176,7 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
-    public User findUserByNickname(String nickname) {
+    public List<User> findUserByNickname(String nickname) {
         return userRepository.findByNickname(nickname);
     }
 

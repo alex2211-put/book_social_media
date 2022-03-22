@@ -5,30 +5,54 @@
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
     <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/userSearch.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 </head>
 <body>
 
 
-<form id="add-form-2" th:action="@{/user_search}" th:method="get">
-    <div class="row">
-
-        <input type="text" th:name="email"  th:placeholder="email"/>
-    </div>
-    <div class="row">
-        <button id="" type="submit">Найти</button>
-    </div>
-</form>
-<table>
- 
-    <tbody th:each="user, iStat : ${users}">
-    <tr th:style="${iStat.odd}? 'font-weight: bold;'">
-        <td th:text="${iStat.index}+1"></td>
-        <td th:text="${user.firstName}"></td>
-<!--        <td th:text="${user.first_name}"></td>-->
-<!--        <td th:text="${user.last_name}"></td>-->
-    </tr>
-    </tbody>
-</table>
-
+<div style="text-align: center;">
+    <table class="table_block">
+        <thead>
+        <tr>
+            <th valign="middle" colspan="3" class="table_header">
+                <div class="title">Find user</div>
+            </th>
+        </tr>
+        </thead>
+        <td class="row">
+            <form id="add-form-2" th:action="@{/user_search}" th:method="get">
+                <div class="row">
+                    <input type="text" th:name="найти"  th:placeholder="найти"/>
+                </div>
+                <div class="row">
+                    <button id="" type="submit">Найти</button>
+                </div>
+            </form>
+        </td>
+    </table>
+    <table class="table_block">
+        <tbody>
+        <tr>
+            <td>№</td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Ник</td>
+            <td>Ссылка</td>
+        </tr>
+        </tbody>
+        <tbody th:each="user, iStat : ${users}">
+        <tr th:style="${iStat.odd}? 'font-weight: bold;'">
+            <td th:text="${iStat.index}+1"></td>
+            <td th:text="${user.firstName}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.nickname}"></td>
+            <td>
+                    <a href="http://localhost:8080/user/info">перейти</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
