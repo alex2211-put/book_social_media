@@ -36,7 +36,7 @@
             <a th:href="@{/book/info?book=__${rec.book.getBookID()}__}" th:text="${book.title}"></a>
         </td>
         <td th:with="date = ${rec.getDateRecommendation()}"
-            th:text="${date.year} + ' ' + ${date.getYear()} + ' ' + ${date.month} + ${date.getMonth()}"></td>
+            th:text="${date.year + 1900} + '-' + ${date.month + 1} + '-' + ${date.getDate()}"></td>
         </tbody>
     </table>
 </div>

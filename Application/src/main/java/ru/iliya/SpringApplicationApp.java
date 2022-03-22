@@ -48,6 +48,7 @@ public class SpringApplicationApp {
             System.out.println("-------StartTest--------");
             System.out.println("adm1nadm!n".hashCode());
             System.out.println("!devel0per".hashCode());
+            System.out.println("юзерИзКит@я".hashCode());
             System.out.println("----------end-----------");
         };
     }
