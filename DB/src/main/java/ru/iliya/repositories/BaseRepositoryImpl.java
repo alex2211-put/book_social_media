@@ -107,6 +107,11 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
+    public void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId) {
+        marksRepository.deleteMarkByBookIdAndUserId(bookId, userId);
+    }
+
+    @Override
     public List<Comments> findCommentsByBookId(Integer bookId) {
         Book book = bookRepository.findBookByBookID(bookId);
         return commentRepository.findCommentsByBook(book);

@@ -16,6 +16,8 @@ public interface BaseRepository{
     Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId);
     void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark);
     List<Marks> findMarksByBookId(Integer bookId);
+    void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId);
+
     List <Comments> findCommentsByBookId(Integer bookId);
     void setCommentByBookId(Integer bookId, String comment);
 

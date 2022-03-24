@@ -40,7 +40,8 @@ public class BookSearchController {
     public String showBookInfo(@PathVariable(name = "book_id") String book_id,
                                @RequestParam(name = "favourites", required = false, defaultValue = "Add to favourites") String favourites,
                                Model model) {
-        System.out.println(book_id);
+        model.addAttribute("mark", marksService.findByBookIdAndUserId(Integer.parseInt(book_id), 4));
+
         List<Comments> comments = bookSearchService.getComments(book_id);
         model.addAttribute("comments", comments);
         model.addAttribute("book",
@@ -73,6 +74,12 @@ public class BookSearchController {
     public String doStuffMethod(@PathVariable(name = "book_id") String book_id,
                                 @PathVariable(name = "mark") String mark) {
         marksService.setMarksByBookIdAndUserId(Integer.parseInt(book_id), 4, Integer.parseInt(mark));
+        return "redirect:/book/info/" + book_id;
+    }
+
+    @RequestMapping(value="/book/reload_mark/{book_id}")
+    public String reloadMark(@PathVariable(name = "book_id") String book_id) {
+        marksService.deleteMarkByBookIdAndUserId(Integer.parseInt(book_id), 4);
         return "redirect:/book/info/" + book_id;
     }
 }

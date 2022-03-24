@@ -11,13 +11,16 @@ import java.util.List;
 public class MarksService {
     @Autowired
     BaseRepository baseRepository;
-    Marks findByBookIdAndUserId(Integer bookId, Integer userId) {
+    public Marks findByBookIdAndUserId(Integer bookId, Integer userId) {
         return baseRepository.findMarksByBookIdAndUserId(bookId, userId);
     }
-    List<Marks> findAllMarks(Integer bookId) {
+    public List<Marks> findAllMarks(Integer bookId) {
         return baseRepository.findMarksByBookId(bookId);
     }
     public void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {
         baseRepository.setMarksByBookIdAndUserId(bookId, userId, mark);
     }
+    public void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId) {
+        baseRepository.deleteMarkByBookIdAndUserId(bookId, userId);
+    };
 }
