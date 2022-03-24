@@ -15,7 +15,7 @@
     <table class="table_all_data">
         <thead>
         <tr>
-            <th valign="middle" colspan="3" class="table_head">
+            <th valign="middle" colspan="4" class="table_head">
                 <div class="title">Book information</div>
             </th>
         </tr>
@@ -77,15 +77,15 @@
         <tr>
             <td colspan="2">
                 <div class="rating-area" style="display: inline-block;">
-                    <input type="radio" id="star-5" name="rating" value="5">
+                    <button type="submit" id="star-5" name="rating" value="5" hidden th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|"></button>
                     <label for="star-5" title="Оценка «5»"></label>
-                    <input type="radio" id="star-4" name="rating" value="4">
+                        <button type="submit" id="star-4" name="rating" value="4" hidden th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/4}'|"></button>
                     <label for="star-4" title="Оценка «4»"></label>
-                    <input type="radio" id="star-3" name="rating" value="3">
+                        <button type="submit" id="star-3" name="rating" value="3" hidden th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/3}'|"></button>
                     <label for="star-3" title="Оценка «3»"></label>
-                    <input type="radio" id="star-2" name="rating" value="2">
+                        <button type="submit" id="star-2" name="rating" value="2" hidden th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/2}'|"></button>
                     <label for="star-2" title="Оценка «2»"></label>
-                    <input type="radio" id="star-1" name="rating" value="1">
+                        <button type="submit" id="star-1" name="rating" value="1" hidden th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/1}'|"></button>
                     <label for="star-1" title="Оценка «1»"></label>
                 </div>
                 <div class='like' style="display: inline-block;">
@@ -109,13 +109,13 @@
         </tr>
         <tr style="height: 10px"></tr>
         <tr>
-            <th colspan="3" class="annotation">
+            <th colspan="4" class="annotation">
                 <div style="font-weight: bold; color: black;">Аннотация</div>
                 <div style="font-weight: normal;" th:text="${book.annotation}"></div>
             </th>
         </tr>
         </tbody>
-        <th style="border-bottom: 2px solid #6678b1;" colspan="3"></th>
+        <th style="border-bottom: 2px solid #6678b1;" colspan="4"></th>
         <tr th:height="10"></tr>
         <tr>
             <th colspan="3" class="annotation">

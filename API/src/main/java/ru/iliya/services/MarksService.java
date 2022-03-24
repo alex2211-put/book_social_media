@@ -14,7 +14,10 @@ public class MarksService {
     Marks findByBookIdAndUserId(Integer bookId, Integer userId) {
         return baseRepository.findMarksByBookIdAndUserId(bookId, userId);
     }
-    void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {
+    List<Marks> findAllMarks(Integer bookId) {
+        return baseRepository.findMarksByBookId(bookId);
+    }
+    public void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {
         baseRepository.setMarksByBookIdAndUserId(bookId, userId, mark);
     }
 }

@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import ru.iliya.entities.Book;
 import ru.iliya.entities.Comments;
 import ru.iliya.services.BookSearchService;
 import ru.iliya.repositories.BaseRepository;
+import ru.iliya.services.MarksService;
 
 import javax.websocket.server.PathParam;
 import javax.xml.stream.events.Comment;
@@ -20,9 +22,10 @@ public class BookSearchController {
 
     @Autowired
     BookSearchService bookSearchService;
+    @Autowired
+    MarksService marksService;
 
 
-    String title;
     @GetMapping("/book/search") //book/search
     public String showBooksByTitle(@RequestParam(name = "title", required = false, defaultValue = "") String title,
                                    @RequestParam(name = "name", required = false, defaultValue = "") String name,
@@ -33,12 +36,6 @@ public class BookSearchController {
         return "book-search"; //view
     }
 
-    //    @GetMapping("/book-by-title")
-//    public String searchBookByTitle(@RequestParam(name = "title") String title) {
-//        this.title = title;
-//
-//        return "redirect:/book-by-title";
-//    }
     @GetMapping("/book/info/{book_id}")
     public String showBookInfo(@PathVariable(name = "book_id") String book_id,
                                @RequestParam(name = "favourites", required = false, defaultValue = "Add to favourites") String favourites,
@@ -69,6 +66,13 @@ public class BookSearchController {
                              @RequestParam(name = "comment") String comment,
                                 Model model) {
         bookSearchService.addComment(book_id, comment);
+        return "redirect:/book/info/" + book_id;
+    }
+
+    @RequestMapping(value="/do-stuff/{book_id}/{mark}")
+    public String doStuffMethod(@PathVariable(name = "book_id") String book_id,
+                                @PathVariable(name = "mark") String mark) {
+        marksService.setMarksByBookIdAndUserId(Integer.parseInt(book_id), 4, Integer.parseInt(mark));
         return "redirect:/book/info/" + book_id;
     }
 }

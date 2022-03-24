@@ -15,7 +15,7 @@ public interface BaseRepository{
     List<Book> getAll();
     Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId);
     void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark);
-
+    List<Marks> findMarksByBookId(Integer bookId);
     List <Comments> findCommentsByBookId(Integer bookId);
     void setCommentByBookId(Integer bookId, String comment);
 

@@ -102,6 +102,11 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
+    public List<Marks> findMarksByBookId(Integer bookId) {
+        return marksRepository.findMarksByBookId(bookId);
+    }
+
+    @Override
     public List<Comments> findCommentsByBookId(Integer bookId) {
         Book book = bookRepository.findBookByBookID(bookId);
         return commentRepository.findCommentsByBook(book);
