@@ -19,7 +19,7 @@ public interface BaseRepository{
     void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId);
 
     List <Comments> findCommentsByBookId(Integer bookId);
-    void setCommentByBookId(Integer bookId, String comment);
+    void setCommentByBookIdAndUserId(Integer bookId, Integer userId, String comment);
 
     List <Book> findBooksByTitleAndAuthorsAndGenre(String title,
                                                    List <Author> authors,

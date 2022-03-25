@@ -118,11 +118,13 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
-    public void setCommentByBookId(Integer bookId, String comment) {
+    public void setCommentByBookIdAndUserId(Integer bookId, Integer userId, String comment) {
         Book book = bookRepository.findBookByBookID(bookId);
+        User user = userRepository.findByUserID(userId);
         Comments comments = new Comments();
         comments.setBook(book);
         comments.setComment(comment);
+        comments.setUser(user);
         commentRepository.save(comments);
     }
 

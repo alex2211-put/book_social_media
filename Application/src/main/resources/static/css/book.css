@@ -181,3 +181,16 @@ th {
     border-radius: 50%;
     background: none;
 }
+
+.comment_one {
+    height: 15px;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 15px;
+    color: black;
+}
+
+.button_user {
+    border: none;
+    border-radius: 50%;
+    background: none;
+}

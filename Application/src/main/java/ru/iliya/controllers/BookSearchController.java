@@ -75,7 +75,7 @@ public class BookSearchController {
     public String addComment(@PathVariable(name = "book_id") String book_id,
                              @RequestParam(name = "comment") String comment,
                              Model model) {
-        bookSearchService.addComment(book_id, comment);
+        bookSearchService.addComment(book_id, "4", comment);
         return "redirect:/book/info/" + book_id;
     }
 

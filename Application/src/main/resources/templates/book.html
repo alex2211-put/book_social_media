@@ -140,10 +140,21 @@
             </th>
         </tr>
         <tbody>
-        <tr th:each="comment, iStat : ${comments}" class="comments">
-            <td th:text="${comment.comment}" class="comment_one"></td>
+        <tr th:each="comment_one, iStat : ${comments}" class="comments" style="height: 15px;">
+            <td style="border-top: 1px solid #03a9f4; padding-bottom: 5px;height: 15px;" >
+                <div style="display: inline-block;">
+                    <button id="11" type="submit" float-right class="button_user"
+                            th:onclick="|window.location.href='@{/user/info/__${comment_one.user.userID}__}'|">
+                        <img th:src="@{/img/user.png}" alt="Перейти на страницу" width="20" height="20">
+                    </button>
+                </div>
+                <div th:text="${comment_one.user.nickname}" class="comment_one" style="display: inline-block;">
+                </div>
+            </td>
+            <td th:text="${comment_one.comment}" class="comment_one" colspan="2" style="border-top: 1px solid #03a9f4; padding-bottom: 5px;height: 15px;"></td>
         </tr>
         </tbody>
+        <tr th:height="10"></tr>
         <tr>
             <form id="add-form-3"
                   th:action="@{/book/info/addComment/__${book.bookID}__}"
