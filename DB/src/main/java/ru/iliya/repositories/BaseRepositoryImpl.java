@@ -241,6 +241,18 @@ public class BaseRepositoryImpl implements BaseRepository {
         recommendationsRepository.deleteRecommendationsByRecommendationID(recommendationsID);
     }
 
+    @Override
+    public Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId) {
+        User user = userRepository.findByUserID(userId);
+        Book book = bookRepository.findBookByBookID(bookId);
+        return recommendationsRepository.findRecommendationsByBookAndUser(book, user);
+    }
+
+    @Override
+    public Recommendations findRecommendationByRecommendationId(int recommendationId) {
+        return recommendationsRepository.findRecommendationByRecommendationID(recommendationId);
+    }
+
 
     //blocked users
     @Override

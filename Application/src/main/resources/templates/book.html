@@ -77,30 +77,38 @@
         <tr>
             <td colspan="2">
                 <div class='like' style="display: inline-block;">
-                    <button class="like-toggle" th:onclick="|window.location.href='@{/book/reload_mark/__${book.bookID}__}'|">🔃</button>
+                    <button class="like-toggle"
+                            th:onclick="|window.location.href='@{/book/reload_mark/__${book.bookID}__}'|">🔃
+                    </button>
                     <span class='hidden'>1 Like</span>
                 </div>
                 <div th:class="(${mark} == null)? 'rating-area' : 'rating-result'" style="display: inline-block;">
                     <button type="submit" id="star-5" name="rating" value="1" hidden
                             th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|"></button>
-                    <label for="star-5" title="Оценка «5»" th:class="(${mark != null} and ${mark.mark} >= 1)? 'active' : ''"></label>
+                    <label for="star-5" title="Оценка «5»"
+                           th:class="(${mark != null} and ${mark.mark} >= 1)? 'active' : ''"></label>
                     <button type="submit" id="star-4" name="rating" value="2" hidden
                             th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/4}'|"></button>
-                    <label for="star-4" title="Оценка «4»" th:class="(${mark != null} and ${mark.mark} >= 2)? 'active' : ''"></label>
+                    <label for="star-4" title="Оценка «4»"
+                           th:class="(${mark != null} and ${mark.mark} >= 2)? 'active' : ''"></label>
                     <button type="submit" id="star-3" name="rating" value="3" hidden
                             th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/3}'|"></button>
-                    <label for="star-3" title="Оценка «3»" th:class="(${mark != null} and ${mark.mark} >= 3)? 'active' : ''"></label>
+                    <label for="star-3" title="Оценка «3»"
+                           th:class="(${mark != null} and ${mark.mark} >= 3)? 'active' : ''"></label>
                     <button type="submit" id="star-2" name="rating" value="4" hidden
                             th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/2}'|"></button>
-                    <label for="star-2" title="Оценка «2»" th:class="(${mark != null} and ${mark.mark} >= 4)? 'active' : ''"></label>
+                    <label for="star-2" title="Оценка «2»"
+                           th:class="(${mark != null} and ${mark.mark} >= 4)? 'active' : ''"></label>
                     <button type="submit" id="star-1" name="rating" value="5" hidden
                             th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/1}'|"></button>
-                    <label for="star-1" title="Оценка «1»" th:class="(${mark != null} and ${mark.mark} >= 5)? 'active' : ''"></label>
+                    <label for="star-1" title="Оценка «1»"
+                           th:class="(${mark != null} and ${mark.mark} >= 5)? 'active' : ''"></label>
                 </div>
                 <div class='like' style="display: inline-block;">
-                    <button class="like-toggle"
-                            onclick="this.className = (this.className === 'like-toggle' ? 'like-active' : 'like-toggle')">
-                        👍
+                    <button th:class="(${recommendation.recommendationID} == -1)? 'like-toggle' : 'like-active'"
+                            onclick="this.className = (this.className === 'like-toggle' ? 'like-active' : 'like-toggle')"
+                            th:onclick="|window.location.href='@{/book/info/set_recommendation/__${book.bookID}__/__${recommendation.recommendationID}__}'|"
+                    >👍
                     </button>
                     <span class='hidden'>1 Like</span>
                 </div>

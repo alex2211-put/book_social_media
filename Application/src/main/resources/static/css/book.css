@@ -134,6 +134,8 @@ th {
 .like-active{
     background: green;
     outline:none;
+    margin-left: 20px;
+    margin-bottom: 5px;
     box-shadow:none;
     border: none;
     width: 50px;

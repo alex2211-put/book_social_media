@@ -47,7 +47,8 @@ public interface BaseRepository{
     void setRecommendationsByParams(int userID, int bookID);
     List<Recommendations> findRecommendationsByUserID(int userID);
     void deleteRecommendationsByRecommendationsID(int recommendationsID);
-
+    Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId);
+    Recommendations findRecommendationByRecommendationId(int recommendationId);
     void deleteBlockedUsersByBlockID(int blockID);
     List<BlockedUsers> findByUserIDBlocked(int userIDBlocked);
     void setBlockedUsersByParams(int userID, int userIDBlocked);

@@ -27,4 +27,14 @@ public class RecommendationsServiceImpl implements RecommendationsService {
     public void deleteRecommendationsByRecommendationsID(int recommendationsID) {
         baseRepository.deleteRecommendationsByRecommendationsID(recommendationsID);
     }
+
+    @Override
+    public Recommendations findRecommendationByRecommendationId(int recommendationId) {
+        return baseRepository.findRecommendationByRecommendationId(recommendationId);
+    }
+
+    @Override
+    public Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId) {
+        return baseRepository.findRecommendationByUserIdAndBookId(userId, bookId);
+    }
 }
