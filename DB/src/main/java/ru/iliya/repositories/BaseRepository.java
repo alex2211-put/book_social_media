@@ -35,7 +35,7 @@ public interface BaseRepository{
     List<User> findUserByLastName(String lastName);
 
     List<User> findUserByEmail(String email);
-    List<User> findUserByNickname(String nickname);
+    User findUserByNickname(String nickname);
     User findUserByID(int userID);
 
     void setFavouritesByParams(int userID, int bookID);

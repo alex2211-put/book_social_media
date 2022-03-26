@@ -1,4 +1,4 @@
-package ru.iliya;
+package ru.iliya.services;
 
 import ru.iliya.entities.BlockedUsers;
 
