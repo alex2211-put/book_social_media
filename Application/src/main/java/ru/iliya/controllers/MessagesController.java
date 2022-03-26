@@ -3,10 +3,7 @@ package ru.iliya.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.iliya.entities.Message;
 import ru.iliya.entities.User;
 import ru.iliya.repositories.MongoRepositoryImpl;
@@ -56,22 +53,42 @@ public class MessagesController {
         List<User> users = messageService.getDialogsForUser(userId);
         List<LastMessage> lastMessages = new ArrayList<>();
         for (User user1 : users) {
-            System.out.println(users);
             String message = messageService.getLastMessage(userId, user1);
             lastMessages.add(new LastMessage(user1, message, userId));
         }
         model.addAttribute("lastMessages", lastMessages);
-        return "all-dialogs-for-user";
+        if (!lastMessages.isEmpty()) {
+            return "all-dialogs-for-user";
+        }
+        return "no-dialogs-for-user";
     }
-    private List<Message> messages2  = new ArrayList<>();
+
+    @RequestMapping("/user/dialogs/{user}")
+    public String showAllDialogsForUserParam(@PathVariable(name = "user") String userId,
+                                             Model model) {
+        List<User> users = messageService.getDialogsForUser(userId);
+        List<LastMessage> lastMessages = new ArrayList<>();
+        for (User user1 : users) {
+            String message = messageService.getLastMessage(userId, user1);
+            lastMessages.add(new LastMessage(user1, message, userId));
+        }
+        model.addAttribute("lastMessages", lastMessages);
+        if (!lastMessages.isEmpty()) {
+            return "all-dialogs-for-user";
+        }
+        return "no-dialogs-for-user";
+    }
+
+    private List<Message> messages2 = new ArrayList<>();
     String person = null;
+
     @GetMapping("/user/chat/{owner}/{person}")
     public String showMessagesForUser(@PathVariable(name = "owner") String owner,
                                       @PathVariable(name = "person") String person,
                                       Model model) {
         List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
         if (this.person == null || !person.equals(owner)) {
-            messages2  = new ArrayList<>();
+            messages2 = new ArrayList<>();
             for (Document document : messages) {
                 messages2.add(new Message(
                         document.get("text").toString(),
