@@ -854,18 +854,18 @@ values  (1102, null, null, 'Анна', 'Одувалова'),
         (1316, null, null, 'Найджел ', 'Уорбертон'),
         (1317, null, null, 'Маслоу ', 'А');
 insert into public.role (role_id, name, mask)
-values (1, 'user', 0),
-       (127, 'developer', 1),
-       (255, 'admin', 2);
-insert into public.user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, roleid)
-values  (1, '2022-03-15 18:10:10.000000', 'xxx@mail.ru', 'alik', '123', 'put', 'alik_put', true, 1),
-        (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1),
+values (3, 'user', 3),
+       (2, 'developer', 2),
+       (1, 'admin', 1);
+insert into public.user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, role_id)
+values  (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1),
         (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1),
-        (4, '2001-09-04', 'osipov.ia@phystech.edu', 'Илья', '-1766081936', 'Осипов', 'Riernish', true, 255),
-        (5, '2001-04-01', 'mikhailov.ra@phystech.edu', 'Роман', '2022431080', 'Михайлов', 'RomanMikhailovDASR', true, 127),
-        (6, '2001-11-22', 'putin.al@phystech.edu', 'Александр', '2022431080', 'Путин', 'alik_put', true, 127),
-        (8, '1988-12-14', 'zabivaka88@bk.ru', 'Григорий', '-831393952', 'Тарасов', '4ERTEHbI|_|_|', true, 1),
-        (7, '2007-08-31', 'alexmmas@mail.ru', 'Станислав', '-831393952', 'Петров', 'DyadyaDeda', true, 1);
+        (1, '2022-03-15 18:11:32.000000', 'zzza@gmail.com', 'ilya', '123', 'lll', 'ilaya', true, 1),
+        (4, '2001-09-04', 'osipov.ia@phystech.edu', 'Илья', '$2a$12$mUVm.bSHIwJ.Qm1Ev7SI4..m1Qksjxo0BHbLGbepXnczSAg4cvFUC', 'Осипов', 'Riernish', true, 1),
+        (5, '2001-04-01', 'mikhailov.ra@phystech.edu', 'Роман', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Михайлов', 'RomanMikhailovDASR', true, 2),
+        (6, '2001-11-22', 'putin.al@phystech.edu', 'Александр', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Путин', 'alik_put', true, 2),
+        (8, '1988-12-14', 'zabivaka88@bk.ru', 'Григорий', '$2a$12$PmnJlLLKErtUUuqr2HK77ONay9q.DmpGtPrVn7hJ42yveB2Q5dOGO', 'Тарасов', '4ERTEHbI|_|_|', true, 3),
+        (7, '2007-08-31', 'alexmmas@mail.ru', 'Станислав', '$2a$12$PmnJlLLKErtUUuqr2HK77ONay9q.DmpGtPrVn7hJ42yveB2Q5dOGO', 'Петров', 'DyadyaDeda', true, 3);
 insert into favourites (link_id, book_id, date_favourite, user_id)
 values  (1, 5934453, '2008-10-23 10:37:22', 1),
         (2, 5993441, '2008-10-23 10:37:22', 123),
