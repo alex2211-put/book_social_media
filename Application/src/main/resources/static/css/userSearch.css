@@ -2,19 +2,17 @@ strong {
     font-weight: 700;
     background-color: yellow;
 }
+
 .table_block {
     font-family: 'Bradley Hand', sans-serif bold;
     margin-top: 5%;
-    margin-left: 25%;
-    margin-right: 25%;
     border-radius: 10px;
-    width: 50%;
+    width: 100%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -khtml-border-radius: 10px;
     border: 1px solid grey;
     background: linear-gradient(45deg, whitesmoke, #C5DDE8);
-
 }
 
 .title {
@@ -23,6 +21,40 @@ strong {
     color: darkgray;
     margin-top: 2%;
     margin-bottom: 2%;
-    font-stretch: expanded;
-    font-style: initial;
+}
+.main_console {
+    margin-top: 0;
+    background: none;
+    height: 45px;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 20px;
+    color: black;
+    padding: 9px 8px;
+    transition: .3s linear;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.last_main_console {
+    margin-top: 0;
+    background: none;
+    height: 45px;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 20px;
+    color: black;
+    padding: 9px 8px;
+    transition: .3s linear;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+.main_console:hover {
+    background: #e8edff;
+    transition-duration: .3s;
+}
+.last_main_console:hover {
+    background: #e8edff;
+    transition-duration: .3s;
 }
