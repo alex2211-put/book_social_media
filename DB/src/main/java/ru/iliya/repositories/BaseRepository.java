@@ -15,9 +15,11 @@ public interface BaseRepository{
     List<Book> getAll();
     Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId);
     void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark);
+    List<Marks> findMarksByBookId(Integer bookId);
+    void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId);
 
     List <Comments> findCommentsByBookId(Integer bookId);
-    void setCommentByBookId(Integer bookId, String comment);
+    void setCommentByBookIdAndUserId(Integer bookId, Integer userId, String comment);
 
     List <Book> findBooksByTitleAndAuthorsAndGenre(String title,
                                                    List <Author> authors,
@@ -45,7 +47,8 @@ public interface BaseRepository{
     void setRecommendationsByParams(int userID, int bookID);
     List<Recommendations> findRecommendationsByUserID(int userID);
     void deleteRecommendationsByRecommendationsID(int recommendationsID);
-
+    Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId);
+    Recommendations findRecommendationByRecommendationId(int recommendationId);
     void deleteBlockedUsersByBlockID(int blockID);
     List<BlockedUsers> findByUserIDBlocked(int userIDBlocked);
     void setBlockedUsersByParams(int userID, int userIDBlocked);

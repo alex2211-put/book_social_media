@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.iliya.services.UserServiceImpl;
 
@@ -32,6 +33,14 @@ public class UserSearchController {
 
     @GetMapping("/user/info")
     public String showBookInfo(@RequestParam(name = "user_id", required = false, defaultValue = "1") int user_id,
+                               Model model) {
+        model.addAttribute("user",
+                userService.findUserByUserID(user_id));
+        return "user";
+    }
+
+    @GetMapping("/user/info/{user_id}")
+    public String showUserInfo(@PathVariable(name = "user_id") int user_id,
                                Model model) {
         model.addAttribute("user",
                 userService.findUserByUserID(user_id));

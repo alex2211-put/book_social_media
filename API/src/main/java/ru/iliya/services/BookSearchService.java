@@ -78,7 +78,7 @@ public class BookSearchService {
         return baseRepository.findCommentsByBookId(Integer.parseInt(bookId));
     }
 
-    public void addComment(String bookId, String comment) {
-        baseRepository.setCommentByBookId(Integer.parseInt(bookId), comment);
+    public void addComment(String bookId, String userId, String comment) {
+        baseRepository.setCommentByBookIdAndUserId(Integer.parseInt(bookId), Integer.parseInt(userId), comment);
     }
 }

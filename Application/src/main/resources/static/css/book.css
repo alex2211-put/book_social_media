@@ -2,26 +2,19 @@
 
 .title {
     font-weight: normal;
-    /*padding: 10px 8px;*/
-    /*height: 67px;*/
-    /*vertical-align: top;*/
     font-family: 'Bradley Hand', sans-serif bold;
     font-size: 45px;
     color: darkgray;
     margin-top: 2%;
     margin-bottom: 2%;
     font-stretch: expanded;
-    font-style: initial;
-    /*border-bottom: 2px solid #6678b1;*/
 }
 
 .table_all_data {
     font-family: 'Bradley Hand', sans-serif bold;
     margin-top: 5%;
-    margin-left: 25%;
-    margin-right: 25%;
     border-radius: 10px;
-    width: 50%;
+    width: 100%;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -khtml-border-radius: 10px;
@@ -68,43 +61,51 @@ th {
     background-position: -200% 0, 0 0;
 }
 
-.rating-area {
-    overflow: hidden;
-    width: 50%;
-    margin-left: 5%;
+.rating-result {
+    width: 265px;
+    margin: 0 auto;
 }
-.rating-area:not(:checked) > input {
+.rating-result label {
+    padding: 0;
+    font-size: 32px;
+    margin: 0 3px;
+    line-height: 1;
+    color: lightgrey;
+    text-shadow: 1px 1px #bbb;
+}
+.rating-result > label:before {
+    content: '★';
+}
+.rating-result > label.active {
+    color: gold;
+    text-shadow: 1px 1px #c60;
+}
+
+.rating-area {
+    width: 265px;
+    margin: 0 auto;
+}
+.rating-area:not(:checked) > button {
     display: none;
 }
 .rating-area:not(:checked) > label {
-    float: right;
-    width: 42px;
-    padding: 0;
-    cursor: pointer;
     font-size: 32px;
-    line-height: 32px;
+    margin: 0 3px;
+    cursor: pointer;
+    float: right;
+    line-height: 1;
     color: lightgrey;
     text-shadow: 1px 1px #bbb;
 }
 .rating-area:not(:checked) > label:before {
     content: '★';
 }
-.rating-area > input:checked ~ label {
-    color: gold;
-    text-shadow: 1px 1px #c60;
-}
+
 .rating-area:not(:checked) > label:hover,
 .rating-area:not(:checked) > label:hover ~ label {
     color: gold;
 }
-.rating-area > input:checked + label:hover,
-.rating-area > input:checked + label:hover ~ label,
-.rating-area > input:checked ~ label:hover,
-.rating-area > input:checked ~ label:hover ~ label,
-.rating-area > label:hover ~ input:checked ~ label {
-    color: gold;
-    text-shadow: 1px 1px goldenrod;
-}
+
 .rate-area > label:active {
     position: relative;
 }
@@ -126,6 +127,8 @@ th {
 .like-active{
     background: green;
     outline:none;
+    margin-left: 20px;
+    margin-bottom: 5px;
     box-shadow:none;
     border: none;
     width: 50px;
@@ -170,4 +173,56 @@ th {
     border: none;
     border-radius: 50%;
     background: none;
+}
+
+.comment_one {
+    height: 15px;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 15px;
+    color: black;
+}
+
+.button_user {
+    border: none;
+    border-radius: 50%;
+    background: none;
+}
+
+.main_console {
+    margin-top: 0;
+    background: none;
+    height: 45px;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 20px;
+    color: black;
+    /*border-bottom: 1px solid #ccc;*/
+    padding: 9px 8px;
+    transition: .3s linear;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.last_main_console {
+    margin-top: 0;
+    background: none;
+    height: 45px;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 20px;
+    color: black;
+    /*border-bottom: 1px solid #ccc;*/
+    padding: 9px 8px;
+    transition: .3s linear;
+    outline: none;
+    border: none;
+    width: 100%;
+}
+.main_console:hover {
+    background: #e8edff;
+    transition-duration: .3s;
+}
+.last_main_console:hover {
+    background: #e8edff;
+    transition-duration: .3s;
 }

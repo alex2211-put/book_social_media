@@ -1,18 +1,19 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User</title>
+    <title>Dialogs</title>
     <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
     <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
-    <link th:href="@{/css/user.css}" rel="stylesheet"/>
-    <link th:href="@{/js/actions.js}" rel="text/javascript"/>
+    <link th:href="@{/css/book.css}" rel="stylesheet"/>
+    <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+
 </head>
 <body>
 
-<table style="width: 100%">
+<table style="width: 100%;">
     <tr>
         <td style="width: 100%; display: flex; margin-top: 10%;">
             <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, whitesmoke, #C5DDE8);border-radius: 8px;border: 1px solid grey;">
@@ -48,8 +49,7 @@
                 <tr>
                     <td>
                         <button type="submit" id="dialogs" name="rating" value="1" class="main_console"
-                                th:onclick="|window.location.href='@{/user/dialogs/4}'|">Dialogs
-                        </button>
+                                th:onclick="|window.location.href='@{/user/dialogs/4}'|">Dialogs</button>
                     </td>
                 </tr>
                 <tr>
@@ -76,51 +76,21 @@
                 </tbody>
             </table>
         </td>
-        <td style="width: 50%;">
-            <div style="text-align: center;">
-                <table class="table_all_data">
+        <td style="width: 50%; margin-top: 0;">
+            <div style="text-align: center; margin-top: 0;">
+                <table class="table_all_data" style="margin-top: 0;">
                     <thead>
                     <tr>
-                        <th valign="middle" colspan="2" class="table_head">
-                            <div class="title">User information</div>
+                        <th valign="middle" colspan="1" class="table_head">
+                            <div class="title">All dialogs for user</div>
                         </th>
                     </tr>
                     </thead>
-                    <tr style="height: 10px"></tr>
-                    <tbody>
-                    <tr>
-                        <td rowspan="6">
-                            <img th:src="${user.imageLink}" alt="User image" class="book_photo" width="360"
-                                 height="420">
-                        </td>
-                        <td>
-                            <div class="description">
-
-                                <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Ник:</div>
-                                <div th:text="${user.nickname}" style="display: inline-block;"></div>
-
-                                <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Имя:</div>
-                                <div th:text="${user.firstName}" style="display: inline-block;"></div>
-
-                                <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Фамилия:</div>
-                                <div th:text="${user.lastName}" style="display: inline-block;"></div>
-
-                                <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Дата рождения:</div>
-                                <div th:text="${user.birthDate}" style="display: inline-block;"></div>
-
-                                <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Электронная почта:</div>
-                                <div th:text="${user.email}" style="display: inline-block;"></div>
-
-                                <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Рекомендации:</div>
-                            </div>
-                        </td>
-                    </tr>
+                    <td class="message_table">
+                        <div>
+                            No dialogs. Start chatting!
+                        </div>
+                    </td>
                     </tbody>
                 </table>
             </div>
@@ -128,5 +98,7 @@
         <td style="width: 25%;"></td>
     </tr>
 </table>
+
+
 </body>
 </html>

@@ -11,144 +11,240 @@
     <script type="text/javascript" th:src="@{/js/book.js}"></script>
 </head>
 <body>
-<div style="text-align: center;">
-    <table class="table_all_data">
-        <thead>
-        <tr>
-            <th valign="middle" colspan="3" class="table_head">
-                <div class="title">Book information</div>
-            </th>
-        </tr>
-        </thead>
-        <tr style="height: 10px"></tr>
-        <tbody>
-        <tr>
-            <td rowspan="6">
-                <img th:src="${book.imageLink}" alt="book image" class="book_photo" width="260" height="420">
-            </td>
-            <td colspan="2">
-                <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Author:</div>
-                    <div style="display: inline-block;"
-                         th:each="author : ${book.authors}" th:text="${author.firstName} + ' ' + ${author.lastName}">
-                    </div>
 
-                    <div></div>
-                    <div style="display: inline-block; font-weight: bold;">Title:</div>
-                    <div th:text="${book.title}" style="display: inline-block;"></div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Genre:</div>
-                    <div style="display: inline-block;"
-                         th:text="${book.genre}"></div>
+<table style="width: 100%">
+    <tr>
+        <td style="width: 100%; display: flex; margin-top: 10%;">
+            <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, whitesmoke, #C5DDE8);border-radius: 8px;border: 1px solid grey;">
+                <tbody>
+                <tr>
+                    <td>
+                        <button type="submit" id="home" name="rating" value="1" class="main_console"
+                                th:onclick="|window.location.href='@{/user/info/4}'|">Home</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="book_search" name="rating" value="1" class="main_console"
+                                th:onclick="|window.location.href='@{/book/search}'|">Find books</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="user_search" name="rating" value="1" class="main_console"
+                                th:onclick="|window.location.href='@{/user_search}'|">Find users</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="friends" name="rating" value="1" class="main_console"
+                                th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Friends</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="dialogs" name="rating" value="1" class="main_console"
+                                th:onclick="|window.location.href='@{/user/dialogs/4}'|">Dialogs</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="favourites" name="rating" value="1" class="main_console"
+                                th:onclick="|window.location.href='@{/favorites/4}'|">Favourites</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="recommendations" name="rating" value="1" class="main_console"
+                                th:onclick="|window.location.href='@{/recs/4}'|">Recommendations</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="logout" name="rating" value="1" class="last_main_console"
+                                th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Logout</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+        <td style="width: 50%;">
+            <div style="text-align: center;">
+                <table class="table_all_data">
+                    <thead>
+                    <tr>
+                        <th valign="middle" colspan="4" class="table_head">
+                            <div class="title">Book information</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tr style="height: 10px"></tr>
+                    <tbody>
+                    <tr>
+                        <td rowspan="6">
+                            <img th:src="${book.imageLink}" alt="book image" class="book_photo" width="260"
+                                 height="420">
+                        </td>
+                        <td colspan="2">
+                            <div class="description">
+                                <div style="display: inline-block; font-weight: bold;">Author:</div>
+                                <div style="display: inline-block;"
+                                     th:each="author : ${book.authors}"
+                                     th:text="${author.firstName} + ' ' + ${author.lastName}">
+                                </div>
 
-                    <div></div>
-                    <div style="display: inline-block; font-weight: bold;">Number of pages:</div>
-                    <div th:text="${book.numberPages}" style="display: inline-block;"></div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Age restriction</div>
-                    <div style="display: inline-block;"
-                         th:text="${book.age_restriction}"></div>
+                                <div></div>
+                                <div style="display: inline-block; font-weight: bold;">Title:</div>
+                                <div th:text="${book.title}" style="display: inline-block;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="description">
+                                <div style="display: inline-block; font-weight: bold;">Genre:</div>
+                                <div style="display: inline-block;"
+                                     th:text="${book.genre}"></div>
 
-                    <div></div>
-                    <div style="display: inline-block; font-weight: bold;">Year release:</div>
-                    <div th:text="${book.year_release}" style="display: inline-block;"></div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div class="description">
-                    <div style="display: inline-block; font-weight: bold;">Link:</div>
-                    <a style="display: inline-block;"
-                       th:href="${book.linkInternet}" th:text="${book.linkInternet}"></a>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div class="rating-area" style="display: inline-block;">
-                    <input type="radio" id="star-5" name="rating" value="5">
-                    <label for="star-5" title="Оценка «5»"></label>
-                    <input type="radio" id="star-4" name="rating" value="4">
-                    <label for="star-4" title="Оценка «4»"></label>
-                    <input type="radio" id="star-3" name="rating" value="3">
-                    <label for="star-3" title="Оценка «3»"></label>
-                    <input type="radio" id="star-2" name="rating" value="2">
-                    <label for="star-2" title="Оценка «2»"></label>
-                    <input type="radio" id="star-1" name="rating" value="1">
-                    <label for="star-1" title="Оценка «1»"></label>
-                </div>
-                <div class='like' style="display: inline-block;">
-                    <button class="like-toggle"
-                            onclick="this.className = (this.className === 'like-toggle' ? 'like-active' : 'like-toggle')">
-                        👍
-                    </button>
-                    <span class='hidden'>1 Like</span>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <form id="add-form-2" th:action="@{/book/info/addFavourites/__${book.bookID}__/__${favourites}__}"
-                      th:method="post">
-                    <div class="row">
-                        <button id="" type="submit" th:text="${favourites}" class="click_me"></button>
-                    </div>
-                </form>
-            </td>
-        </tr>
-        <tr style="height: 10px"></tr>
-        <tr>
-            <th colspan="3" class="annotation">
-                <div style="font-weight: bold; color: black;">Аннотация</div>
-                <div style="font-weight: normal;" th:text="${book.annotation}"></div>
-            </th>
-        </tr>
-        </tbody>
-        <th style="border-bottom: 2px solid #6678b1;" colspan="3"></th>
-        <tr th:height="10"></tr>
-        <tr>
-            <th colspan="3" class="annotation">
-                <div style="font-weight: bold; color: black;">Комментарии</div>
-            </th>
-        </tr>
-        <tbody>
-        <tr th:each="comment, iStat : ${comments}" class="comments">
-            <td th:text="${comment.comment}" class="comment_one"></td>
-        </tr>
-        </tbody>
-        <tr>
-            <form id="add-form-3"
-                  th:action="@{/book/info/addComment/__${book.bookID}__}"
-                  th:method="post">
-                <td colspan="3">
-                    <div>
-                        <label>
-                            <input type="text" th:name="comment" th:placeholder="Сomment"
-                                   class="write_message_text"/>
-                        </label>
-                    </div>
-                </td>
-                <td>
-                    <button id="1" type="submit" float-right class="button_message_text">
-                        <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить комментарий" width="50" height="50">
-                    </button>
-                </td>
-            </form>
+                                <div></div>
+                                <div style="display: inline-block; font-weight: bold;">Number of pages:</div>
+                                <div th:text="${book.numberPages}" style="display: inline-block;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="description">
+                                <div style="display: inline-block; font-weight: bold;">Age restriction</div>
+                                <div style="display: inline-block;"
+                                     th:text="${book.age_restriction}"></div>
 
-        </tr>
-    </table>
-</div>
+                                <div></div>
+                                <div style="display: inline-block; font-weight: bold;">Year release:</div>
+                                <div th:text="${book.year_release}" style="display: inline-block;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="description">
+                                <div style="display: inline-block; font-weight: bold;">Link:</div>
+                                <a style="display: inline-block;"
+                                   th:href="${book.linkInternet}" th:text="${book.linkInternet}"></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class='like' style="display: inline-block;">
+                                <button class="like-toggle"
+                                        th:onclick="|window.location.href='@{/book/reload_mark/__${book.bookID}__}'|">🔃
+                                </button>
+                                <span class='hidden'>1 Like</span>
+                            </div>
+                            <div th:class="(${mark} == null)? 'rating-area' : 'rating-result'"
+                                 style="display: inline-block;">
+                                <button type="submit" id="star-5" name="rating" value="1" hidden
+                                        th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|"></button>
+                                <label for="star-5" title="Оценка «5»"
+                                       th:class="(${mark != null} and ${mark.mark} >= 1)? 'active' : ''"></label>
+                                <button type="submit" id="star-4" name="rating" value="2" hidden
+                                        th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/4}'|"></button>
+                                <label for="star-4" title="Оценка «4»"
+                                       th:class="(${mark != null} and ${mark.mark} >= 2)? 'active' : ''"></label>
+                                <button type="submit" id="star-3" name="rating" value="3" hidden
+                                        th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/3}'|"></button>
+                                <label for="star-3" title="Оценка «3»"
+                                       th:class="(${mark != null} and ${mark.mark} >= 3)? 'active' : ''"></label>
+                                <button type="submit" id="star-2" name="rating" value="4" hidden
+                                        th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/2}'|"></button>
+                                <label for="star-2" title="Оценка «2»"
+                                       th:class="(${mark != null} and ${mark.mark} >= 4)? 'active' : ''"></label>
+                                <button type="submit" id="star-1" name="rating" value="5" hidden
+                                        th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/1}'|"></button>
+                                <label for="star-1" title="Оценка «1»"
+                                       th:class="(${mark != null} and ${mark.mark} >= 5)? 'active' : ''"></label>
+                            </div>
+                            <div class='like' style="display: inline-block;">
+                                <button th:class="(${recommendation.recommendationID} == -1)? 'like-toggle' : 'like-active'"
+                                        onclick="this.className = (this.className === 'like-toggle' ? 'like-active' : 'like-toggle')"
+                                        th:onclick="|window.location.href='@{/book/info/set_recommendation/__${book.bookID}__/__${recommendation.recommendationID}__}'|"
+                                >👍
+                                </button>
+                                <span class='hidden'>1 Like</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <form id="add-form-2"
+                                  th:action="@{/book/info/addFavourites/__${book.bookID}__/__${favourites}__}"
+                                  th:method="post">
+                                <div class="row">
+                                    <button id="" type="submit" th:text="${favourites}" class="click_me"></button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr style="height: 10px"></tr>
+                    <tr>
+                        <th colspan="4" class="annotation">
+                            <div style="font-weight: bold; color: black;">Аннотация</div>
+                            <div style="font-weight: normal;" th:text="${book.annotation}"></div>
+                        </th>
+                    </tr>
+                    </tbody>
+                    <th style="border-bottom: 2px solid #6678b1;" colspan="4"></th>
+                    <tr th:height="10"></tr>
+                    <tr>
+                        <th colspan="3" class="annotation">
+                            <div style="font-weight: bold; color: black;">Комментарии</div>
+                        </th>
+                    </tr>
+                    <tbody>
+                    <tr th:each="comment_one, iStat : ${comments}" class="comments" style="height: 15px;">
+                        <td style="border-top: 1px solid #03a9f4; padding-bottom: 5px;height: 15px;">
+                            <div style="display: inline-block;">
+                                <button id="11" type="submit" float-right class="button_user"
+                                        th:onclick="|window.location.href='@{/user/info/__${comment_one.user.userID}__}'|">
+                                    <img th:src="@{/img/user.png}" alt="Перейти на страницу" width="20" height="20">
+                                </button>
+                            </div>
+                            <div th:text="${comment_one.user.nickname}" class="comment_one"
+                                 style="display: inline-block;">
+                            </div>
+                        </td>
+                        <td th:text="${comment_one.comment}" class="comment_one" colspan="2"
+                            style="border-top: 1px solid #03a9f4; padding-bottom: 5px;height: 15px;"></td>
+                    </tr>
+                    </tbody>
+                    <tr th:height="10"></tr>
+                    <tr>
+                        <form id="add-form-3"
+                              th:action="@{/book/info/addComment/__${book.bookID}__}"
+                              th:method="post">
+                            <td colspan="3">
+                                <div>
+                                    <label>
+                                        <input type="text" th:name="comment" th:placeholder="Сomment"
+                                               class="write_message_text"/>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button id="1" type="submit" float-right class="button_message_text">
+                                    <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить комментарий" width="50"
+                                         height="50">
+                                </button>
+                            </td>
+                        </form>
 
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td style="width: 25%;"></td>
+    </tr>
+</table>
 </body>
 </html>

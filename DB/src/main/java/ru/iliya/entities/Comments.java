@@ -14,10 +14,12 @@ public class Comments {
                 "commentId=" + commentId +
                 ", comment='" + comment + '\'' +
                 ", book=" + book +
+                ", user=" + user +
                 '}';
     }
 
     private Book book;
+    private User user;
 
     @Id
     @Column(name = "commentId", nullable = false)
@@ -45,6 +47,15 @@ public class Comments {
     }
     public void setBook(Book book) {
         this.book = book;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
     }
 
 }
