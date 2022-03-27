@@ -2,10 +2,14 @@ package ru.iliya.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.iliya.RecommendationsService;
+import ru.iliya.entities.User;
+import ru.iliya.security.SecurityUserConverter;
+import ru.iliya.services.RecommendationsService;
 import ru.iliya.entities.Book;
 import ru.iliya.entities.Comments;
 import ru.iliya.entities.Recommendations;
@@ -28,6 +32,8 @@ public class BookSearchController {
     MarksService marksService;
     @Autowired
     RecommendationsService recommendationsService;
+    @Autowired
+    SecurityUserConverter securityUserConverter;
 
 
     @GetMapping("/book/search") //book/search
@@ -74,8 +80,10 @@ public class BookSearchController {
     @PostMapping("/book/info/addComment/{book_id}")
     public String addComment(@PathVariable(name = "book_id") String book_id,
                              @RequestParam(name = "comment") String comment,
+                             @AuthenticationPrincipal UserDetails currentUser,
                              Model model) {
-        bookSearchService.addComment(book_id, "4", comment);
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        bookSearchService.addComment(book_id, String.valueOf(user.getUserID()), comment);
         return "redirect:/book/info/" + book_id;
     }
 
