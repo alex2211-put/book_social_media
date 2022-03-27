@@ -42,10 +42,6 @@ public class UserSearchController {
     @GetMapping("/user/info/{user_id}")
     public String showUserInfo(@PathVariable(name = "user_id") int user_id,
                                Model model) throws Exception {
-        if (1 < 2) {
-
-            throw new Exception("new exception");
-        }
         model.addAttribute("user",
                 userService.findUserByUserID(user_id));
         return "user";
