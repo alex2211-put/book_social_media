@@ -7,6 +7,13 @@
     justify-content: center;
     align-items: center;
 }
+
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
 .sign {
     -ms-transform: rotate(-3deg);
     -webkit-transform: rotate(-3deg);
@@ -14,12 +21,12 @@
 }
 body {
     margin: 70px;
-    background: linear-gradient(45deg, whitesmoke, #C5DDE8);
-    font-family: 'Nixie One', Helvetica, Arial, sans-serif;
-    font-size: 50px;
+    background: linear-gradient(45deg, whitesmoke, darkgrey);
+    font-family: 'Bradley Hand', bold, sans-serif;
+    font-size: 70px;
 }
 #title {
-    font-size: 110px;
+    font-size: 140px;
 }
 #trav {
     -webkit-animation: blink 0.01s infinite alternate;
@@ -43,7 +50,7 @@ body {
     text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0px 15px #fff, 0 0 10px #38eeff, 0 0 50px #38eeff;
 }
 .neon-purple {
-    font-family: 'League Script', Helvetica, Arial, sans-serif;
+    font-family: 'Bradley Hand', sans-serif bold;
     font-size: 50px;
     margin: 0 auto;
     text-align: center;
@@ -51,7 +58,7 @@ body {
     text-shadow: 2px 2px 1px rgba(0,0,0,0.5), 0 0 20px #fff, 0 0 10px #ffffff, 0 0 50px #ffffff;
 }
 .neon-elov {
-    font-family: 'League Script', Helvetica, Arial, sans-serif;
+    font-family:'Bradley Hand', sans-serif bold;
     font-size: 50px;
     margin: 0 auto;
     text-align: center;
@@ -148,13 +155,14 @@ body {
 }
 .button {
     text-decoration: none;
+    margin-top: 10%;
     position: absolute;
     left: 50%;
     width: 800px;
     margin-left: -400px;
     cursor: pointer;
-    font-family: 'League Script', Helvetica, Arial, sans-serif;
-    font-size: 20px;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 50px;
     display: inline-block;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

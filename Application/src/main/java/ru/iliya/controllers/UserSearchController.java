@@ -44,7 +44,7 @@ public class UserSearchController {
                                Model model) throws Exception {
         if (1 < 2) {
 
-            throw new Exception();
+            throw new Exception("new exception");
         }
         model.addAttribute("user",
                 userService.findUserByUserID(user_id));
