@@ -4,7 +4,11 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="\"user\"")
+@Table(name="\"user\"", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "user_id"),
+        @UniqueConstraint(columnNames = "nickname"),
+        @UniqueConstraint(columnNames = "email")
+})
 public class User {
     private int userID;
     private String nickname;
@@ -14,8 +18,9 @@ public class User {
     private String email;
     private boolean openProfile;
     private String hashPassword;
-    private int roleID;
+    private Role role;
     private String imageLink;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -91,13 +96,13 @@ public class User {
         return this.hashPassword;
     }
 
-    @Column(name = "roleid")
-    public void setRoleID(int roleID) {
-        this.roleID = roleID;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "role_id")
+    public Role getRole() {
+        return this.role;
     }
-
-    public int getRoleID() {
-        return this.roleID;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Column(name = "image_link")
@@ -119,7 +124,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", openProfile'" + openProfile + '\'' +
                 ", hashPassword'" + hashPassword + '\'' +
-                ", roleID'" + roleID + '\'' +
+                ", roleID'" + role + '\'' +
                 '}';
     }
 }

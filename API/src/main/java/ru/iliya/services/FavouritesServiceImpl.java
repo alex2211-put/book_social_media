@@ -1,9 +1,10 @@
-package ru.iliya;
+package ru.iliya.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Favourites;
 import ru.iliya.repositories.BaseRepository;
+import ru.iliya.services.FavouritesService;
 
 import java.util.List;
 

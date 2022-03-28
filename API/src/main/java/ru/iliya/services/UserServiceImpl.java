@@ -1,9 +1,10 @@
-package ru.iliya;
+package ru.iliya.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.User;
 import ru.iliya.repositories.BaseRepository;
+import ru.iliya.services.UserService;
 
 import java.util.*;
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUserByNickname(String nickname) {
+    public User findUserByNickname(String nickname) {
         return baseRepository.findUserByNickname(nickname);
     }
 
@@ -49,7 +50,7 @@ public class UserServiceImpl implements UserService {
         if (search.contains("@")) {
             return baseRepository.findUserByEmail(search);
         }
-        List<User> usersByNickname = baseRepository.findUserByNickname(search);
+        User userByNickname = baseRepository.findUserByNickname(search);
         List<User> usersByFirstName = baseRepository.findUserByFirstName(search);
         List<User> usersByLastName = baseRepository.findUserByLastName(search);
         List<User> usersByEmail = baseRepository.findUserByEmail(search);
@@ -57,7 +58,7 @@ public class UserServiceImpl implements UserService {
         uniqUsers.addAll(usersByEmail);
         uniqUsers.addAll(usersByFirstName);
         uniqUsers.addAll(usersByLastName);
-        uniqUsers.addAll(usersByNickname);
+        uniqUsers.add(userByNickname);
         return new ArrayList<User>(uniqUsers);
     }
 }
