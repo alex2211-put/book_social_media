@@ -10,65 +10,67 @@
     <link th:href="@{/css/user.css}" rel="stylesheet"/>
     <link th:href="@{/js/actions.js}" rel="text/javascript"/>
 </head>
-<body>
+<body style="background: #8EACB4;">
 
 <table style="width: 100%">
     <tr>
         <td style="width: 100%; display: flex; margin-top: 10%;">
-            <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, whitesmoke, #C5DDE8);border-radius: 8px;border: 1px solid grey;">
+            <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A);border-radius: 10px;"
+                   class="br">
                 <tbody>
                 <tr>
                     <td>
-                        <button type="submit" id="home" name="rating" value="1" class="main_console"
+                        <button type="submit" id="home" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/user/info/4}'|">Home
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="book_search" name="rating" value="1" class="main_console"
+                        <button type="submit" id="book_search" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/book/search}'|">Find books
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="user_search" name="rating" value="1" class="main_console"
+                        <button type="submit" id="user_search" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/user_search}'|">Find users
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="friends" name="rating" value="1" class="main_console"
+                        <button type="submit" id="friends" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Friends
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="dialogs" name="rating" value="1" class="main_console"
+                        <button type="submit" id="dialogs" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/user/dialogs/4}'|">Dialogs
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="favourites" name="rating" value="1" class="main_console"
+                        <button type="submit" id="favourites" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/favorites/4}'|">Favourites
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="recommendations" name="rating" value="1" class="main_console"
+                        <button type="submit" id="recommendations" name="rating" value="1"
+                                class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/recs/4}'|">Recommendations
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="logout" name="rating" value="1" class="last_main_console"
+                        <button type="submit" id="logout" name="rating" value="1" class="last_main_console neon-purple"
                                 th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Logout
                         </button>
                     </td>
@@ -77,8 +79,8 @@
             </table>
         </td>
         <td style="width: 50%;">
-            <div style="text-align: center;">
-                <table class="table_all_data">
+            <div style="text-align: center; margin-top: 5%;">
+                <table class="table_block bl">
                     <thead>
                     <tr>
                         <th valign="middle" colspan="2" class="table_head">
@@ -94,7 +96,7 @@
                                  height="420">
                         </td>
                         <td>
-                            <div class="description">
+                            <div class="description my_text">
 
                                 <div></div>
                                 <div style="display: inline-block; font-weight: bold;">Ник:</div>

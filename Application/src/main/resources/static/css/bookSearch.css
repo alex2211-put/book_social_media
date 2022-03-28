@@ -3,6 +3,7 @@
     border-radius: 10px;
     width: 100%;
     border: none;
+    margin-left: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -khtml-border-radius: 10px;
@@ -56,11 +57,12 @@
     font-stretch: expanded;
 }
 .main_console {
+    vertical-align: middle;
     margin-top: 0;
     background: none;
-    height: 50px;
+    height: 40px;
     font-family: 'Bradley Hand', sans-serif bold;
-    font-size: 30px;
+    font-size: 20px;
     color: black;
     padding: 9px 8px;
     transition: .3s linear;
@@ -80,9 +82,9 @@
 .last_main_console {
     margin-top: 0;
     background: none;
-    height: 50px;
+    height: 40px;
     font-family: 'Bradley Hand', sans-serif bold;
-    font-size: 30px;
+    font-size: 20px;
     color: black;
     padding: 9px 8px;
     transition: .3s linear;
@@ -103,7 +105,6 @@
     text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0px 15px #fff, 0 0 10px #ff00de, 0 0 50px #ff00de;
 }
 .button {
-
     text-decoration: none;
     margin-top: 2%;
     margin-bottom: 1%;
@@ -111,7 +112,7 @@
     margin-left: -10%;
     cursor: pointer;
     font-family: 'Bradley Hand', sans-serif bold;
-    font-size: 25px;
+    font-size: 20px;
     background: none;
     display: inline-block;
     -webkit-box-sizing: border-box;
