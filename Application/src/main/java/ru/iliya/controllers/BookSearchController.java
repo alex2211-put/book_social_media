@@ -89,14 +89,18 @@ public class BookSearchController {
 
     @RequestMapping(value = "/do-stuff/{book_id}/{mark}")
     public String doStuffMethod(@PathVariable(name = "book_id") String book_id,
-                                @PathVariable(name = "mark") String mark) {
-        marksService.setMarksByBookIdAndUserId(Integer.parseInt(book_id), 4, Integer.parseInt(mark));
+                                @PathVariable(name = "mark") String mark,
+                                @AuthenticationPrincipal UserDetails currentUser) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        marksService.setMarksByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID(), Integer.parseInt(mark));
         return "redirect:/book/info/" + book_id;
     }
 
     @RequestMapping(value = "/book/reload_mark/{book_id}")
-    public String reloadMark(@PathVariable(name = "book_id") String book_id) {
-        marksService.deleteMarkByBookIdAndUserId(Integer.parseInt(book_id), 4);
+    public String reloadMark(@PathVariable(name = "book_id") String book_id,
+                             @AuthenticationPrincipal UserDetails currentUser) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        marksService.deleteMarkByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID());
         return "redirect:/book/info/" + book_id;
     }
 
