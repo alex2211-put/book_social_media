@@ -190,7 +190,7 @@
                                   th:action="@{/book/info/addFavourites/__${book.bookID}__/__${favourites}__}"
                                   th:method="post">
                                 <div class="row">
-                                    <button id="" type="submit" th:text="${favourites}" class="click_me"></button>
+                                    <button id="" type="submit" th:text="${favourites}" class="button"></button>
                                 </div>
                             </form>
                         </td>
@@ -198,20 +198,20 @@
                     <tr style="height: 10px"></tr>
                     <tr>
                         <th colspan="4" class="annotation">
-                            <div style="font-weight: bold; color: black;">Аннотация</div>
-                            <div style="font-weight: normal;" th:text="${book.annotation}"></div>
+                            <div style="font-size: 25px;" class="title">Аннотация</div>
+                            <div style="font-weight: normal;" class="my_text" th:text="${book.annotation}"></div>
                         </th>
                     </tr>
                     </tbody>
                     <th style="border-bottom: 2px solid #6678b1;" colspan="4"></th>
                     <tr th:height="10"></tr>
                     <tr>
-                        <th colspan="3" class="annotation">
-                            <div style="font-weight: bold; color: black;">Комментарии</div>
+                        <th colspan="3" class="annotation title">
+                            <div style=" font-size: 25px;">Комментарии</div>
                         </th>
                     </tr>
                     <tbody>
-                    <tr th:each="comment_one, iStat : ${comments}" class="comments" style="height: 15px;">
+                    <tr th:each="comment_one, iStat : ${comments}" class="comments" style="height: 15px; font-family: 'Bradley Hand', sans-serif bold; font-size: 25px;">
                         <td style="border-top: 1px solid #03a9f4; padding-bottom: 5px;height: 15px;">
                             <div style="display: inline-block;">
                                 <button id="11" type="submit" float-right class="button_user"
