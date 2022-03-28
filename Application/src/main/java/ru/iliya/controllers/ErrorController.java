@@ -12,7 +12,6 @@ public class ErrorController extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     @GetMapping("/error")
     public String oneException(Exception e, WebRequest web, Model model) {
-        System.out.println(e.getMessage());
         model.addAttribute("error", e.getMessage());
         return "error-page";
     }
