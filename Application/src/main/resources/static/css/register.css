@@ -1,0 +1,145 @@
+body {
+    align-items: center;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+}
+
+.form {
+    /*background-color: #15172b;*/
+    background: #33383A;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 750px;
+    padding: 20px;
+    width: 400px;
+    border: 1px solid #38eeff;
+    box-shadow: 0px 0px 0px 0px #38eeff,inset 0px 0px 0px 0px #38eeff, 0px 0px 20px 4px #38eeff,inset 0px 0px 20px 0px #38eeff;
+
+}
+
+.title {
+    color: #eee;
+    font-size: 36px;
+    font-weight: 600;
+    margin-top: 30px;
+    text-align: center;
+    font-family: 'Bradley Hand', sans-serif bold;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0px 15px #fff, 0 0 0px #38eeff, 0 0 0px #38eeff;
+}
+
+.subtitle {
+    color: #eee;
+    font-family: 'Bradley Hand', sans-serif bold;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 13px;
+}
+
+.input-container {
+    height: 50px;
+    position: relative;
+    width: 100%;
+}
+
+.ic1 {
+    margin-top: 40px;
+}
+
+.ic2 {
+    margin-top: 30px;
+}
+
+.input {
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
+}
+
+.cut {
+    background-color: #33383A;
+    border-radius: 10px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    top: -20px;
+    transform: translateY(0);
+    transition: transform 200ms;
+    width: 76px;
+}
+
+.cut-short {
+    width: 50px;
+}
+
+.input:focus ~ .cut,
+.input:not(:placeholder-shown) ~ .cut {
+    transform: translateY(8px);
+}
+
+.placeholder {
+    color: #65657b;
+    font-family: sans-serif;
+    left: 20px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    transition: transform 200ms, color 200ms;
+    top: 20px;
+}
+
+.input:focus ~ .placeholder,
+.input:not(:placeholder-shown) ~ .placeholder {
+    transform: translateY(-30px) translateX(10px) scale(0.75);
+}
+
+.input:not(:placeholder-shown) ~ .placeholder {
+    color: #808097;
+}
+
+.input:focus ~ .placeholder {
+    color: #dc2f55;
+}
+
+.button {
+    text-decoration: none;
+    margin-top: 10%;
+    margin-bottom: 1%;
+    width: 20px;
+    margin-left: 36%;
+    cursor: pointer;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 20px;
+    background: none;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    color: rgba(255,255,255,1);
+    text-decoration: #6678b1;
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    white-space: pre;
+    text-shadow: 2px 1px 3px #C0F56E , 0 0 3px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 4px #00C618 , 0 0 7px #00C618 , 0 0 60px #00C618 , 0 0 100px #00C618 ;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+.button:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #00ffff , 0 0 70px #00ffff , 0 0 80px #00ffff , 0 0 100px #00ffff ;
+}
+

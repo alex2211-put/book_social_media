@@ -44,7 +44,7 @@ public class UserSearchController {
                                Model model) throws Exception {
         model.addAttribute("user",
                 userService.findUserByUserID(user_id));
-        return "user";
+        return "registration";
     }
 
 }
