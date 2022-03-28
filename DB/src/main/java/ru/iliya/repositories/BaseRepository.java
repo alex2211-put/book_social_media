@@ -49,7 +49,12 @@ public interface BaseRepository{
     void deleteRecommendationsByRecommendationsID(int recommendationsID);
     Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId);
     Recommendations findRecommendationByRecommendationId(int recommendationId);
+
     void deleteBlockedUsersByBlockID(int blockID);
     List<BlockedUsers> findByUserIDBlocked(int userIDBlocked);
     void setBlockedUsersByParams(int userID, int userIDBlocked);
+
+    void setFriendsByUserIDAndUser2ID(int userID, int user2ID);
+    Friends findFriendsByUserIDAndUser2ID(int userID, int user2ID);
+    void deleteFriendsByFriendID(int friendID);
 }
