@@ -12,6 +12,7 @@ import ru.iliya.entities.User;
 import ru.iliya.services.UserServiceImpl;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 
 @Controller
@@ -68,10 +69,14 @@ public class UserSearchController {
             model.addAttribute("lastName", lastName);
             model.addAttribute("nickname", nickname);
             model.addAttribute("email", email);
-            if (userService.findUserByEmail(email) != null)
+            if (userService.findUserByEmail(email).size() != 0)
+            {
                 return "err_reg_email";
+            }
             if (userService.findUserByNickname(nickname) != null)
+            {
                 return "err_reg_nick";
+            }
             else return "error-page";
         }
         return "success";

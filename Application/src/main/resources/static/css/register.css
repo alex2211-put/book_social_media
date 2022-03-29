@@ -187,3 +187,49 @@ body {
 .button2:hover {
     text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #00ffff , 0 0 70px #00ffff , 0 0 80px #00ffff , 0 0 100px #00ffff ;
 }
+#passForm .indicator{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background: #555;
+    border-radius: 50%;
+}
+#passForm.invalid .indicator{
+    background: #f00;
+    box-shadow: 0 0 5px #f00,
+    0 0 10px #f00,
+    0 0 20px #f00,
+    0 0 40px #f00;
+}
+#passForm.valid .indicator{
+    background: #0f0;
+    box-shadow: 0 0 5px #0f0,
+    0 0 10px #0f0,
+    0 0 20px #0f0,
+    0 0 40px #0f0;
+}
+#emailForm .indicator{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background: #555;
+    border-radius: 50%;
+}
+#emailForm.invalid .indicator{
+    background: #f00;
+    box-shadow: 0 0 5px #f00,
+    0 0 10px #f00,
+    0 0 20px #f00,
+    0 0 40px #f00;
+}
+#emailForm.valid .indicator{
+    background: #0f0;
+    box-shadow: 0 0 5px #0f0,
+    0 0 10px #0f0,
+    0 0 20px #0f0,
+    0 0 40px #0f0;
+}
