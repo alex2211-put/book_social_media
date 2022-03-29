@@ -1,15 +1,15 @@
 package ru.iliya.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import ru.iliya.entities.Message;
 import ru.iliya.entities.User;
 import ru.iliya.repositories.MongoRepositoryImpl;
+import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.MessageService;
 
 import org.bson.Document;
@@ -24,6 +24,8 @@ public class MessagesController {
 
     @Autowired
     MessageService messageService;
+    @Autowired
+    SecurityUserConverter securityUserConverter;
 
     public static class LastMessage {
         public User user;
@@ -52,26 +54,52 @@ public class MessagesController {
 
     @GetMapping("/user/dialogs")
     public String showAllDialogsForUser(@RequestParam(name = "user", required = false, defaultValue = "1") String userId,
+                                        @AuthenticationPrincipal UserDetails currentUser,
                                         Model model) {
-        List<User> users = messageService.getDialogsForUser(userId);
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
         List<LastMessage> lastMessages = new ArrayList<>();
         for (User user1 : users) {
-            System.out.println(users);
             String message = messageService.getLastMessage(userId, user1);
             lastMessages.add(new LastMessage(user1, message, userId));
         }
         model.addAttribute("lastMessages", lastMessages);
-        return "all-dialogs-for-user";
+        if (!lastMessages.isEmpty()) {
+            return "all-dialogs-for-user";
+        }
+        return "no-dialogs-for-user";
     }
-    private List<Message> messages2  = new ArrayList<>();
+
+    @RequestMapping("/user/dialogs")
+    public String showAllDialogsForUserParam(@AuthenticationPrincipal UserDetails currentUser,
+                                             Model model) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        String userId = String.valueOf(user.getUserID());
+        List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
+        List<LastMessage> lastMessages = new ArrayList<>();
+        for (User user1 : users) {
+            String message = messageService.getLastMessage(userId, user1);
+            lastMessages.add(new LastMessage(user1, message, userId));
+        }
+        model.addAttribute("lastMessages", lastMessages);
+        if (!lastMessages.isEmpty()) {
+            return "all-dialogs-for-user";
+        }
+        return "no-dialogs-for-user";
+    }
+
+    private List<Message> messages2 = new ArrayList<>();
     String person = null;
-    @GetMapping("/user/chat/{owner}/{person}")
-    public String showMessagesForUser(@PathVariable(name = "owner") String owner,
-                                      @PathVariable(name = "person") String person,
+
+    @GetMapping("/user/chat/{person}")
+    public String showMessagesForUser(@PathVariable(name = "person") String person,
+                                      @AuthenticationPrincipal UserDetails currentUser,
                                       Model model) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        String owner = String.valueOf(user.getUserID());
         List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
         if (this.person == null || !person.equals(owner)) {
-            messages2  = new ArrayList<>();
+            messages2 = new ArrayList<>();
             for (Document document : messages) {
                 messages2.add(new Message(
                         document.get("text").toString(),
@@ -85,11 +113,13 @@ public class MessagesController {
         return "p2p-dialog";
     }
 
-    @PostMapping("/user/chat/{owner}/{person}/write")
-    public String showAllDialogsForUser(@PathVariable(name = "owner") String owner,
-                                        @PathVariable(name = "person") String person,
+    @PostMapping("/user/chat/{person}/write")
+    public String showAllDialogsForUser(@PathVariable(name = "person") String person,
                                         @RequestParam(name = "message") String message,
+                                        @AuthenticationPrincipal UserDetails currentUser,
                                         Model model) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        String owner = String.valueOf(user.getUserID());
         if (message.isEmpty())
             return "redirect:/user/chat/{owner}/{person}";
         Message message1 = new Message(message, owner, person, "2022");

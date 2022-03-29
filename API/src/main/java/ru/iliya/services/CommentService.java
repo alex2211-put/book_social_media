@@ -17,7 +17,7 @@ public class CommentService {
         return baseRepository.findCommentsByBookId(bookId);
     }
 
-    public void setCommentByBookId(Integer bookId, String comment) {
-        baseRepository.setCommentByBookId(bookId, comment);
+    public void setCommentByBookId(Integer bookId, Integer userId, String comment) {
+        baseRepository.setCommentByBookIdAndUserId(bookId, userId, comment);
     }
 }

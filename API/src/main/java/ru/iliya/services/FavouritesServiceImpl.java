@@ -26,4 +26,9 @@ public class FavouritesServiceImpl implements FavouritesService {
         baseRepository.deleteFavouritesByLinkID(linkID);
     }
 
+    @Override
+    public void deleteFavouriteByUserIdAndBookId(int userId, int bookId) {
+        baseRepository.deleteFavouriteByUserIdAndBookId(userId, bookId);
+    }
+
 }

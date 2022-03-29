@@ -102,17 +102,29 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
+    public List<Marks> findMarksByBookId(Integer bookId) {
+        return marksRepository.findMarksByBookId(bookId);
+    }
+
+    @Override
+    public void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId) {
+        marksRepository.deleteMarkByBookIdAndUserId(bookId, userId);
+    }
+
+    @Override
     public List<Comments> findCommentsByBookId(Integer bookId) {
         Book book = bookRepository.findBookByBookID(bookId);
         return commentRepository.findCommentsByBook(book);
     }
 
     @Override
-    public void setCommentByBookId(Integer bookId, String comment) {
+    public void setCommentByBookIdAndUserId(Integer bookId, Integer userId, String comment) {
         Book book = bookRepository.findBookByBookID(bookId);
+        User user = userRepository.findByUserID(userId);
         Comments comments = new Comments();
         comments.setBook(book);
         comments.setComment(comment);
+        comments.setUser(user);
         commentRepository.save(comments);
     }
 
@@ -208,6 +220,13 @@ public class BaseRepositoryImpl implements BaseRepository {
         favouritesRepository.deleteFavouritesByLinkID(linkID);
     }
 
+    @Override
+    public void deleteFavouriteByUserIdAndBookId(int userId, int bookId) {
+        User user = userRepository.findByUserID(userId);
+        Book book = bookRepository.findBookByBookID(bookId);
+        favouritesRepository.deleteFavouriteByUserAndBook(user, book);
+    }
+
 
     //recommendations
     @Override
@@ -229,6 +248,18 @@ public class BaseRepositoryImpl implements BaseRepository {
     @Transactional
     public void deleteRecommendationsByRecommendationsID(int recommendationsID) {
         recommendationsRepository.deleteRecommendationsByRecommendationID(recommendationsID);
+    }
+
+    @Override
+    public Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId) {
+        User user = userRepository.findByUserID(userId);
+        Book book = bookRepository.findBookByBookID(bookId);
+        return recommendationsRepository.findRecommendationsByBookAndUser(book, user);
+    }
+
+    @Override
+    public Recommendations findRecommendationByRecommendationId(int recommendationId) {
+        return recommendationsRepository.findRecommendationByRecommendationID(recommendationId);
     }
 
 

@@ -10,4 +10,6 @@ public interface FavouritesService {
     List<Favourites> findFavouritesByUserID(int userID);
 
     void deleteFavouritesByLinkID(int linkID);
+
+    void deleteFavouriteByUserIdAndBookId(int userId, int bookId);
 }

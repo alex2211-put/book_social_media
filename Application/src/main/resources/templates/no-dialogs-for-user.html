@@ -1,20 +1,23 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Dialogs</title>
     <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
     <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
-    <link th:href="@{/css/bookSearch.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+
 </head>
 <body style="background: #8EACB4;">
 
-
-<table style="width: 100%">
+<table style="width: 100%;">
     <tr>
         <td style="width: 100%; display: flex; margin-top: 10%;">
-            <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A); border-radius: 10px;" class="br">
+            <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A); border-radius: 10px;"
+                   class="br">
                 <tbody>
                 <tr>
                     <td>
@@ -60,7 +63,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="recommendations" name="rating" value="1" class="main_console neon-blue"
+                        <button type="submit" id="recommendations" name="rating" value="1"
+                                class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/recs/4}'|">Recommendations
                         </button>
                     </td>
@@ -75,33 +79,23 @@
                 </tbody>
             </table>
         </td>
-        <td style="width: 50%;">
+        <td style="width: 50%; margin-top: 0;">
             <div style="text-align: center; margin-top: 5%;">
-                <table class="table_block bl">
+                <table class="table_block bl" style="margin-top: 5%;">
+
                     <thead>
                     <tr>
-                        <th valign="middle" colspan="3" class="table_header">
-                            <div class="title">Избранные</div>
+                        <th valign="middle" colspan="1" class="table_head">
+                            <div class="title">All dialogs for user</div>
                         </th>
                     </tr>
                     </thead>
-                    <td class="row"></td>
-                </table>
-                <table class="table_block bl" th:if="${favorites.size()}">
                     <tbody>
-                    <tr style="font-family: 'Bradley Hand', sans-serif bold; font-size: 25px;">
-                        <td>№</td>
-                        <td>Название</td>
-                        <td>Дата</td>
-                    </tr>
-                    </tbody>
-                    <tbody th:each="fav, iStat : ${favorites}" th:with="book = ${fav.getBook()}" class="my_text" style="vertical-align: middle; border-bottom: 1px solid grey;">
-                    <td th:text="${iStat.index}+1"></td>
-                    <td>
-                        <a th:href="@{/book/info/__${fav.getBook().bookID}__}" th:text="${book.title}"></a>
+                    <td class="my_text">
+                        <div>
+                            No dialogs. Start chatting!
+                        </div>
                     </td>
-                    <td th:with="date = ${fav.getDateFavourite()}"
-                        th:text="${date.year + 1900} + '-' + ${date.month + 1} + '-' + ${date.getDate()}"></td>
                     </tbody>
                 </table>
             </div>
@@ -109,5 +103,7 @@
         <td style="width: 25%;"></td>
     </tr>
 </table>
+
+
 </body>
 </html>
