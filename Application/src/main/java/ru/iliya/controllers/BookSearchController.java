@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
+import ru.iliya.services.FavouritesService;
 import ru.iliya.services.RecommendationsService;
-import ru.iliya.entities.Book;
 import ru.iliya.entities.Comments;
 import ru.iliya.entities.Recommendations;
 import ru.iliya.services.BookSearchService;
@@ -30,6 +30,8 @@ public class BookSearchController {
     RecommendationsService recommendationsService;
     @Autowired
     SecurityUserConverter securityUserConverter;
+    @Autowired
+    FavouritesService favouritesService;
 
 
     @GetMapping("/book/search") //book/search
@@ -64,11 +66,15 @@ public class BookSearchController {
     @PostMapping("/book/info/addFavourites/{book_id}/{favourites}")
     public String addFavourites(@PathVariable(name = "book_id") String book_id,
                                 @PathVariable(name = "favourites") String favourites,
+                                @AuthenticationPrincipal UserDetails currentUser,
                                 Model model) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
         if (Objects.equals(favourites, "Add to favourites")) {
             favourites = "Remove from favourites";
+            favouritesService.setFavouritesByParams(user.getUserID(), Integer.parseInt(book_id));
         } else {
             favourites = "Add to favourites";
+            favouritesService.deleteFavouriteByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
         }
         return showBookInfo(book_id, favourites, model);
     }
@@ -102,10 +108,11 @@ public class BookSearchController {
 
     @RequestMapping(value = "/book/info/set_recommendation/{book_id}/{recommendation}")
     public String makeRecommendation(@PathVariable(name = "recommendation") String rec,
-                                     @PathVariable(name = "book_id") String book_id) {
-        System.out.println(rec);
+                                     @PathVariable(name = "book_id") String book_id,
+                                     @AuthenticationPrincipal UserDetails currentUser) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
         if (Integer.parseInt(rec) == -1) {
-            recommendationsService.setRecommendationsByParams(4, Integer.parseInt(book_id));
+            recommendationsService.setRecommendationsByParams(user.getUserID(), Integer.parseInt(book_id));
         } else {
             Recommendations rec_ = recommendationsService.findRecommendationByRecommendationId(Integer.parseInt(rec));
             recommendationsService.deleteRecommendationsByRecommendationsID(rec_.getRecommendationID());

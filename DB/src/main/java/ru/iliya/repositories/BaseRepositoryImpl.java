@@ -220,6 +220,13 @@ public class BaseRepositoryImpl implements BaseRepository {
         favouritesRepository.deleteFavouritesByLinkID(linkID);
     }
 
+    @Override
+    public void deleteFavouriteByUserIdAndBookId(int userId, int bookId) {
+        User user = userRepository.findByUserID(userId);
+        Book book = bookRepository.findBookByBookID(bookId);
+        favouritesRepository.deleteFavouriteByUserAndBook(user, book);
+    }
+
 
     //recommendations
     @Override
