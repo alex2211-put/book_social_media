@@ -1,4 +1,4 @@
-package ru.iliya;
+package ru.iliya.services;
 
 import ru.iliya.entities.BlockedUsers;
 import ru.iliya.entities.Recommendations;
@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserService {
     List<User> findUserByFirstName(String firstName);
     List<User> findUserByLastName(String lastName);
-    List<User> findUserByNickname(String nickname);
+    User findUserByNickname(String nickname);
     List<User> findUserByEmail(String email);
     User findUserByUserID(int userID);
     List<User> findUserByFirstNameLastNameNickNameEmail(String search);

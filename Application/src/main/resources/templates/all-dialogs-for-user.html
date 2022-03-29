@@ -11,31 +11,94 @@
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
 
 </head>
-<body>
+<body style="background: #8EACB4;">
 
-
-<div style="text-align: center;">
-    <table class="table_block">
-        <thead>
-        <tr>
-            <th valign="middle" colspan="3" class="table_header">
-                <div class="title">All dialogs for user</div>
-            </th>
-        </tr>
-        </thead>
-        <tbody th:each="lastMessage, iStat : ${lastMessages}" class="dialogs_big_cell">
-        <td th:text="${lastMessage.user.nickname}" class="photo_table"></td>
-        <td class="message_table">
-            <form id="add-form-2" th:action="@{/user/chat/__${lastMessage.ownerId}__/__${lastMessage.user.userID}__}"
-                  th:method="get">
-                <div class="row">
-                    <button id="" type="submit" th:text="${lastMessage.message}" class="message_cell"></button>
-                </div>
-            </form>
+<table>
+    <tr>
+        <td style="width: 100%; display: flex; margin-top: 10%;">
+            <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A); border-radius: 10px;" class="br">
+                <tbody>
+                <tr>
+                    <td>
+                        <button type="submit" id="home" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/user/info/4}'|">Home
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="book_search" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/book/search}'|">Find books
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="user_search" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/user_search}'|">Find users
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="friends" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Friends
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="favourites" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/favorites/4}'|">Favourites
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="recommendations" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/recs/4}'|">Recommendations
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="logout" name="rating" value="1" class="last_main_console neon-purple"
+                                th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Logout
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </td>
-        </tbody>
-    </table>
-</div>
+        <td style="width: 50%;">
+            <div style="text-align: center; margin-top: 5%;">
+                <table class="table_block bl">
+                    <thead>
+                    <tr>
+                        <th valign="middle" colspan="3" class="table_header">
+                            <div class="title">All dialogs for user</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody th:each="lastMessage, iStat : ${lastMessages}" class="dialogs_big_cell">
+                    <td th:text="${lastMessage.user.nickname}" class="photo_table"></td>
+                    <td class="message_table">
+                        <form id="add-form-2"
+                              th:action="@{/user/chat/__${lastMessage.ownerId}__/__${lastMessage.user.userID}__}"
+                              th:method="get">
+                            <div class="row">
+                                <button id="" type="submit" th:text="${lastMessage.message}"
+                                        class="message_cell"></button>
+                            </div>
+                        </form>
+                    </td>
+                    </tbody>
+                </table>
+            </div>
+        </td>
+        <td style="width: 25%;"></td>
+    </tr>
+</table>
 <button type="button" th:onclick="scroll()">Show Alert</button>
 
 

@@ -169,7 +169,7 @@ public class BaseRepositoryImpl implements BaseRepository {
         user.setEmail(email);
         user.setOpenProfile(openProfile);
         user.setHashPassword(hashPassword);
-        user.setRoleID(roleID);
+        user.setRole(new Role(roleID));
         user.setImageLink(imageLink);
         userRepository.saveAndFlush(user);
     }
@@ -190,7 +190,7 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
-    public List<User> findUserByNickname(String nickname) {
+    public User findUserByNickname(String nickname) {
         return userRepository.findByNickname(nickname);
     }
 

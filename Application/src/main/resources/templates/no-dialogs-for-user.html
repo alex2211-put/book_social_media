@@ -1,17 +1,19 @@
 <!DOCTYPE HTML>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Dialogs</title>
     <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
     <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
-    <link th:href="@{/css/bookSearch.css}" rel="stylesheet"/>
+    <link th:href="@{/css/main.css}" rel="stylesheet"/>
     <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+
 </head>
 <body style="background: #8EACB4;">
 
-
-<table style="width: 100%">
+<table style="width: 100%;">
     <tr>
         <td style="width: 100%; display: flex; margin-top: 10%;">
             <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A); border-radius: 10px;"
@@ -26,16 +28,14 @@
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="book_search" name="rating" value="1"
-                                class="main_console neon-blue"
+                        <button type="submit" id="book_search" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/book/search}'|">Find books
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="user_search" name="rating" value="1"
-                                class="main_console neon-blue"
+                        <button type="submit" id="user_search" name="rating" value="1" class="main_console neon-blue"
                                 th:onclick="|window.location.href='@{/user_search}'|">Find users
                         </button>
                     </td>
@@ -71,8 +71,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="logout" name="rating" value="1"
-                                class="last_main_console neon-purple"
+                        <button type="submit" id="logout" name="rating" value="1" class="last_main_console neon-purple"
                                 th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Logout
                         </button>
                     </td>
@@ -80,50 +79,22 @@
                 </tbody>
             </table>
         </td>
-
-        <td style="width: 50%;">
+        <td style="width: 50%; margin-top: 0;">
             <div style="text-align: center; margin-top: 5%;">
-                <table class="table_block bl">
+                <table class="table_block bl" style="margin-top: 5%;">
+
                     <thead>
                     <tr>
-                        <th valign="middle" colspan="3" class="table_header">
-                            <div class="title">Найти книгу</div>
+                        <th valign="middle" colspan="1" class="table_head">
+                            <div class="title">All dialogs for user</div>
                         </th>
                     </tr>
                     </thead>
-                    <td class="row">
-                        <form id="add-form-2" th:action="@{/book/search}" th:method="get">
-                            <div class="row">
-
-                                <input type="text" th:name="title" th:placeholder="title" class="in_text"/>
-                                <input type="text" th:name="author" th:placeholder="author" class="in_text"/>
-                                <input type="text" th:name="genre" th:placeholder="genre" class="in_text"/>
-                            </div>
-                            <div class="row">
-                                <button id="" type="submit" class="button">Найти</button>
-                            </div>
-                        </form>
-                    </td>
-                </table>
-                <table class="table_block bl" th:if="${books.size()}">
                     <tbody>
-                    <tr style="font-family: 'Bradley Hand', sans-serif bold; font-size: 25px;">
-                        <td>№</td>
-                        <td>Название</td>
-                        <td>Год издания</td>
-                        <td>Жанр</td>
-                        <td>Авторы</td>
-                    </tr>
-                    </tbody>
-                    <tbody th:each="book, iStat : ${books}" class="my_text" style="vertical-align: middle; border-bottom: 1px solid grey;" >
-                    <td th:text="${iStat.index}+1"></td>
-                    <td>
-                        <a th:href="@{/book/info/__${book.bookID}__}" th:text="${book.title}"></a>
-                    </td>
-                    <td th:text="${book.year_release}"></td>
-                    <td th:text="${book.genre}"></td>
-                    <td th:each="author, iterStat : ${book.authors}">
-                        <div style="vertical-align: middle;" th:text="${author.firstName} + ' ' + ${author.lastName} + ${!iterStat.last ? ', ' : ''}"></div>
+                    <td class="my_text">
+                        <div>
+                            No dialogs. Start chatting!
+                        </div>
                     </td>
                     </tbody>
                 </table>
@@ -132,5 +103,7 @@
         <td style="width: 25%;"></td>
     </tr>
 </table>
+
+
 </body>
 </html>

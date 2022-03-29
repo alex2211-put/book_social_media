@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.iliya.FavouritesService;
-import ru.iliya.UserService;
-import ru.iliya.UserServiceImpl;
+
+import ru.iliya.services.FavouritesService;
+import ru.iliya.services.UserService;
+import ru.iliya.services.UserServiceImpl;
 import ru.iliya.entities.Friends;
 import ru.iliya.services.FriendsService;
 
@@ -46,6 +47,7 @@ public class UserSearchController {
 
     @GetMapping("/user/info/{user_id}")
     public String showUserInfo(@PathVariable(name = "user_id") int user_id,
+ 
                                @RequestParam(name = "friends", required = false, defaultValue = "Add to friends") String friends,
                                Model model) {
         model.addAttribute("user",
@@ -53,6 +55,7 @@ public class UserSearchController {
         model.addAttribute("friends", friends);
         model.addAttribute("favourites", favouritesService.findFavouritesByUserID(user_id));
         return "user";
+ 
     }
 
     @PostMapping("/user/info/addFriends/{user_id}/{friends}")
