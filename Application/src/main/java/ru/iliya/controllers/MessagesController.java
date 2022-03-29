@@ -30,6 +30,16 @@ public class MessagesController {
     public static class LastMessage {
         public User user;
         public String message;
+
+        @Override
+        public String toString() {
+            return "LastMessage{" +
+                    "user=" + user +
+                    ", message='" + message + '\'' +
+                    ", ownerId='" + ownerId + '\'' +
+                    '}';
+        }
+
         public String ownerId;
 
         public LastMessage(User user, String message, String ownerId) {
@@ -57,10 +67,12 @@ public class MessagesController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String userId = String.valueOf(user.getUserID());
         List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
+        System.out.println(users);
         List<LastMessage> lastMessages = new ArrayList<>();
         for (User user1 : users) {
             String message = messageService.getLastMessage(userId, user1);
-            lastMessages.add(new LastMessage(user1, message, userId));
+            LastMessage lastMessage = new LastMessage(user1, message, userId);
+            lastMessages.add(lastMessage);
         }
         model.addAttribute("lastMessages", lastMessages);
         if (!lastMessages.isEmpty()) {
