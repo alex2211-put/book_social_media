@@ -61,7 +61,19 @@ public class UserSearchController {
                                 @RequestParam(name = "password") String password,
                                 Model model) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
-        userService.setUserByParams(nickname, firstName, lastName, new Date(), email, true, bCryptPasswordEncoder.encode(password), 2, null);
+        try{
+            userService.setUserByParams(nickname, firstName, lastName, new Date(), email, true, bCryptPasswordEncoder.encode(password), 2, null);
+        } catch (Exception exc) {
+            model.addAttribute("firstName", firstName);
+            model.addAttribute("lastName", lastName);
+            model.addAttribute("nickname", nickname);
+            model.addAttribute("email", email);
+            if (userService.findUserByEmail(email) != null)
+                return "err_reg_email";
+            if (userService.findUserByNickname(nickname) != null)
+                return "err_reg_nick";
+            else return "error-page";
+        }
         return "success";
     }
 

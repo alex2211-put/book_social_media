@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Регистрация</title>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/register.css}" rel="stylesheet"/>
+    <link th:href="@{/js/actions.js}" rel="text/javascript"/>
+    <script type="text/javascript">
+        var check = function (qualifiedName) {
+            if (document.getElementById('password').value === " ") {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Empty';
+                document.getElementById("submit").setAttribute("disabled", "disabled");
+            } else if (document.getElementById('password').value === "") {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Empty';
+                document.getElementById("submit").setAttribute("disabled", "disabled");
+            } else if (document.getElementById('password').value ===
+                document.getElementById('confirm_password').value) {
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'Matching';
+                document.getElementById("submit").removeAttribute("disabled");
+            } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'Not matching';
+                document.getElementById("submit").setAttribute("disabled", "disabled");
+            }
+        }
+        function validateComments(input) {
+            if (input.value.length < 6) {
+                input.setCustomValidity("Пароль должен быть не менее 6 символов");
+            }
+            else {
+                input.setCustomValidity("");
+            }
+        }
+    </script>
+</head>
+<body style="background: #8EACB4;">
+<form th:action="@{/new/user}" th:method="post">
+    <div class="form">
+        <div class="title">Welcome</div>
+        <div class="subtitle" style="color: red">This email is busy</div>
+        <div class="input-container ic1">
+            <input id="firstname" class="input" type="text" placeholder=" " required th:name="firstName" th:value="${firstName}"/>
+            <div class="cut"></div>
+            <label for="firstname" class="placeholder">First name</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="lastname" class="input" type="text" placeholder=" " th:name="lastName" th:value="${lastName}"/>
+            <div class="cut"></div>
+            <label for="lastname" class="placeholder">Last name</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="nickname" class="input" type="text" placeholder=" " required th:name="nickname" th:value="${nickname}"/>
+            <div class="cut"></div>
+            <label for="nickname" class="placeholder">Nickname</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="email" class="input" type="text" placeholder=" " th:name="email" th:value="${email}" autofocus/>
+            <div class="cut cut-short"></div>
+            <label for="email" class="placeholder">Email</label>
+        </div>
+        <div class="input-container ic2">
+            <input name="password" id="password" class="input" type="password" placeholder=" " pattern="^\S{6,}$"
+                   onkeyup='check();' required oninput="validateComments(this)" th:name="password"/>
+            <div class="cut cut-short"></div>
+            <label for="password" class="placeholder">Password</label>
+        </div>
+        <div class="input-container ic2">
+            <input id="confirm_password" class="input" name="confirm_password" type="password"
+                   placeholder=" " required onkeyup='check();'/>
+            <div style="height: 5px;"></div>
+            <span id='message' style="margin-left: 30px;"></span>
+            <div class="cut cut-short"></div>
+            <label for="confirm_password" class="placeholder">Confirm password</label>
+        </div>
+        <input id="submit" type="submit" style="width: 0" hidden/>
+        <label for="submit" class="button">Submit</label>
+    </div>
+</form>
+</body>
+</html>
