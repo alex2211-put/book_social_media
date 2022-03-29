@@ -51,25 +51,6 @@ public class MessagesController {
         }
     }
 
-
-    @GetMapping("/user/dialogs")
-    public String showAllDialogsForUser(@RequestParam(name = "user", required = false, defaultValue = "1") String userId,
-                                        @AuthenticationPrincipal UserDetails currentUser,
-                                        Model model) {
-        User user = securityUserConverter.getUserByDetails(currentUser);
-        List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
-        List<LastMessage> lastMessages = new ArrayList<>();
-        for (User user1 : users) {
-            String message = messageService.getLastMessage(userId, user1);
-            lastMessages.add(new LastMessage(user1, message, userId));
-        }
-        model.addAttribute("lastMessages", lastMessages);
-        if (!lastMessages.isEmpty()) {
-            return "all-dialogs-for-user";
-        }
-        return "no-dialogs-for-user";
-    }
-
     @RequestMapping("/user/dialogs")
     public String showAllDialogsForUserParam(@AuthenticationPrincipal UserDetails currentUser,
                                              Model model) {
@@ -121,12 +102,12 @@ public class MessagesController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String owner = String.valueOf(user.getUserID());
         if (message.isEmpty())
-            return "redirect:/user/chat/{owner}/{person}";
+            return "redirect:/user/chat/{person}";
         Message message1 = new Message(message, owner, person, "2022");
         messageService.writeToUser(message1);
         messages2.add(message1);
         model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person));
-        return "redirect:/user/chat/{owner}/{person}";
+        return "redirect:/user/chat/{person}";
     }
 
 }

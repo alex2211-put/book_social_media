@@ -1,6 +1,8 @@
 package ru.iliya.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.iliya.entities.User;
+import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.UserServiceImpl;
 
 import java.util.Date;
@@ -22,7 +25,8 @@ public class UserSearchController {
 
     @Autowired
     UserServiceImpl userService;
-
+    @Autowired
+    SecurityUserConverter securityUserConverter;
     String email;
 
     @GetMapping("/user_search") //user/search        value   showUsers
@@ -44,10 +48,11 @@ public class UserSearchController {
 //    }
 
     @GetMapping("/user/info")
-    public String showBookInfo(@RequestParam(name = "user_id", required = false, defaultValue = "1") int user_id,
+    public String showUserInfo(@AuthenticationPrincipal UserDetails currentUser,
                                Model model) {
+        User user = securityUserConverter.getUserByDetails(currentUser);
         model.addAttribute("user",
-                userService.findUserByUserID(user_id));
+                userService.findUserByUserID(user.getUserID()));
         return "user";
     }
 
@@ -56,7 +61,7 @@ public class UserSearchController {
                                Model model) throws Exception {
         model.addAttribute("user",
                 userService.findUserByUserID(user_id));
-        return "registration";
+        return "user";
     }
 
     @PostMapping("/new/user")
