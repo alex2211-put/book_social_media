@@ -6,7 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.iliya.entities.User;
 import ru.iliya.services.UserServiceImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -17,10 +21,13 @@ public class UserSearchController {
 
     String email;
     @GetMapping("/user_search") //user/search        value   showUsers
-    public String showUsersByEmail(@RequestParam(name = "search", required = false, defaultValue = "") String search,
+    public String showUsersByEmail(@RequestParam(name = "search", required = false, defaultValue = " ") String search,
                                    Model model) {
-        model.addAttribute("users",
-                userService.findUserByFirstNameLastNameNickNameEmail(search));
+        List<User> userList = userService.findUserByFirstNameLastNameNickNameEmail(search);
+        if (userList.size() == 1 && userList.get(0) == null) {
+            userList.clear();
+        }
+        model.addAttribute("users", userList);
         return "user_search"; //view
     }
 
