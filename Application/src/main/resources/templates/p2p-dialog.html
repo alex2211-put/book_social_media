@@ -18,48 +18,127 @@
 
 </head>
 
-<body th:onload="winLoad()">
+<body th:onload="winLoad()" style="background: #8EACB4;">
 
-<div style="text-align: center;">
-    <table class="table_block" id="scroll">
-        <thead>
-        <tr>
-            <th valign="middle" colspan="3" class="table_header">
-                <div class="title">Chat</div>
-            </th>
-        </tr>
-        </thead>
-        <tbody th:each="message, iStat : ${ownerDialog.messages}">
-        <td th:text="( (${ownerDialog.ownerId} != ${message.from})? ${message.from} : '')"
-            th:class="((${ownerDialog.ownerId} != ${message.from}))? 'user_icon_to' : 'user_icon_to_no'"></td>
-        <td th:text="${message.message}"
-            th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})"></td>
-        <td th:text="( (${ownerDialog.ownerId} == ${message.from})? ${message.from} : '')"
-            th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'"></td>
-        </tbody>
-        <tr th:height="25"></tr>
-        <tr>
-            <form id="add-form-3"
-                  th:action="@{/user/chat/__${ownerDialog.partnerId}__/write}"
-                  th:method="post">
-                <td colspan="2">
-                    <div>
-                        <label>
-                            <input type="text" th:name="message" th:placeholder="message"
-                                   class="write_message_text"/>
-                        </label>
-                    </div>
-                </td>
-                <td>
-                    <button id="" type="submit" float-right class="button_message_text">
-                        <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить сообщение" width="75" height="75">
-                    </button>
-                </td>
-            </form>
+<table style="width: 100%">
+    <tr>
+        <td style="width: 100%; display: flex; margin-top: 10%;">
+            <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A); border-radius: 10px;"
+                   class="br">
+                <tbody>
+                <tr>
+                    <td>
+                        <button type="submit" id="home" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/user/info}'|">Home
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="book_search" name="rating" value="1"
+                                class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/book/search}'|">Find books
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="user_search" name="rating" value="1"
+                                class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/user_search}'|">Find users
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="friends" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Friends
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="dialogs" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/user/dialogs}'|">Dialogs
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="favourites" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/favorites}'|">Favourites
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="recommendations" name="rating" value="1"
+                                class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/recs}'|">Recommendations
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" id="logout" name="rating" value="1"
+                                class="last_main_console neon-purple"
+                                th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Logout
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
 
-        </tr>
-    </table>
-</div>
+        <td style="width: 50%;">
+            <div style="text-align: center; margin-top: 5%;">
+                <table class="table_block bl" id="scroll">
+                    <thead>
+                    <tr>
+                        <th valign="middle" colspan="3" class="table_header">
+                            <div class="title">Chat</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <td class="row"></td>
+                    <tbody th:each="message, iStat : ${ownerDialog.messages}">
+                    <td th:text="( (${ownerDialog.ownerId} != ${message.from})? ${ownerDialog.partnerNick} : '')"
+                        th:class="((${ownerDialog.ownerId} != ${message.from}))? 'user_icon_to' : 'user_icon_to_no'" width="75"
+                        height="75"></td>
+                    <td th:text="${message.message}"
+                        th:class="'messageFromOwner' + (${ownerDialog.ownerId} == ${message.from})" class="my_text"></td>
+                    <td th:text="( (${ownerDialog.ownerId} == ${message.from})? ${ownerDialog.ownerNick} : '')"
+                        th:class="((${ownerDialog.ownerId} == ${message.from}))? 'user_icon_from' : 'user_icon_from_no'" width="75"
+                        height="75"></td>
+                    </tbody>
+                    <tr th:height="25"></tr>
+                    <tr>
+                        <form id="add-form-3"
+                              th:action="@{/user/chat/__${ownerDialog.partnerId}__/write}"
+                              th:method="post">
+                            <td colspan="2">
+                                <div>
+                                    <label>
+                                        <input type="text" th:name="message" th:placeholder="message"
+                                               class="write_message_text"/>
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <button id="" type="submit" float-right class="button_message_text">
+                                    <img th:src="@{/img/apple-touch-icon.png}" alt="Отправить сообщение" width="75"
+                                         height="75">
+                                </button>
+                            </td>
+                        </form>
+
+                    </tr>
+                </table>
+            </div>
+        </td>
+        <td style="width: 25%;"></td>
+    </tr>
+</table>
 
 </body>
 </html>
