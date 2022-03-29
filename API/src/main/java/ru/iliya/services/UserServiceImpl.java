@@ -53,9 +53,7 @@ public class UserServiceImpl implements UserService {
         User userByNickname = baseRepository.findUserByNickname(search);
         List<User> usersByFirstName = baseRepository.findUserByFirstName(search);
         List<User> usersByLastName = baseRepository.findUserByLastName(search);
-        List<User> usersByEmail = baseRepository.findUserByEmail(search);
         Set<User> uniqUsers = new HashSet<User>();
-        uniqUsers.addAll(usersByEmail);
         uniqUsers.addAll(usersByFirstName);
         uniqUsers.addAll(usersByLastName);
         uniqUsers.add(userByNickname);

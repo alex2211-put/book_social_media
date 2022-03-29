@@ -13,6 +13,8 @@ import ru.iliya.services.UserServiceImpl;
 
 import java.util.Date;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Controller
@@ -24,10 +26,13 @@ public class UserSearchController {
     String email;
 
     @GetMapping("/user_search") //user/search        value   showUsers
-    public String showUsersByEmail(@RequestParam(name = "search", required = false, defaultValue = "") String search,
+    public String showUsersByEmail(@RequestParam(name = "search", required = false, defaultValue = " ") String search,
                                    Model model) {
-        model.addAttribute("users",
-                userService.findUserByFirstNameLastNameNickNameEmail(search));
+        List<User> userList = userService.findUserByFirstNameLastNameNickNameEmail(search);
+        if (userList.size() == 1 && userList.get(0) == null) {
+            userList.clear();
+        }
+        model.addAttribute("users", userList);
         return "user_search"; //view
     }
 
