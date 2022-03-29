@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.iliya.entities.User;
 import ru.iliya.services.UserServiceImpl;
@@ -52,7 +53,7 @@ public class UserSearchController {
         return "registration";
     }
 
-    @GetMapping("/user/info")
+    @PostMapping("/new/user")
     public String afterRegister(@RequestParam(name = "firstName") String firstName,
                                 @RequestParam(name = "lastName") String lastName,
                                 @RequestParam(name = "nickname") String nickname,
