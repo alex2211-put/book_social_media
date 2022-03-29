@@ -42,7 +42,7 @@
         function validate(){
             var form = document.getElementById("emailForm");
             var email = document.getElementById("email").value;
-            var pattern = /^([a-zA-Z0-9][a-zA-Z0-9.\-_]{0,20}[a-zA-Z0-9])@([a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9]\.)+(ru|com|net|org)$/
+            var pattern = /^([a-zA-Z0-9][a-zA-Z0-9.\-_]{0,20}[a-zA-Z0-9])@([a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9]\.)+(ru|com|net|org|edu)$/
             if(email.match(pattern))
             {
                 form.classList.add("valid");
