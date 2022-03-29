@@ -66,4 +66,5 @@ public class UserSearchController {
         }
         return showUserInfo(user_id, friends, model);
     }
+
 }

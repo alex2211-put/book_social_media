@@ -61,6 +61,7 @@ th {
     top: 1px;
     box-shadow: none;
 }
+
 .click_me:hover {
     transition: .5s linear;
     background-position: -200% 0, 0 0;

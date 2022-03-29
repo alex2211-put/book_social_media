@@ -301,4 +301,5 @@ public class BaseRepositoryImpl implements BaseRepository {
     public void deleteFriendsByFriendID(int friendID) {
         friendsRepository.deleteFriendsByFriendID(friendID);
     }
+
 }

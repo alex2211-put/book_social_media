@@ -75,13 +75,13 @@
             <td>
                 <button id="1" type="submit" float-right class="button_message_text" style="background: none; border: none;"
                         th:onclick="|window.location.href='@{/book/info/__${favourites.get(0).getBook().bookID}__}'|">
-                    <img th:src="${favourites.get(0).getBook().imageLink}" alt="book image" class="book_photo"
+                    <img th:src="${favourites.get(favourites.size() - 1).getBook().imageLink}" alt="book image" class="book_photo"
                          width="360" height="420"></button>
             </td>
             <td>
                 <button id="2" type="submit" float-right class="button_message_text" style="background: none; border: none;"
                         th:onclick="|window.location.href='@{/book/info/__${favourites.get(1).getBook().bookID}__}'|">
-                    <img th:src="${favourites.get(1).getBook().imageLink}" alt="book image" class="book_photo"
+                    <img th:src="${favourites.get(favourites.size() - 2).getBook().imageLink}" alt="book image" class="book_photo"
                          width="360" height="420"></button>
             </td>
         </tr>

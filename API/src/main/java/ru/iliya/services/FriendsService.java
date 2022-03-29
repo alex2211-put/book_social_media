@@ -13,6 +13,7 @@ public class FriendsService {
         return baseRepository.findFriendsByUserIDAndUser2ID(userID, user2ID);
     }
 
+
     public void setFriendsByUserIDAndUser2ID(int userID, int user2ID) {
         baseRepository.setFriendsByUserIDAndUser2ID(userID, user2ID);
     }
