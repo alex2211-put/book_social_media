@@ -62,9 +62,11 @@
                 </tr>
                 <tr>
                     <td>
-                        <button type="submit" id="logout" name="rating" value="1" class="last_main_console neon-purple"
-                                th:onclick="|window.location.href='@{/do-stuff/__${book.bookID}__/5}'|">Logout
-                        </button>
+                        <form th:action="@{/auth/logout}" th:method="post">
+                            <button type="submit" id="logout"
+                                    class="last_main_console neon-purple">Logout
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 </tbody>
