@@ -43,7 +43,7 @@ public interface BaseRepository{
     void setFavouritesByParams(int userID, int bookID);
     List<Favourites> findFavouritesByUserID(int userID);
     void deleteFavouritesByLinkID(int linkID);
-
+    void deleteFavouriteByUserIdAndBookId(int userId, int bookId);
     void setRecommendationsByParams(int userID, int bookID);
     List<Recommendations> findRecommendationsByUserID(int userID);
     void deleteRecommendationsByRecommendationsID(int recommendationsID);

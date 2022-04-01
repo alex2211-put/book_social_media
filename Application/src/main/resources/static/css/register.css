@@ -13,7 +13,20 @@ body {
     box-sizing: border-box;
     height: 750px;
     padding: 20px;
-    width: 400px;
+    width: 450px;
+    border: 1px solid #38eeff;
+    box-shadow: 0px 0px 0px 0px #38eeff,inset 0px 0px 0px 0px #38eeff, 0px 0px 20px 4px #38eeff,inset 0px 0px 20px 0px #38eeff;
+
+}
+
+.form2 {
+    /*background-color: #15172b;*/
+    background: #33383A;
+    border-radius: 10px;
+    box-sizing: border-box;
+    height: 250px;
+    padding: 20px;
+    width: 450px;
     border: 1px solid #38eeff;
     box-shadow: 0px 0px 0px 0px #38eeff,inset 0px 0px 0px 0px #38eeff, 0px 0px 20px 4px #38eeff,inset 0px 0px 20px 0px #38eeff;
 
@@ -139,7 +152,84 @@ body {
     -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
     transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
 }
+
+.button2 {
+    text-decoration: none;
+    margin-top: 15%;
+    margin-bottom: 1%;
+    width: 20px;
+    margin-left: 38%;
+    cursor: pointer;
+    font-family: 'Bradley Hand', sans-serif bold;
+    font-size: 20px;
+    background: none;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    border: none;
+    color: rgba(255,255,255,1);
+    text-decoration: #6678b1;
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    white-space: pre;
+    text-shadow: 2px 1px 3px #C0F56E , 0 0 3px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 4px #00C618 , 0 0 7px #00C618 , 0 0 60px #00C618 , 0 0 100px #00C618 ;
+    -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+    transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
 .button:hover {
     text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #00ffff , 0 0 70px #00ffff , 0 0 80px #00ffff , 0 0 100px #00ffff ;
 }
-
+.button2:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #00ffff , 0 0 70px #00ffff , 0 0 80px #00ffff , 0 0 100px #00ffff ;
+}
+#passForm .indicator{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background: #555;
+    border-radius: 50%;
+}
+#passForm.invalid .indicator{
+    background: #f00;
+    box-shadow: 0 0 5px #f00,
+    0 0 10px #f00,
+    0 0 20px #f00,
+    0 0 40px #f00;
+}
+#passForm.valid .indicator{
+    background: #0f0;
+    box-shadow: 0 0 5px #0f0,
+    0 0 10px #0f0,
+    0 0 20px #0f0,
+    0 0 40px #0f0;
+}
+#emailForm .indicator{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 10px;
+    height: 10px;
+    background: #555;
+    border-radius: 50%;
+}
+#emailForm.invalid .indicator{
+    background: #f00;
+    box-shadow: 0 0 5px #f00,
+    0 0 10px #f00,
+    0 0 20px #f00,
+    0 0 40px #f00;
+}
+#emailForm.valid .indicator{
+    background: #0f0;
+    box-shadow: 0 0 5px #0f0,
+    0 0 10px #0f0,
+    0 0 20px #0f0,
+    0 0 40px #0f0;
+}

@@ -13,7 +13,7 @@
 </head>
 <body style="background: #8EACB4;">
 
-<table>
+<table style="width: 100%">
     <tr>
         <td style="width: 100%; display: flex; margin-top: 10%;">
             <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A); border-radius: 10px;" class="br">
@@ -21,7 +21,7 @@
                 <tr>
                     <td>
                         <button type="submit" id="home" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/user/info/4}'|">Home
+                                th:onclick="|window.location.href='@{/user/info}'|">Home
                         </button>
                     </td>
                 </tr>
@@ -48,15 +48,22 @@
                 </tr>
                 <tr>
                     <td>
+                        <button type="submit" id="dialogs" name="rating" value="1" class="main_console neon-blue"
+                                th:onclick="|window.location.href='@{/user/dialogs}'|">Dialogs
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         <button type="submit" id="favourites" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/favorites/4}'|">Favourites
+                                th:onclick="|window.location.href='@{/favorites}'|">Favourites
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <button type="submit" id="recommendations" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/recs/4}'|">Recommendations
+                                th:onclick="|window.location.href='@{/recs}'|">Recommendations
                         </button>
                     </td>
                 </tr>
@@ -80,11 +87,12 @@
                         </th>
                     </tr>
                     </thead>
+                    <td class="row"></td>
                     <tbody th:each="lastMessage, iStat : ${lastMessages}" class="dialogs_big_cell">
-                    <td th:text="${lastMessage.user.nickname}" class="photo_table"></td>
+                    <td th:text="${lastMessage.user.nickname}" class="photo_table my_text"></td>
                     <td class="message_table">
                         <form id="add-form-2"
-                              th:action="@{/user/chat/__${lastMessage.ownerId}__/__${lastMessage.user.userID}__}"
+                              th:action="@{/user/chat/__${lastMessage.user.userID}__}"
                               th:method="get">
                             <div class="row">
                                 <button id="" type="submit" th:text="${lastMessage.message}"
@@ -99,8 +107,6 @@
         <td style="width: 25%;"></td>
     </tr>
 </table>
-<button type="button" th:onclick="scroll()">Show Alert</button>
-
 
 </body>
 </html>
