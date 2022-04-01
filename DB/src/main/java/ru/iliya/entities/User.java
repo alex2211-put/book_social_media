@@ -114,17 +114,23 @@ public class User {
         return this.imageLink;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "userID=" + userID +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthdate=" + birthDate + '\'' +
-                ", email='" + email + '\'' +
-                ", openProfile'" + openProfile + '\'' +
-                ", hashPassword'" + hashPassword + '\'' +
-                ", roleID'" + role + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "userID=" + userID +
+//                ", firstName='" + firstName + '\'' +
+//                ", lastName='" + lastName + '\'' +
+//                ", birthdate=" + birthDate + '\'' +
+//                ", email='" + email + '\'' +
+//                ", openProfile'" + openProfile + '\'' +
+//                ", hashPassword'" + hashPassword + '\'' +
+//                ", roleID'" + role + '\'' +
+//                '}';
+//    }
+
+//    @Override
+//    public String toString() {
+//        return  userID;
+//    }
+
 }

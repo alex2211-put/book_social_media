@@ -27,7 +27,7 @@ public class Friends {
         return this.userID;
     }
 
-    public void setUserID(int user1ID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
@@ -36,7 +36,7 @@ public class Friends {
         return this.user2ID;
     }
 
-    public void setUser2ID(int user1ID) {
+    public void setUser2ID(int user2ID) {
         this.user2ID = user2ID;
     }
 
