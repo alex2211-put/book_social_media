@@ -14,6 +14,9 @@ import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.UserServiceImpl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.regex.Pattern;
 import java.util.ArrayList;
@@ -37,7 +40,7 @@ public class UserSearchController {
             userList.clear();
         }
         model.addAttribute("users", userList);
-        return "user_search"; //view
+        return "registration"; //view
     }
 
 //    @GetMapping("/book-by-title")
@@ -70,15 +73,21 @@ public class UserSearchController {
                                 @RequestParam(name = "nickname") String nickname,
                                 @RequestParam(name = "email") String email,
                                 @RequestParam(name = "password") String password,
-                                Model model) {
+                                @RequestParam(name = "birthdate") String birthdate,
+                                @RequestParam(name = "imagelink") String imagelink,
+                                Model model) throws ParseException {
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = parser.parse(birthdate);
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
         try{
-            userService.setUserByParams(nickname, firstName, lastName, new Date(), email, true, bCryptPasswordEncoder.encode(password), 2, null);
+            userService.setUserByParams(nickname, firstName, lastName, date, email, true, bCryptPasswordEncoder.encode(password), 2, imagelink);
         } catch (Exception exc) {
             model.addAttribute("firstName", firstName);
             model.addAttribute("lastName", lastName);
             model.addAttribute("nickname", nickname);
             model.addAttribute("email", email);
+            model.addAttribute("imagelink", imagelink);
+            model.addAttribute("birthdate", birthdate);
             if (userService.findUserByEmail(email).size() != 0)
             {
                 return "err_reg_email";

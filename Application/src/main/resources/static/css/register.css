@@ -11,11 +11,11 @@ body {
     background: #33383A;
     border-radius: 10px;
     box-sizing: border-box;
-    height: 750px;
+    height: 890px;
     padding: 20px;
     width: 450px;
     border: 1px solid #38eeff;
-    box-shadow: 0px 0px 0px 0px #38eeff,inset 0px 0px 0px 0px #38eeff, 0px 0px 20px 4px #38eeff,inset 0px 0px 20px 0px #38eeff;
+    box-shadow: 0 0 0 0 #38eeff,inset 0 0 0 0 #38eeff, 0 0 20px 4px #38eeff,inset 0px 0px 20px 0px #38eeff;
 
 }
 
