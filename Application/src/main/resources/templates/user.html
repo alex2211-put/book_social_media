@@ -118,7 +118,7 @@
                                 <div style="display: inline-block; font-weight: bold;">Email:</div>
                                 <div th:text="${user.email}" style="display: inline-block;"></div>
                                 <br> <br>
-                                <div th:if="${user_id - currentUser.userID}">
+                                <div th:if="${user_id - currentUser.getUserID()}">
                                     <form id="add-form-2"
                                           th:action="@{/user/info/addFriends/__${user.userID}__/__${friends}__}"
                                           th:method="post">
@@ -130,7 +130,7 @@
                                 <br> <br>
                                 <div>
                                     <form id="add-form-3"
-                                          th:action="@{/user/chat/__${currentUser.userID}__/__${user.userID}__}"
+                                          th:action="@{/user/chat/__${user.userID}__}"
                                           th:method="get">
                                         <div class="row">
                                             <button id=" " class="click_me">Write message</button>

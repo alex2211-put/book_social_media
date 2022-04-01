@@ -51,7 +51,7 @@ public class UserSearchController {
             userList.clear();
         }
         model.addAttribute("users", userList);
-        return "registration"; //view
+        return "user_search"; //view
     }
 
     @GetMapping("/user/info/{user_id}")
@@ -75,22 +75,22 @@ public class UserSearchController {
                              Model model) {
         User user = securityUserConverter.getUserByDetails(currentUser);
         switch (friends) {
-            case ("Add to friends"):
+            case ("Add to friends") -> {
                 friendsService.setFriendsByUserIDAndUser2ID(user.getUserID(), user_id);
                 if (friendsService.findByUserIDAndUser2ID(user_id, user.getUserID()).size() == 2) {
                     friends = "Remove from friends";
                 } else {
-                    friends = "Sent";
+                    friends = "Unsent";
                 }
-                break;
-            case ("Remove from friends"):
+            }
+            case ("Remove from friends") -> {
                 friendsService.deleteFriendsByFriendID(friendsService.findByUserIDAndUser2ID(user.getUserID(), user_id).get(0).getFriendID());
                 friends = "Add to friends";
-                break;
-            case ("Sent"):
+            }
+            case ("Unsent") -> {
                 friendsService.deleteFriendsByFriendID(friendsService.findByUserIDAndUser2ID(user.getUserID(), user_id).get(0).getFriendID());
                 friends = "Add to friends";
-                break;
+            }
         }
         return showUserInfo(user_id, friends, currentUser, model);
     }
@@ -101,6 +101,9 @@ public class UserSearchController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         model.addAttribute("user",
                 userService.findUserByUserID(user.getUserID()));
+        model.addAttribute("user_id", user.getUserID());
+        model.addAttribute("currentUser", user);
+        model.addAttribute("favourites", favouritesService.findFavouritesByUserID(user.getUserID()));
         return "user";
     }
 
