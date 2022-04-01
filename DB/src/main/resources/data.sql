@@ -925,21 +925,21 @@ values (1, 1, 6064961, CURRENT_TIMESTAMP ),
        (26, 8, 6065046, CURRENT_TIMESTAMP ),
        (27, 8, 5907884, CURRENT_TIMESTAMP ),
        (28, 8, 6062462, CURRENT_TIMESTAMP );
-insert into friends(friend_id, user1_id, user2_id, date_friendship)
-values (1, 4, 5, CURRENT_TIMESTAMP ),
-       (2, 5, 4, CURRENT_TIMESTAMP ),
-       (3, 4, 6, CURRENT_TIMESTAMP ),
-       (4, 6, 4, CURRENT_TIMESTAMP ),
-       (5, 4, 7, CURRENT_TIMESTAMP ),
-       (6, 7, 4, CURRENT_TIMESTAMP ),
-       (7, 5, 6, CURRENT_TIMESTAMP ),
-       (8, 6, 5, CURRENT_TIMESTAMP ),
-       (9, 5, 7, CURRENT_TIMESTAMP ),
-       (10, 7, 5, CURRENT_TIMESTAMP ),
-       (11, 7, 6, CURRENT_TIMESTAMP ),
-       (12, 6, 7, CURRENT_TIMESTAMP ),
-       (13, 8, 6, CURRENT_TIMESTAMP ),
-       (14, 8, 7, CURRENT_TIMESTAMP );
+-- insert into friends(friend_id, user1_id, user2_id, date_friendship)
+-- values (1, 4, 5, CURRENT_TIMESTAMP ),
+--        (2, 5, 4, CURRENT_TIMESTAMP ),
+--        (3, 4, 6, CURRENT_TIMESTAMP ),
+--        (4, 6, 4, CURRENT_TIMESTAMP ),
+--        (5, 4, 7, CURRENT_TIMESTAMP ),
+--        (6, 7, 4, CURRENT_TIMESTAMP ),
+--        (7, 5, 6, CURRENT_TIMESTAMP ),
+--        (8, 6, 5, CURRENT_TIMESTAMP ),
+--        (9, 5, 7, CURRENT_TIMESTAMP ),
+--        (10, 7, 5, CURRENT_TIMESTAMP ),
+--        (11, 7, 6, CURRENT_TIMESTAMP ),
+--        (12, 6, 7, CURRENT_TIMESTAMP ),
+--        (13, 8, 6, CURRENT_TIMESTAMP ),
+--        (14, 8, 7, CURRENT_TIMESTAMP );
 insert into blocked_users(block_id, user_id, user_id_blocked, date_block)
 values (1, 4, 8, CURRENT_TIMESTAMP ),
        (2, 5, 8, CURRENT_TIMESTAMP );

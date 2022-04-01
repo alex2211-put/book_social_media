@@ -29,6 +29,8 @@ public class BaseRepositoryImpl implements BaseRepository {
     private RecommendationsRepository recommendationsRepository;
     @Autowired
     private BlockedUsersRepository blockedUsersRepository;
+    @Autowired
+    private FriendsRepository friendsRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -276,5 +278,33 @@ public class BaseRepositoryImpl implements BaseRepository {
     @Transactional
     public void deleteBlockedUsersByBlockID(int blockID) {
         blockedUsersRepository.deleteBlockedUsersByBlockID(blockID);
+    }
+
+
+    //friends
+    @Override
+    @Transactional
+    public void deleteFriendsByFriendID(int friendID) {
+        friendsRepository.deleteByFriendID(friendID);
+    }
+
+    @Override
+    public List<Friends> findByUserID(int userID) {
+        return friendsRepository.findByUserID(userID);
+    }
+
+    @Override
+    public List<Friends> findByUserIDAndUser2ID(int userID, int user2ID) {
+        return friendsRepository.findByUserIDAndUser2ID(userID, user2ID);
+    }
+
+    @Override
+    public void setFriendsByUserIDAndUser2ID(int userID, int user2ID) {
+        Friends friends = new Friends();
+        friends.setUserID(userID);
+        friends.setUser2ID(user2ID);
+        Date current = new Date();
+        friends.setDateFriendship(current);
+        friendsRepository.save(friends);
     }
 }
