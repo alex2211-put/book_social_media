@@ -59,6 +59,11 @@ public class UserSearchController {
         return "registration";
     }
 
+    @GetMapping("/registration")
+    public String registration() {
+        return "registration";
+    }
+
     @PostMapping("/new/user")
     public String afterRegister(@RequestParam(name = "firstName") String firstName,
                                 @RequestParam(name = "lastName") String lastName,
@@ -84,7 +89,7 @@ public class UserSearchController {
             }
             else return "error-page";
         }
-        return "success";
+        return "login";
     }
 
 }

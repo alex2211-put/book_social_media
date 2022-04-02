@@ -6,10 +6,11 @@
     <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
     <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
     <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
-    <link th:href="@{/css/register.css}" rel="stylesheet"/>
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
 </head>
 <body style="background: #8EACB4;">
-    <form class="form" method="post" action="/auth/login">
+    <div class="form">
+    <form method="post" action="/auth/login">
         <div class="title">Login</div>
 
         <p class="input-container ic1">
@@ -22,5 +23,11 @@
         </p>
         <button class="button" type="submit">Sign in</button>
     </form>
+        <form th:action="@{/registration}" th:method="get">
+            <button type="submit" id="signup"
+                    class="button">Sign up
+            </button>
+        </form>
+    </div>
 </body>
 </html>
