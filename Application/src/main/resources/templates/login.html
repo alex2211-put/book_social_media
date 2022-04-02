@@ -1,22 +1,33 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Login Customer</title>
+    <title>Login</title>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+    <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+    <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+    <link th:href="@{/css/login.css}" rel="stylesheet"/>
 </head>
-<body>
-<div class="container">
-    <form class="form-signin" method="post" action="/auth/login">
-        <h2 class="form-signin-heading">Login</h2>
-        <p>
+<body style="background: #8EACB4;">
+    <div class="form">
+    <form method="post" action="/auth/login">
+        <div class="title">Login</div>
+
+        <p class="input-container ic1">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required>
+            <input type="text" id="username" name="username" class="input" placeholder="Username" required>
         </p>
-        <p>
+        <p class="input-container ic2">
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+            <input type="password" id="password" name="password" class="input" placeholder="Password" required>
         </p>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="button" type="submit">Sign in</button>
     </form>
-</div>
+        <form th:action="@{/registration}" th:method="get">
+            <button type="submit" id="signup"
+                    class="button">Sign up
+            </button>
+        </form>
+    </div>
 </body>
 </html>
