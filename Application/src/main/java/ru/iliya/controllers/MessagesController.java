@@ -13,6 +13,7 @@ import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.MessageService;
 
 import org.bson.Document;
+import ru.iliya.services.UserService;
 
 import javax.print.Doc;
 import java.lang.annotation.Documented;
@@ -26,10 +27,22 @@ public class MessagesController {
     MessageService messageService;
     @Autowired
     SecurityUserConverter securityUserConverter;
+    @Autowired
+    UserService userService;
 
     public static class LastMessage {
         public User user;
         public String message;
+
+        @Override
+        public String toString() {
+            return "LastMessage{" +
+                    "user=" + user +
+                    ", message='" + message + '\'' +
+                    ", ownerId='" + ownerId + '\'' +
+                    '}';
+        }
+
         public String ownerId;
 
         public LastMessage(User user, String message, String ownerId) {
@@ -43,31 +56,16 @@ public class MessagesController {
         public String ownerId;
         public String partnerId;
         public List<Message> messages;
+        public String ownerNick;
+        public String partnerNick;
 
-        public OwnerDialog(String ownerId, List<Message> messages, String partnerId) {
+        public OwnerDialog(String ownerId, List<Message> messages, String partnerId, String ownerNick, String partnerNick) {
             this.ownerId = ownerId;
+            this.ownerNick = ownerNick;
             this.messages = messages;
             this.partnerId = partnerId;
+            this.partnerNick = partnerNick;
         }
-    }
-
-
-    @GetMapping("/user/dialogs")
-    public String showAllDialogsForUser(@RequestParam(name = "user", required = false, defaultValue = "1") String userId,
-                                        @AuthenticationPrincipal UserDetails currentUser,
-                                        Model model) {
-        User user = securityUserConverter.getUserByDetails(currentUser);
-        List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
-        List<LastMessage> lastMessages = new ArrayList<>();
-        for (User user1 : users) {
-            String message = messageService.getLastMessage(userId, user1);
-            lastMessages.add(new LastMessage(user1, message, userId));
-        }
-        model.addAttribute("lastMessages", lastMessages);
-        if (!lastMessages.isEmpty()) {
-            return "all-dialogs-for-user";
-        }
-        return "no-dialogs-for-user";
     }
 
     @RequestMapping("/user/dialogs")
@@ -76,10 +74,12 @@ public class MessagesController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String userId = String.valueOf(user.getUserID());
         List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
+        System.out.println(users);
         List<LastMessage> lastMessages = new ArrayList<>();
         for (User user1 : users) {
             String message = messageService.getLastMessage(userId, user1);
-            lastMessages.add(new LastMessage(user1, message, userId));
+            LastMessage lastMessage = new LastMessage(user1, message, userId);
+            lastMessages.add(lastMessage);
         }
         model.addAttribute("lastMessages", lastMessages);
         if (!lastMessages.isEmpty()) {
@@ -97,6 +97,7 @@ public class MessagesController {
                                       Model model) {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String owner = String.valueOf(user.getUserID());
+        User friend = userService.findUserByUserID(Integer.parseInt(person));
         List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
         if (this.person == null || !person.equals(owner)) {
             messages2 = new ArrayList<>();
@@ -109,7 +110,7 @@ public class MessagesController {
             }
             this.person = owner;
         }
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person));
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person, user.getNickname(), friend.getNickname()));
         return "p2p-dialog";
     }
 
@@ -119,14 +120,15 @@ public class MessagesController {
                                         @AuthenticationPrincipal UserDetails currentUser,
                                         Model model) {
         User user = securityUserConverter.getUserByDetails(currentUser);
+        User friend = userService.findUserByUserID(Integer.parseInt(person));
         String owner = String.valueOf(user.getUserID());
         if (message.isEmpty())
-            return "redirect:/user/chat/{owner}/{person}";
+            return "redirect:/user/chat/{person}";
         Message message1 = new Message(message, owner, person, "2022");
         messageService.writeToUser(message1);
         messages2.add(message1);
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person));
-        return "redirect:/user/chat/{owner}/{person}";
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person, user.getNickname(), friend.getNickname()));
+        return "redirect:/user/chat/{person}";
     }
 
 }

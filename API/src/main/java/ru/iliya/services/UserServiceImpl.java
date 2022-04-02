@@ -56,7 +56,9 @@ public class UserServiceImpl implements UserService {
         Set<User> uniqUsers = new HashSet<User>();
         uniqUsers.addAll(usersByFirstName);
         uniqUsers.addAll(usersByLastName);
-        uniqUsers.add(userByNickname);
+        if (userByNickname != null) {
+            uniqUsers.add(userByNickname);
+        }
         return new ArrayList<User>(uniqUsers);
     }
 }
