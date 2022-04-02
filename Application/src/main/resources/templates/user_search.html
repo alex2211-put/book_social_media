@@ -20,7 +20,7 @@
                 <tr>
                     <td>
                         <button type="submit" id="home" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/user/info/4}'|">Home
+                                th:onclick="|window.location.href='@{/user/info}'|">Home
                         </button>
                     </td>
                 </tr>
@@ -48,21 +48,21 @@
                 <tr>
                     <td>
                         <button type="submit" id="dialogs" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/user/dialogs/4}'|">Dialogs
+                                th:onclick="|window.location.href='@{/user/dialogs}'|">Dialogs
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <button type="submit" id="favourites" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/favorites/4}'|">Favourites
+                                th:onclick="|window.location.href='@{/favorites}'|">Favourites
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <button type="submit" id="recommendations" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/recs/4}'|">Recommendations
+                                th:onclick="|window.location.href='@{/recs}'|">Recommendations
                         </button>
                     </td>
                 </tr>
@@ -116,7 +116,7 @@
                         <td th:text="${user.lastName}"></td>
                         <td th:text="${user.nickname}"></td>
                         <td>
-                            <a href="http://localhost:8080/user/info">перейти</a>
+                            <a th:href="@{/user/info/__${user.userID}__}">click on</a>
                         </td>
                     </tr>
                     </tbody>

@@ -47,9 +47,11 @@ public class BookSearchController {
     @GetMapping("/book/info/{book_id}")
     public String showBookInfo(@PathVariable(name = "book_id") String book_id,
                                @RequestParam(name = "favourites", required = false, defaultValue = "Add to favourites") String favourites,
+                               @AuthenticationPrincipal UserDetails currentUser,
                                Model model) {
-        model.addAttribute("mark", marksService.findByBookIdAndUserId(Integer.parseInt(book_id), 4));
-        Recommendations recommendations = recommendationsService.findRecommendationByUserIdAndBookId(4, Integer.parseInt(book_id));
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        model.addAttribute("mark", marksService.findByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID()));
+        Recommendations recommendations = recommendationsService.findRecommendationByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
         if (recommendations == null) {
             recommendations = new Recommendations();
             recommendations.setRecommendationID(-1);
@@ -76,7 +78,7 @@ public class BookSearchController {
             favourites = "Add to favourites";
             favouritesService.deleteFavouriteByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
         }
-        return showBookInfo(book_id, favourites, model);
+        return showBookInfo(book_id, favourites, currentUser, model);
     }
 
     @PostMapping("/book/info/addComment/{book_id}")

@@ -21,7 +21,7 @@
                 <tr>
                     <td>
                         <button type="submit" id="home" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/user/info/4}'|">Home
+                                th:onclick="|window.location.href='@{/user/info}'|">Home
                         </button>
                     </td>
                 </tr>
@@ -49,14 +49,14 @@
                 <tr>
                     <td>
                         <button type="submit" id="dialogs" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/user/dialogs/4}'|">Dialogs
+                                th:onclick="|window.location.href='@{/user/dialogs}'|">Dialogs
                         </button>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <button type="submit" id="favourites" name="rating" value="1" class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/favorites/4}'|">Favourites
+                                th:onclick="|window.location.href='@{/favorites}'|">Favourites
                         </button>
                     </td>
                 </tr>
@@ -64,7 +64,7 @@
                     <td>
                         <button type="submit" id="recommendations" name="rating" value="1"
                                 class="main_console neon-blue"
-                                th:onclick="|window.location.href='@{/recs/4}'|">Recommendations
+                                th:onclick="|window.location.href='@{/recs}'|">Recommendations
                         </button>
                     </td>
                 </tr>
@@ -101,31 +101,92 @@
                             <div class="description my_text">
 
                                 <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Ник:</div>
+                                <div style="display: inline-block; font-weight: bold;">Nickname:</div>
                                 <div th:text="${user.nickname}" style="display: inline-block;"></div>
-
+                                <br> <br>
                                 <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Имя:</div>
+                                <div style="display: inline-block; font-weight: bold;">First name:</div>
                                 <div th:text="${user.firstName}" style="display: inline-block;"></div>
-
+                                <br> <br>
                                 <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Фамилия:</div>
+                                <div style="display: inline-block; font-weight: bold;">Last name:</div>
                                 <div th:text="${user.lastName}" style="display: inline-block;"></div>
-
+                                <br> <br>
                                 <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Дата рождения:</div>
+                                <div style="display: inline-block; font-weight: bold;">Birthdate:</div>
                                 <div th:text="${user.birthDate}" style="display: inline-block;"></div>
-
+                                <br> <br>
                                 <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Электронная почта:</div>
+                                <div style="display: inline-block; font-weight: bold;">Email:</div>
                                 <div th:text="${user.email}" style="display: inline-block;"></div>
-
-                                <div></div>
-                                <div style="display: inline-block; font-weight: bold;">Рекомендации:</div>
+                                <br> <br>
+                                <div th:if="${user_id - currentUser.getUserID()}">
+                                    <form id="add-form-2"
+                                          th:action="@{/user/info/addFriends/__${user.userID}__/__${friends}__}"
+                                          th:method="post">
+                                        <div class="row">
+                                            <button id="" type="submit" th:text="${friends}" class="click_me"></button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <br> <br>
+                                <div>
+                                    <form id="add-form-3"
+                                          th:action="@{/user/chat/__${user.userID}__}"
+                                          th:method="get">
+                                        <div class="row">
+                                            <button id=" " class="click_me">Write message</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--                                <div style="display: inline-block; font-weight: bold;">Рекомендации:</div>-->
                             </div>
                         </td>
-                    </tr>
                     </tbody>
+
+                    </tr>
+                </table>
+
+
+                <table class="table_block bl" th:if="${favourites.size()}">
+                    <thead>
+                    <tr>
+                        <th valign="middle" colspan="2" class="table_head">
+                            <div class="title" style="font-size: 30px;">Recommendations</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <td>
+                        <button id="1" type="submit" float-right class="button_message_text"
+                                style="background: none; border: none;"
+                                th:onclick="|window.location.href='@{/book/info/__${favourites.get(favourites.size() - 1).getBook().bookID}__}'|">
+                            <img th:src="${favourites.get(favourites.size() - 1).getBook().imageLink}" alt="book image"
+                                 class="book_photo"
+                                 width="360" height="420"></button>
+                    </td>
+                    <td th:if="${favourites.size() - 1}">
+                        <button id="2" type="submit" float-right class="button_message_text"
+                                style="background: none; border: none;"
+                                th:onclick="|window.location.href='@{/book/info/__${favourites.get(favourites.size() - 2).getBook().bookID}__}'|">
+                            <img th:src="${favourites.get(favourites.size() - 2).getBook().imageLink}" alt="book image"
+                                 class="book_photo"
+                                 width="360" height="420"></button>
+                    </td>
+                    </tr>
+                </table>
+
+                <table class="table_block bl" th:unless="${favourites.size()}">
+                    <thead>
+                    <tr>
+                        <th valign="middle" colspan="2" class="table_head">
+                            <div class="title" style="font-size: 30px;">Recommendations</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <td>
+                        <img src="https://sun9-13.userapi.com/impf/c831208/v831208245/e037d/n2yN8UL53o0.jpg?size=320x240&quality=96&sign=bf5353db4dd0b79b3286ff1cbebb91a7&type=album">
+                    </td>
+                    </tr>
                 </table>
             </div>
         </td>
