@@ -91,10 +91,10 @@
                     <td class="row">
                         <form id="add-form-2" th:action="@{/user_search}" th:method="get">
                             <div class="row">
-                                <input type="text" th:name="search" th:placeholder="найти" class="in_text"/>
+                                <input type="text" th:name="search" th:placeholder="Search" class="in_text"/>
                             </div>
                             <div class="row">
-                                <button id="" type="submit" class="button">Найти</button>
+                                <button id="" type="submit" class="button">Find</button>
                             </div>
                         </form>
                     </td>
@@ -103,10 +103,10 @@
                     <tbody>
                     <tr style="font-family: 'Bradley Hand', sans-serif bold; font-size: 25px;">
                         <td>№</td>
-                        <td>Имя</td>
-                        <td>Фамилия</td>
-                        <td>Ник</td>
-                        <td>Ссылка</td>
+                        <td>First name</td>
+                        <td>Last name</td>
+                        <td>Nickname</td>
+                        <td>Link</td>
                     </tr>
                     </tbody>
                     <tbody th:each="user, iStat : ${users}" class="my_text">

@@ -13,4 +13,5 @@ public interface AuthorRepository extends JpaRepository<Author, Integer> {
 
     List<Author> findByLastNameLike(String secondName);
     Author findAuthorByFirstNameAndLastName(String firstname, String lastName);
+    Author findByLastName(String lastName);
 }
