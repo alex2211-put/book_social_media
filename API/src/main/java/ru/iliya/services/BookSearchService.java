@@ -6,6 +6,7 @@ import ru.iliya.entities.Author;
 
 import ru.iliya.entities.Book;
 import ru.iliya.entities.Comments;
+import ru.iliya.repositories.AuthorRepository;
 import ru.iliya.repositories.BaseRepository;
 
 import java.util.ArrayList;
@@ -17,6 +18,8 @@ public class BookSearchService {
 
     @Autowired
     BaseRepository baseRepository;
+    @Autowired
+    AuthorRepository authorRepository;
 
     public Book findBookById(String bookId) {
         return baseRepository.findBookByBookID(Integer.parseInt(bookId));
@@ -44,7 +47,7 @@ public class BookSearchService {
             return baseRepository.findByGenre(genre);
         }
         if (titleIsEmpty && !authorIsEmpty && genreIsEmpty) {
-            return baseRepository.findByAuthor(names[1], names[2]);
+            return baseRepository.findByAuthor(names);
         }
         if (!titleIsEmpty && authorIsEmpty && genreIsEmpty ) {
             return baseRepository.findBooksByTitle(title);
@@ -52,8 +55,13 @@ public class BookSearchService {
         if (titleIsEmpty && !authorIsEmpty && !genreIsEmpty) {
             List <Author> authors = new ArrayList<>();
             Author author = new Author();
-            author.setFirstName(names[0]);
-            author.setLastName(names[1]);
+            if (names.length == 2) {
+                author.setFirstName(names[0]);
+                author.setLastName(names[1]);
+            }
+            else {
+                author = authorRepository.findByLastName(names[0]);
+            }
             authors.add(author);
             return baseRepository.findBooksByAuthorsAndGenre(authors, genre);
         }
@@ -63,8 +71,13 @@ public class BookSearchService {
         if (!titleIsEmpty && !authorIsEmpty ) {
             List <Author> authors = new ArrayList<>();
             Author author = new Author();
-            author.setFirstName(names[0]);
-            author.setLastName(names[1]);
+            if (names.length == 2) {
+                author.setFirstName(names[0]);
+                author.setLastName(names[1]);
+            }
+            else {
+                author = authorRepository.findByLastName(names[0]);
+            }
             authors.add(author);
             if (genreIsEmpty) {
                 return baseRepository.findBooksByTitleAndAuthors(title, authors);

@@ -36,11 +36,11 @@ public class BookSearchController {
 
     @GetMapping("/book/search") //book/search
     public String showBooksByTitle(@RequestParam(name = "title", required = false, defaultValue = "") String title,
-                                   @RequestParam(name = "name", required = false, defaultValue = "") String name,
+                                   @RequestParam(name = "author", required = false, defaultValue = "") String author,
                                    @RequestParam(name = "genre", required = false, defaultValue = "") String genre,
                                    Model model) {
         model.addAttribute("books",
-                bookSearchService.findBooksByTitleAuthorGenre(title, name, genre));
+                bookSearchService.findBooksByTitleAuthorGenre(title, author, genre));
         return "book-search"; //view
     }
 
