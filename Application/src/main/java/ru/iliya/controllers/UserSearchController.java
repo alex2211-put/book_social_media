@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.iliya.entities.Favourites;
 import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.FavouritesService;
 import ru.iliya.services.FriendsService;
+import ru.iliya.services.RecommendationsService;
 import ru.iliya.services.UserServiceImpl;
 
 import java.text.ParseException;
@@ -40,6 +42,8 @@ public class UserSearchController {
     SecurityUserConverter securityUserConverter;
     @Autowired
     FriendsService friendsService;
+    @Autowired
+    RecommendationsService recommendationsService;
 
     String email;
 
@@ -63,7 +67,7 @@ public class UserSearchController {
         model.addAttribute("user",
                 userService.findUserByUserID(user_id));
         model.addAttribute("friends", friends);
-        model.addAttribute("favourites", favouritesService.findFavouritesByUserID(user_id));
+        model.addAttribute("recommendations", recommendationsService.findRecommendationsByUserID(user_id));
         model.addAttribute("currentUser", user);
         return "user";
     }
@@ -103,7 +107,7 @@ public class UserSearchController {
                 userService.findUserByUserID(user.getUserID()));
         model.addAttribute("user_id", user.getUserID());
         model.addAttribute("currentUser", user);
-        model.addAttribute("favourites", favouritesService.findFavouritesByUserID(user.getUserID()));
+        model.addAttribute("recommendations", recommendationsService.findRecommendationsByUserID(user.getUserID()));
         return "user";
     }
 
