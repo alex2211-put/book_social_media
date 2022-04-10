@@ -148,7 +148,7 @@
                 </table>
 
 
-                <table class="table_block bl" th:if="${favourites.size()}">
+                <table class="table_block bl" th:if="${recommendations.size()}">
                     <thead>
                     <tr>
                         <th valign="middle" colspan="2" class="table_head">
@@ -159,23 +159,23 @@
                     <td>
                         <button id="1" type="submit" float-right class="button_message_text"
                                 style="background: none; border: none;"
-                                th:onclick="|window.location.href='@{/book/info/__${favourites.get(favourites.size() - 1).getBook().bookID}__}'|">
-                            <img th:src="${favourites.get(favourites.size() - 1).getBook().imageLink}" alt="book image"
+                                th:onclick="|window.location.href='@{/book/info/__${recommendations.get(recommendations.size() - 1).getBook().bookID}__}'|">
+                            <img th:src="${recommendations.get(recommendations.size() - 1).getBook().imageLink}" alt="book image"
                                  class="book_photo"
                                  width="360" height="420"></button>
                     </td>
-                    <td th:if="${favourites.size() - 1}">
+                    <td th:if="${recommendations.size() - 1}">
                         <button id="2" type="submit" float-right class="button_message_text"
                                 style="background: none; border: none;"
-                                th:onclick="|window.location.href='@{/book/info/__${favourites.get(favourites.size() - 2).getBook().bookID}__}'|">
-                            <img th:src="${favourites.get(favourites.size() - 2).getBook().imageLink}" alt="book image"
+                                th:onclick="|window.location.href='@{/book/info/__${recommendations.get(recommendations.size() - 2).getBook().bookID}__}'|">
+                            <img th:src="${recommendations.get(recommendations.size() - 2).getBook().imageLink}" alt="book image"
                                  class="book_photo"
                                  width="360" height="420"></button>
                     </td>
                     </tr>
                 </table>
 
-                <table class="table_block bl" th:unless="${favourites.size()}">
+                <table class="table_block bl" th:unless="${recommendations.size()}">
                     <thead>
                     <tr>
                         <th valign="middle" colspan="2" class="table_head">

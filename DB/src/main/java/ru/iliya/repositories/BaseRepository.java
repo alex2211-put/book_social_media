@@ -10,7 +10,8 @@ public interface BaseRepository{
     Book addBook(Book book);
     Book getByTitle(String title);
     Book findBookByBookID(Integer bookId);
-    List <Book> findByAuthor(String firstname, String lastName);
+    List <Book> findByAuthor(String firstname, String lastname);
+    List <Book> findByAuthor(String[] fullName);
     List <Book> findByGenre(String genre);
     List<Book> getAll();
     Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId);

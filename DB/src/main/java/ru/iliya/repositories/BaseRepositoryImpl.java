@@ -54,9 +54,24 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
-    public List<Book> findByAuthor(String firstname, String lastName) {
-        Author author = authorRepository.findAuthorByFirstNameAndLastName(firstname, lastName);
+    public List<Book> findByAuthor(String[] fullName) {
         List<Author> authors = new ArrayList<>();
+
+        if (fullName.length == 2) {
+            Author author = authorRepository
+                    .findAuthorByFirstNameAndLastName(fullName[0], fullName[1]);
+            authors.add(author);
+        }
+        else {
+            authors = authorRepository.findByLastNameLike(fullName[0]);
+        }
+        return bookRepository.findByAuthors(authors);
+    }
+    @Override
+    public List<Book> findByAuthor(String firstName, String lastName) {
+        List<Author> authors = new ArrayList<>();
+        Author author = authorRepository
+                .findAuthorByFirstNameAndLastName(firstName, lastName);
         authors.add(author);
         return bookRepository.findByAuthors(authors);
     }
