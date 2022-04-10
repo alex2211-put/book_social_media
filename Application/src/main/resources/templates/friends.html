@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="apple-touch-icon" sizes="180x180" th:href="@{/favicon/apple-touch-icon.png}">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/favicon/favicon-32x32.png}">
+  <link rel="icon" type="image/png" sizes="16x16" th:href="@{/favicon/favicon-16x16.png}">
+  <link rel="manifest" th:href="@{/static/favicon/site.webmanifest}">
+  <link th:href="@{/css/userSearch.css}" rel="stylesheet"/>
+  <script type="text/javascript" th:src="@{/js/actions.js}"></script>
+</head>
+<body style="background: #8EACB4;">
+
+
+<table style="width: 100%">
+  <tr>
+    <td style="width: 100%; display: flex; margin-top: 10%;">
+      <table style="width: 60%; margin-right: 10px; margin-left: 40%; background: linear-gradient(45deg, darkgrey, #33383A);border-radius: 8px;"
+             class="br">
+        <tbody>
+        <tr>
+          <td>
+            <button type="submit" id="home" name="rating" value="1" class="main_console neon-blue"
+                    th:onclick="|window.location.href='@{/user/info}'|">Home
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" id="book_search" name="rating" value="1" class="main_console neon-blue"
+                    th:onclick="|window.location.href='@{/book/search}'|">Find books
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" id="user_search" name="rating" value="1" class="main_console neon-blue"
+                    th:onclick="|window.location.href='@{/user_search}'|">Find users
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" id="friends" name="rating" value="1" class="main_console neon-blue"
+                    th:onclick="|window.location.href='@{/user/friends}'|">Friends
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" id="dialogs" name="rating" value="1" class="main_console neon-blue"
+                    th:onclick="|window.location.href='@{/user/dialogs}'|">Dialogs
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" id="favourites" name="rating" value="1" class="main_console neon-blue"
+                    th:onclick="|window.location.href='@{/favorites}'|">Favourites
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button type="submit" id="recommendations" name="rating" value="1" class="main_console neon-blue"
+                    th:onclick="|window.location.href='@{/recs}'|">Recommendations
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <form th:action="@{/auth/logout}" th:method="post">
+              <button type="submit" id="logout"
+                      class="last_main_console neon-purple">Logout
+              </button>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </td>
+    <td style="width: 50%;">
+      <div style="text-align: center; margin-top: 5%;">
+        <table class="table_block bl">
+          <thead>
+          <tr>
+            <th valign="middle" colspan="3" class="table_header">
+              <div class="title">Friends</div>
+            </th>
+          </tr>
+          </thead>
+          <td class="row">
+          </td>
+        </table>
+        <table class="table_block bl">
+          <tbody>
+          <tr style="font-family: 'Bradley Hand', sans-serif bold; font-size: 25px;">
+            <td>№</td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Ник</td>
+            <td>Ссылка</td>
+          </tr>
+          </tbody>
+          <tbody th:each="person, iStat : ${personList}" class="my_text">
+          <tr th:style="${iStat.odd}? 'font-weight: bold;'">
+            <td th:text="${iStat.index}+1"></td>
+            <td th:text="${person.user.firstName}"></td>
+            <td th:text="${person.user.lastName}"></td>
+            <td th:text="${person.user.nickname}"></td>
+            <td>
+              <a th:href="@{/user/info/__${person.user.userID}__}">click on</a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </td>
+    <td style="width: 25%;"></td>
+  </tr>
+</table>
+</body>
+</html>

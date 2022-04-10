@@ -10,6 +10,8 @@ public class Friends {
     private int userID;
     private int user2ID;
     private Date dateFriendship;
+    private User user;
+    private User man;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,13 +55,12 @@ public class Friends {
     public String toString() {
         return "Friends{" +
                 "friendID=" + friendID +
-                ", user1ID='" + userID + '\'' +
-                ", user2ID='" + user2ID + '\'' +
+                ", userID=" + userID +
+                ", user2ID=" + user2ID +
                 ", dateFriendship=" + dateFriendship +
+                ", user=" + user +
                 '}';
     }
-
-    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userID")

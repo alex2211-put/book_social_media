@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import ru.iliya.entities.Friends;
 import ru.iliya.entities.Favourites;
 import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
@@ -44,6 +46,16 @@ public class UserSearchController {
     FriendsService friendsService;
     @Autowired
     RecommendationsService recommendationsService;
+
+    private class Person {
+        public User user;
+        public Friends friends;
+
+        public Person(User user, Friends friends) {
+            this.user = user;
+            this.friends = friends;
+        }
+    }
 
     String email;
 
@@ -114,6 +126,23 @@ public class UserSearchController {
     @GetMapping("/registration")
     public String registration() {
         return "registration";
+    }
+
+    @GetMapping("/user/friends")
+    public String showUserFriends(@AuthenticationPrincipal UserDetails currentUser,
+                                  Model model) {
+
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        List<Friends> friends = friendsService.findByUserID(user.getUserID());
+        System.out.println(friends);
+        List<Person> personList = new ArrayList<>();
+        for (Friends friend : friends) {
+            User user1 = userService.findUserByUserID(friend.getUser2ID());
+            personList.add(new Person(user1, friend));
+        }
+        model.addAttribute("personList", personList);
+        System.out.println(friends);
+        return "friends";
     }
 
     @PostMapping("/new/user")
