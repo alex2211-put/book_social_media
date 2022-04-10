@@ -21,6 +21,21 @@ public class User {
     private Role role;
     private String imageLink;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", nickname='" + nickname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", email='" + email + '\'' +
+                ", openProfile=" + openProfile +
+                ", hashPassword='" + hashPassword + '\'' +
+                ", role=" + role +
+                ", imageLink='" + imageLink + '\'' +
+                '}';
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

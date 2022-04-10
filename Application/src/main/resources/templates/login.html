@@ -9,25 +9,28 @@
     <link th:href="@{/css/login.css}" rel="stylesheet"/>
 </head>
 <body style="background: #8EACB4;">
-    <div class="form">
+<div class="form">
     <form method="post" action="/auth/login">
         <div class="title">Login</div>
 
-        <p class="input-container ic1">
-            <label for="username">Username</label>
+        <div class="input-container ic1">
+
             <input type="text" id="username" name="username" class="input" placeholder="Username" required>
-        </p>
-        <p class="input-container ic2">
-            <label for="password">Password</label>
+            <div class="cut"></div>
+            <label for="username" class="placeholder">Username</label>
+        </div>
+        <div class="input-container ic2">
             <input type="password" id="password" name="password" class="input" placeholder="Password" required>
-        </p>
+            <div class="cut"></div>
+            <label for="password" class="placeholder">Password</label>
+        </div>
         <button class="button" type="submit">Sign in</button>
     </form>
-        <form th:action="@{/registration}" th:method="get">
-            <button type="submit" id="signup"
-                    class="button">Sign up
-            </button>
-        </form>
-    </div>
+    <form th:action="@{/registration}" th:method="get">
+        <button type="submit" id="signup"
+                class="button">Sign up
+        </button>
+    </form>
+</div>
 </body>
 </html>

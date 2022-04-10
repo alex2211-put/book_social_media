@@ -31,7 +31,7 @@ public class SpringApplicationData implements CommandLineRunner {
         mongoMessageRepository.addDialogsToMongoDB("1", "123");
         System.out.println("-------------------------------");
         System.out.println("Dialogs found for user 1:");
-        System.out.println(mongoMessageRepository.getDialogsForCollection("1"));
+        System.out.println(mongoMessageRepository.getMessagesForCollection("1_123"));
 //        // fetch an individual customer
 //
         System.out.println("--------------------------------");
