@@ -4,6 +4,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -19,6 +20,20 @@ public class Role {
     }
 
     public Role(){}
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Role role = (Role) o;
+        return roleID == role.roleID && mask == role.mask && name.equals(role.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roleID, name, mask);
+    }
+
     public Role(int roleID) {
         this.roleID = roleID;
         this.mask = roleID;

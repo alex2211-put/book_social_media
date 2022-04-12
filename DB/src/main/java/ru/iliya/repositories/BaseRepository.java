@@ -57,5 +57,8 @@ public interface BaseRepository{
     void deleteFriendsByFriendID(int friendID);
     List<Friends> findByUserID(int userID);
     List<Friends> findByUserIDAndUser2ID(int userID, int user2ID);
+
+    List<Friends> findByUser2ID(int user2ID);
+
     void setFriendsByUserIDAndUser2ID(int userID, int user2ID);
 }

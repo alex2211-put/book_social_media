@@ -9,11 +9,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ErrorController extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    @GetMapping("/error")
-    public String oneException(Exception e, WebRequest web, Model model) {
-        model.addAttribute("error", e.getMessage());
-        return "error-page";
-    }
+//    @ExceptionHandler(Exception.class)
+//    @GetMapping("/error")
+//    public String oneException(Exception e, WebRequest web, Model model) {
+//        model.addAttribute("error", e.getMessage());
+//        return "error-page";
+//    }
 
 }
