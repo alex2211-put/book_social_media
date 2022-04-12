@@ -88,8 +88,30 @@
             </th>
           </tr>
           </thead>
+          <tr>
           <td class="row">
+            <form id="add-form-3" th:action="@{/user/friends}" th:method="get">
+              <div class="row">
+                <button id="3" type="submit" class="button" style="margin: 0; width: auto">Добавленные</button>
+              </div>
+            </form>
           </td>
+            <td class="row">
+              <form id="add-form-4" th:action="@{/user/friends/incoming}" th:method="get">
+                <div class="row">
+                  <button id="2" type="submit" class="button" style="margin: 0; width: auto">Исходящие заявки</button>
+                </div>
+              </form>
+            </td>
+            <td class="row">
+              <form id="add-form-5" th:action="@{/user/friends/outgoing}" th:method="get">
+                <div class="row">
+                  <button id="1" type="submit" class="button" style="margin: 0; width: auto">Входящие заявки</button>
+                </div>
+              </form>
+            </td>
+          </tr>
+          <tr style="height: 20px"></tr>
         </table>
         <table class="table_block bl">
           <tbody>

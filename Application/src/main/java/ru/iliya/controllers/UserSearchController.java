@@ -31,6 +31,7 @@ import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -133,15 +134,75 @@ public class UserSearchController {
                                   Model model) {
 
         User user = securityUserConverter.getUserByDetails(currentUser);
+        List<User> res = getFriendsForUser(user);
+        List<Person> personList = new ArrayList<>();
+        for (User user1 : res) {
+            personList.add(new Person(user1, null));
+        }
+        model.addAttribute("personList", personList);
+        return "friends";
+    }
+
+    private List<User> getFriendsForUser(User user) {
         List<Friends> friends = friendsService.findByUserID(user.getUserID());
-        System.out.println(friends);
+        List<Friends> friends1 = friendsService.findByUser2ID(user.getUserID());
+        List<User> users = friends.stream().map(
+                friend -> userService.findUserByUserID(friend.getUser2ID())
+        ).toList();
+        List<User> users2 = friends1.stream().map(
+                friend -> userService.findUserByUserID(friend.getUserID())
+        ).toList();
+        List<User> res = new ArrayList<>();
+        for (User user1 : users) {
+            if (users2.contains(user1))
+                res.add(user1);
+        }
+        return res;
+    }
+
+    @GetMapping("/user/friends/incoming")
+    public String showUserFriendsIncoming(@AuthenticationPrincipal UserDetails currentUser,
+                                          Model model) {
+
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        List<User> res = getFriendsForUser(user);
+        List<Integer> idUsers = res.stream().map(
+                User::getUserID
+        ).toList();
+        List<Friends> friends = friendsService.findByUser2ID(user.getUserID());
+        List<Person> personList = new ArrayList<>();
+        for (Friends friend : friends) {
+            User user1 = userService.findUserByUserID(friend.getUserID());
+            if (idUsers.contains(user1.getUserID())) {
+                continue;
+            } else {
+                personList.add(new Person(user1, friend));
+            }
+        }
+        model.addAttribute("personList", personList);
+        return "friends";
+    }
+
+    @GetMapping("/user/friends/outgoing")
+    public String showUserFriendsOutgoing(@AuthenticationPrincipal UserDetails currentUser,
+                                          Model model) {
+
+        User user = securityUserConverter.getUserByDetails(currentUser);
+        List<User> res = getFriendsForUser(user);
+        List<Integer> idUsers = res.stream().map(
+                User::getUserID
+        ).toList();
+        List<Friends> friends = friendsService.findByUserID(user.getUserID());
         List<Person> personList = new ArrayList<>();
         for (Friends friend : friends) {
             User user1 = userService.findUserByUserID(friend.getUser2ID());
-            personList.add(new Person(user1, friend));
+            if (idUsers.contains(user1.getUserID())) {
+                continue;
+            } else {
+                personList.add(new Person(user1, friend));
+            }
         }
         model.addAttribute("personList", personList);
-        System.out.println(friends);
         return "friends";
     }
 
@@ -157,7 +218,7 @@ public class UserSearchController {
         SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
         Date date = parser.parse(birthdate);
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(12);
-        try{
+        try {
             userService.setUserByParams(nickname, firstName, lastName, date, email, true, bCryptPasswordEncoder.encode(password), 2, imagelink);
         } catch (Exception exc) {
             model.addAttribute("firstName", firstName);
@@ -166,15 +227,12 @@ public class UserSearchController {
             model.addAttribute("email", email);
             model.addAttribute("imagelink", imagelink);
             model.addAttribute("birthdate", birthdate);
-            if (userService.findUserByEmail(email).size() != 0)
-            {
+            if (userService.findUserByEmail(email).size() != 0) {
                 return "err_reg_email";
             }
-            if (userService.findUserByNickname(nickname) != null)
-            {
+            if (userService.findUserByNickname(nickname) != null) {
                 return "err_reg_nick";
-            }
-            else return "error-page";
+            } else return "error-page";
         }
         return "login";
     }

@@ -321,6 +321,11 @@ public class BaseRepositoryImpl implements BaseRepository {
     }
 
     @Override
+    public List<Friends> findByUser2ID(int user2ID) {
+        return friendsRepository.findByUser2ID(user2ID);
+    }
+
+    @Override
     public void setFriendsByUserIDAndUser2ID(int userID, int user2ID) {
         Friends friends = new Friends();
         friends.setUserID(userID);

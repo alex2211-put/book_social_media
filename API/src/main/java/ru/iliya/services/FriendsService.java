@@ -25,6 +25,10 @@ public class FriendsService {
         return baseRepository.findByUserIDAndUser2ID(userID, user2ID);
     }
 
+    public List<Friends> findByUser2ID(int user2ID) {
+        return baseRepository.findByUser2ID(user2ID);
+    }
+
     public void setFriendsByUserIDAndUser2ID(int userID, int user2ID) {
         baseRepository.setFriendsByUserIDAndUser2ID(userID, user2ID);
     }

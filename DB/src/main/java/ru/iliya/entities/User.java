@@ -2,6 +2,7 @@ package ru.iliya.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name="\"user\"", uniqueConstraints = {
@@ -11,6 +12,20 @@ import java.util.Date;
 })
 public class User {
     private int userID;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userID == user.userID && openProfile == user.openProfile && nickname.equals(user.nickname) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && birthDate.equals(user.birthDate) && email.equals(user.email) && hashPassword.equals(user.hashPassword) && role.equals(user.role) && Objects.equals(imageLink, user.imageLink);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userID, nickname, firstName, lastName, birthDate, email, openProfile, hashPassword, role, imageLink);
+    }
+
     private String nickname;
     private String firstName;
     private String lastName;
