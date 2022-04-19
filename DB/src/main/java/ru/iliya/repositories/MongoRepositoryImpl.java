@@ -16,7 +16,7 @@ import java.util.*;
 
 @Repository
 public class MongoRepositoryImpl implements MongoRepository {
-    MongoClient mongoClient;
+    MongoClient mongoClient = null;
 
     @Override
     public MongoClient getClient() {
@@ -31,14 +31,13 @@ public class MongoRepositoryImpl implements MongoRepository {
     }
 
     public MongoRepositoryImpl() {
-        this.mongoClient = new MongoClient("localhost", 27017);
     }
 
     @Override
     public void insertMessage(Message message) {
         MongoDatabase db = getDb("messages");
-        MongoCollection<Document> collection1 = db.getCollection(message.getId());
-        collection1.insertOne(Document.parse(message.toJson()));
+        MongoCollection<Document> dialogCollection = db.getCollection(message.getId());
+        dialogCollection.insertOne(Document.parse(message.toJson()));
     }
 
 
@@ -49,8 +48,8 @@ public class MongoRepositoryImpl implements MongoRepository {
     }
 
     private List<Document> getDocuments(String collection, MongoDatabase db) {
-        MongoCollection<Document> collection1 = db.getCollection(collection);
-        FindIterable<Document> iterDoc = collection1.find();
+        MongoCollection<Document> dialogCollection = db.getCollection(collection);
+        FindIterable<Document> iterDoc = dialogCollection.find();
         List<Document> documents = new ArrayList<>();
         for (Document document : iterDoc) {
             documents.add(document);
@@ -66,8 +65,8 @@ public class MongoRepositoryImpl implements MongoRepository {
 
     private void addDialogToMongoDB(String owner, String partner) throws JSONException {
         MongoDatabase db = getDb("dialogs");
-        MongoCollection<Document> collection1 = db.getCollection(owner);
-        FindIterable<Document> iterDoc = collection1.find();
+        MongoCollection<Document> dialogCollection = db.getCollection(owner);
+        FindIterable<Document> iterDoc = dialogCollection.find();
         Document document = null;
         for (Document documentColl : iterDoc) {
             document = documentColl;
@@ -76,9 +75,9 @@ public class MongoRepositoryImpl implements MongoRepository {
         if (document != null) {
             userDoc = new HashSet<>(Arrays.asList(document.get("user").toString().replace("[", "").replace(" ", "").replace("]", "").split(",")));
             userDoc.add(partner);
-            collection1.updateOne(document, new BasicDBObject("$set", Document.parse(hashSetToJson(userDoc))));
+            dialogCollection.updateOne(document, new BasicDBObject("$set", Document.parse(hashSetToJson(userDoc))));
         } else {
-            collection1.insertOne(Document.parse("{'user': '" + partner + "'}"));
+            dialogCollection.insertOne(Document.parse("{'user': '" + partner + "'}"));
         }
     }
 
@@ -97,8 +96,8 @@ public class MongoRepositoryImpl implements MongoRepository {
     @Override
     public String getLastMessagesForCollection(String collection) {
         MongoDatabase db = getDb("messages");
-        MongoCollection<Document> collection1 = db.getCollection(collection);
-        FindIterable<Document> cursor = collection1.find().sort(new BasicDBObject("_id", OrderBy.DESC.getIntRepresentation())).limit(1);
+        MongoCollection<Document> dialogCollection = db.getCollection(collection);
+        FindIterable<Document> cursor = dialogCollection.find().sort(new BasicDBObject("_id", OrderBy.DESC.getIntRepresentation())).limit(1);
         for (Document document : cursor) {
             return (String) document.get("text");
         }
