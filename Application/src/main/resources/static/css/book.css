@@ -1,7 +1,7 @@
 *{transition: all 0.3s linear;}
 
 .title {
-    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0px 15px #fff, 0 0 0px #38eeff, 0 0 0px #38eeff;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0 15px #fff, 0 0 0 #38eeff, 0 0 0 #38eeff;
     font-family: 'Bradley Hand', sans-serif bold;
     font-size: 50px;
     color: #ebffff;
@@ -234,7 +234,7 @@ th {
     height: 100%;
     border-radius: 10px;
     border: 1px solid #38eeff;
-    box-shadow: 0px 0px 0px 0px #38eeff,inset 0px 0px 0px 0px #38eeff, 0px 0px 20px 4px #38eeff,inset 0px 0px 20px 0px #38eeff;
+    box-shadow: 0 0 0 0 #38eeff, inset 0 0 0 0 #38eeff, 0 0 20px 4px #38eeff, inset 0 0 20px 0 #38eeff;
     position:relative;
     color:white;
     display: flex;
@@ -247,7 +247,7 @@ th {
     height: 100%;
     border-radius: 10px;
     border: 1px solid #38eeff;
-    box-shadow: 0px 0px 0px 0px #0e3bbf, inset 0px 0px 0px 0px #38eeff, 0px 0px 20px 4px #38eeff, inset 0px 0px 20px 0px #38eeff;
+    box-shadow: 0 0 0 0 #0e3bbf, inset 0 0 0 0 #38eeff, 0 0 20px 4px #38eeff, inset 0 0 20px 0 #38eeff;
     position:relative;
     color:white;
     justify-content: center;
@@ -258,13 +258,13 @@ th {
     margin: 0 auto;
     text-align: center;
     color: #ebffff;
-    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0px 15px #fff, 0 0 10px #38eeff, 0 0 50px #38eeff;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0 15px #fff, 0 0 10px #38eeff, 0 0 50px #38eeff;
 }
 .neon-purple {
     margin: 0 auto;
     text-align: center;
     color: #ebffff;
-    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0px 15px #fff, 0 0 10px #ff00de, 0 0 50px #ff00de;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0 15px #fff, 0 0 10px #ff00de, 0 0 50px #ff00de;
 }
 .my_text {
     font-family: 'Bradley Hand', sans-serif bold;

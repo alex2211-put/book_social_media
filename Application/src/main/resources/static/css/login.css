@@ -15,7 +15,7 @@ body {
     padding: 20px;
     width: 450px;
     border: 1px solid #38eeff;
-    box-shadow: 0px 0px 0px 0px #38eeff,inset 0px 0px 0px 0px #38eeff, 0px 0px 20px 4px #38eeff,inset 0px 0px 20px 0px #38eeff;
+    box-shadow: 0 0 0 0 #38eeff, inset 0 0 0 0 #38eeff, 0 0 20px 4px #38eeff, inset 0 0 20px 0 #38eeff;
 
 }
 .title {
@@ -25,7 +25,7 @@ body {
     margin-top: 30px;
     text-align: center;
     font-family: 'Bradley Hand', sans-serif bold;
-    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0px 15px #fff, 0 0 0px #38eeff, 0 0 0px #38eeff;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.3), 0 0 15px #fff, 0 0 0 #38eeff, 0 0 0 #38eeff;
 }
 .input-container {
     height: 50px;
