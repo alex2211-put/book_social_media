@@ -52,7 +52,7 @@ public class SpringApplicationApp {
 //            friendsService.setFriendsByUserIDAndUser2ID(1, 4);
 //            friendsService.setFriendsByUserIDAndUser2ID(1, 4);
 //            friendsService.deleteFriendsByFriendID(friendsService.findByUserIDAndUser2ID(1, 4).get(0).getFriendID());
-            System.out.println(friendsService.findByUserIDAndUser2ID(1, 4));
+//            System.out.println(friendsService.findByUserIDAndUser2ID(1, 4));
             System.out.println("----------end-----------");
         };
     }

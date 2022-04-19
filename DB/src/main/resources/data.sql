@@ -857,15 +857,15 @@ insert into public.role (role_id, name, mask)
 values (3, 'user', 3),
        (2, 'developer', 2),
        (1, 'admin', 1);
-insert into public.user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, role_id)
-values  (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1),
-        (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1),
-        (1, '2022-03-15 18:11:32.000000', 'zzza@gmail.com', 'ilya', '123', 'lll', 'ilaya', true, 1),
-        (4, '2001-09-04', 'osipov.ia@phystech.edu', 'Илья', '$2a$12$mUVm.bSHIwJ.Qm1Ev7SI4..m1Qksjxo0BHbLGbepXnczSAg4cvFUC', 'Осипов', 'Riernish', true, 1),
-        (5, '2001-04-01', 'mikhailov.ra@phystech.edu', 'Роман', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Михайлов', 'RomanMikhailovDASR', true, 2),
-        (6, '2001-11-22', 'putin.al@phystech.edu', 'Александр', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Путин', 'alik_put', true, 2),
-        (8, '1988-12-14', 'zabivaka88@bk.ru', 'Григорий', '$2a$12$PmnJlLLKErtUUuqr2HK77ONay9q.DmpGtPrVn7hJ42yveB2Q5dOGO', 'Тарасов', '4ERTEHbI|_|_|', true, 3),
-        (7, '2007-08-31', 'alexmmas@mail.ru', 'Станислав', '$2a$12$PmnJlLLKErtUUuqr2HK77ONay9q.DmpGtPrVn7hJ42yveB2Q5dOGO', 'Петров', 'DyadyaDeda', true, 3);
+insert into public.user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, role_id, image_link)
+values  (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1, null),
+        (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1, null),
+        (9, '2022-03-15 18:11:32.000000', 'zzza@gmail.com', 'ilya', '123', 'lll', 'ilaya', true, 1, null),
+        (4, '2001-09-04', 'osipov.ia@phystech.edu', 'Илья', '$2a$12$mUVm.bSHIwJ.Qm1Ev7SI4..m1Qksjxo0BHbLGbepXnczSAg4cvFUC', 'Осипов', 'Riernish', true, 1, null),
+        (5, '2001-04-01', 'mikhailov.ra@phystech.edu', 'Роман', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Михайлов', 'RomanMikhailovDASR', true, 2, 'https://sun9-52.userapi.com/impg/UOvsslq_Y2NbWjln206Au_Z-GR3y75czHDqMBQ/yITh4C3sx-A.jpg?size=960x1280&quality=96&sign=e16b0118332fc99c9227fcd210875ecd&type=album'),
+        (6, '2001-11-22', 'putin.al@phystech.edu', 'Александр', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Путин', 'alik_put', true, 2, null),
+        (8, '1988-12-14', 'zabivaka88@bk.ru', 'Григорий', '$2a$12$PmnJlLLKErtUUuqr2HK77ONay9q.DmpGtPrVn7hJ42yveB2Q5dOGO', 'Тарасов', '4ERTEHbI|_|_|', true, 3, null),
+        (7, '2007-08-31', 'alexmmas@mail.ru', 'Станислав', '$2a$12$PmnJlLLKErtUUuqr2HK77ONay9q.DmpGtPrVn7hJ42yveB2Q5dOGO', 'Петров', 'DyadyaDeda', true, 3, null);
 -- insert into favourites (link_id, book_id, date_favourite, user_id)
 -- values  (1, 5934453, '2008-10-23 10:37:22', 1),
 --         (2, 5993441, '2008-10-23 10:37:22', 123),
@@ -896,10 +896,11 @@ values  (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh
 --         (27, 6064846, '2008-10-23 10:37:22', 8),
 --         (28, 6018175, '2008-10-23 10:37:22', 8),
 --         (29, 5933923, CURRENT_TIMESTAMP , 8);
--- insert into recommendations(recommendation_id, user_id, book_id, date_recommendation)
--- values (1, 1, 6064961, CURRENT_TIMESTAMP ),
---        (2, 123, 5933923, '2008-10-23 10:37:22'),
---        (3, 123, 5958475, '2008-10-23 10:37:22'),
+insert into recommendations(recommendation_id, user_id, book_id, date_recommendation)
+values (2, 5, 5933923, '2008-10-23 10:37:22'),
+--        (1, 1, 6064961, CURRENT_TIMESTAMP ),
+--        (2, 5, 5933923, '2008-10-23 10:37:22'),
+       (3, 5, 5958475, '2008-10-23 10:37:22');
 --        (4, 4, 5990224, CURRENT_TIMESTAMP ),
 --        (5, 4, 6024514, CURRENT_TIMESTAMP ),
 --        (6, 4, 5951390, CURRENT_TIMESTAMP ),
