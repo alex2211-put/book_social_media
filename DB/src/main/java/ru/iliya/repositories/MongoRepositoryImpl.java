@@ -16,7 +16,7 @@ import java.util.*;
 
 @Repository
 public class MongoRepositoryImpl implements MongoRepository {
-    MongoClient mongoClient;
+    MongoClient mongoClient = null;
 
     @Override
     public MongoClient getClient() {
@@ -31,7 +31,6 @@ public class MongoRepositoryImpl implements MongoRepository {
     }
 
     public MongoRepositoryImpl() {
-        this.mongoClient = new MongoClient("localhost", 27017);
     }
 
     @Override

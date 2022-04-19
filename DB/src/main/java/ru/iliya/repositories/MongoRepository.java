@@ -10,11 +10,17 @@ import ru.iliya.entities.Message;
 import java.util.List;
 
 public interface MongoRepository {
+
     MongoClient getClient();
+
     void insertMessage(Message message) throws JsonProcessingException;
+
     List<Document> getMessagesForCollection(String collection);
+
     void addDialogsToMongoDB(String userFrom, String userTo) throws JSONException;
+
     List<Document> getDialogsForCollection(String collection);
+
     String getLastMessagesForCollection(String collection);
 
 }
