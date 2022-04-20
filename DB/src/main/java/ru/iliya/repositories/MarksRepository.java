@@ -13,6 +13,7 @@ public interface MarksRepository extends JpaRepository<Marks, Integer> {
     Marks findMarksByBookIdAndUserId(Integer bookId, Integer userIid);
 
     List<Marks> findMarksByBookId(Integer bookId);
+
     @Transactional
     void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId);
 }

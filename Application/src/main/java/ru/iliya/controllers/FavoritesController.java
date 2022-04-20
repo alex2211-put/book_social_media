@@ -16,6 +16,7 @@ import ru.iliya.services.FavouritesService;
 
 @Controller
 public class FavoritesController {
+
     @Autowired
     FavouritesService favouritesService;
     @Autowired

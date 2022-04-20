@@ -8,15 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.iliya.entities.Message;
 import ru.iliya.entities.User;
-import ru.iliya.repositories.MongoRepositoryImpl;
 import ru.iliya.security.SecurityUserConverter;
-import ru.iliya.services.MessageService;
+import ru.iliya.services.MessageServiceImpl;
 
 import org.bson.Document;
 import ru.iliya.services.UserService;
 
-import javax.print.Doc;
-import java.lang.annotation.Documented;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +21,7 @@ import java.util.List;
 public class MessagesController {
 
     @Autowired
-    MessageService messageService;
+    MessageServiceImpl messageService;
     @Autowired
     SecurityUserConverter securityUserConverter;
     @Autowired

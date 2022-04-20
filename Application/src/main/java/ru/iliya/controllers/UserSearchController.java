@@ -13,25 +13,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ru.iliya.entities.Friends;
-import ru.iliya.entities.Favourites;
 import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.FavouritesService;
-import ru.iliya.services.FriendsService;
+import ru.iliya.services.FriendsServiceImpl;
 import ru.iliya.services.RecommendationsService;
 import ru.iliya.services.UserServiceImpl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.awt.*;
 
 import java.util.Date;
-import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 
 @Controller
@@ -44,7 +38,7 @@ public class UserSearchController {
     @Autowired
     SecurityUserConverter securityUserConverter;
     @Autowired
-    FriendsService friendsService;
+    FriendsServiceImpl friendsService;
     @Autowired
     RecommendationsService recommendationsService;
 

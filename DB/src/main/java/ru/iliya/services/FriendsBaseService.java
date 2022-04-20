@@ -4,7 +4,7 @@ import ru.iliya.entities.Friends;
 
 import java.util.List;
 
-public interface FriendsService {
+public interface FriendsBaseService {
 
     void deleteFriendsByFriendID(int friendID);
 

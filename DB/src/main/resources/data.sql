@@ -860,7 +860,7 @@ values (3, 'user', 3),
 insert into public.user (user_id, birth_date, email, first_name, hash_password, last_name, nickname, open_profile, role_id)
 values  (123, '2022-03-15 18:10:44.000000', 'yyy@gmail.com', 'rom', '123', 'mikh', 'idxaero', true, 1),
         (234, '2022-03-15 18:11:32.000000', 'zzz@gmail.com', 'ilya', '123', 'lll', 'ilya', true, 1),
-        (1, '2022-03-15 18:11:32.000000', 'zzza@gmail.com', 'ilya', '123', 'lll', 'ilaya', true, 1),
+        (3, '2022-03-15 18:11:32.000000', 'zzza@gmail.com', 'ilya', '123', 'lll', 'ilaya', true, 1),
         (4, '2001-09-04', 'osipov.ia@phystech.edu', 'Илья', '$2a$12$mUVm.bSHIwJ.Qm1Ev7SI4..m1Qksjxo0BHbLGbepXnczSAg4cvFUC', 'Осипов', 'Riernish', true, 1),
         (5, '2001-04-01', 'mikhailov.ra@phystech.edu', 'Роман', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Михайлов', 'RomanMikhailovDASR', true, 2),
         (6, '2001-11-22', 'putin.al@phystech.edu', 'Александр', '$2a$12$xJfKC5AGvi61111xgHTUu.Pz.TCtOre9t8urSTGS5ey.R3rWwvDG2', 'Путин', 'alik_put', true, 2),

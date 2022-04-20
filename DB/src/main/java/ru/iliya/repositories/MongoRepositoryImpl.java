@@ -16,6 +16,7 @@ import java.util.*;
 
 @Repository
 public class MongoRepositoryImpl implements MongoRepository {
+
     MongoClient mongoClient = null;
 
     @Override

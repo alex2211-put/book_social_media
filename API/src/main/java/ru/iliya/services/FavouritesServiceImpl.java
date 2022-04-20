@@ -3,8 +3,6 @@ package ru.iliya.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Favourites;
-import ru.iliya.repositories.BaseRepository;
-import ru.iliya.services.FavouritesService;
 
 import java.util.List;
 
@@ -12,23 +10,25 @@ import java.util.List;
 public class FavouritesServiceImpl implements FavouritesService {
 
     @Autowired
-    private BaseRepository baseRepository;
+    private FavouritesBaseService favouritesBaseService;
 
+    @Override
     public void setFavouritesByParams(int userID, int bookID) {
-        baseRepository.setFavouritesByParams(userID, bookID);
+        favouritesBaseService.setFavouritesByParams(userID, bookID);
     }
 
+    @Override
     public List<Favourites> findFavouritesByUserID(int userID) {
-        return baseRepository.findFavouritesByUserID(userID);
+        return favouritesBaseService.findFavouritesByUserID(userID);
     }
 
+    @Override
     public void deleteFavouritesByLinkID(int linkID) {
-        baseRepository.deleteFavouritesByLinkID(linkID);
+        favouritesBaseService.deleteFavouritesByLinkID(linkID);
     }
 
     @Override
     public void deleteFavouriteByUserIdAndBookId(int userId, int bookId) {
-        baseRepository.deleteFavouriteByUserIdAndBookId(userId, bookId);
+        favouritesBaseService.deleteFavouriteByUserIdAndBookId(userId, bookId);
     }
-
 }

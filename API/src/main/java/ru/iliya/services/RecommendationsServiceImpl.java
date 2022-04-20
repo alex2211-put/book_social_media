@@ -3,8 +3,6 @@ package ru.iliya.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Recommendations;
-import ru.iliya.repositories.BaseRepository;
-import ru.iliya.services.RecommendationsService;
 
 import java.util.List;
 
@@ -12,30 +10,30 @@ import java.util.List;
 public class RecommendationsServiceImpl implements RecommendationsService {
 
     @Autowired
-    BaseRepository baseRepository;
+    RecommendationsBaseService recommendationsBaseService;
 
     @Override
     public void setRecommendationsByParams(int userID, int bookID) {
-        baseRepository.setRecommendationsByParams(userID, bookID);
+        recommendationsBaseService.setRecommendationsByParams(userID, bookID);
     }
 
     @Override
     public List<Recommendations> findRecommendationsByUserID(int userID) {
-        return baseRepository.findRecommendationsByUserID(userID);
+        return recommendationsBaseService.findRecommendationsByUserID(userID);
     }
 
     @Override
     public void deleteRecommendationsByRecommendationsID(int recommendationsID) {
-        baseRepository.deleteRecommendationsByRecommendationsID(recommendationsID);
+        recommendationsBaseService.deleteRecommendationsByRecommendationsID(recommendationsID);
     }
 
     @Override
     public Recommendations findRecommendationByRecommendationId(int recommendationId) {
-        return baseRepository.findRecommendationByRecommendationId(recommendationId);
+        return recommendationsBaseService.findRecommendationByRecommendationId(recommendationId);
     }
 
     @Override
     public Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId) {
-        return baseRepository.findRecommendationByUserIdAndBookId(userId, bookId);
+        return recommendationsBaseService.findRecommendationByUserIdAndBookId(userId, bookId);
     }
 }

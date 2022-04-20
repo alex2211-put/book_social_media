@@ -10,7 +10,10 @@ import java.util.List;
 
 @Repository
 public interface FavouritesRepository extends JpaRepository<Favourites, Integer> {
+
     List<Favourites> findByUser(User user);
+
     void deleteFavouritesByLinkID(int linkID);
+
     void deleteFavouriteByUserAndBook(User user, Book book);
 }

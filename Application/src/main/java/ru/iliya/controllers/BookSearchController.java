@@ -13,8 +13,8 @@ import ru.iliya.services.FavouritesService;
 import ru.iliya.services.RecommendationsService;
 import ru.iliya.entities.Comments;
 import ru.iliya.entities.Recommendations;
-import ru.iliya.services.BookSearchService;
-import ru.iliya.services.MarksService;
+import ru.iliya.services.BookSearchServiceImpl;
+import ru.iliya.services.MarksServiceImpl;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,16 +23,15 @@ import java.util.Objects;
 public class BookSearchController {
 
     @Autowired
-    BookSearchService bookSearchService;
+    BookSearchServiceImpl bookSearchService;
     @Autowired
-    MarksService marksService;
+    MarksServiceImpl marksServiceImpl;
     @Autowired
     RecommendationsService recommendationsService;
     @Autowired
     SecurityUserConverter securityUserConverter;
     @Autowired
     FavouritesService favouritesService;
-
 
     @GetMapping("/book/search") //book/search
     public String showBooksByTitle(@RequestParam(name = "title", required = false, defaultValue = "") String title,
@@ -50,7 +49,7 @@ public class BookSearchController {
                                @AuthenticationPrincipal UserDetails currentUser,
                                Model model) {
         User user = securityUserConverter.getUserByDetails(currentUser);
-        model.addAttribute("mark", marksService.findByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID()));
+        model.addAttribute("mark", marksServiceImpl.findByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID()));
         Recommendations recommendations = recommendationsService.findRecommendationByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
         if (recommendations == null) {
             recommendations = new Recommendations();
@@ -96,7 +95,7 @@ public class BookSearchController {
                                 @PathVariable(name = "mark") String mark,
                                 @AuthenticationPrincipal UserDetails currentUser) {
         User user = securityUserConverter.getUserByDetails(currentUser);
-        marksService.setMarksByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID(), Integer.parseInt(mark));
+        marksServiceImpl.setMarksByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID(), Integer.parseInt(mark));
         return "redirect:/book/info/" + book_id;
     }
 
@@ -104,7 +103,7 @@ public class BookSearchController {
     public String reloadMark(@PathVariable(name = "book_id") String book_id,
                              @AuthenticationPrincipal UserDetails currentUser) {
         User user = securityUserConverter.getUserByDetails(currentUser);
-        marksService.deleteMarkByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID());
+        marksServiceImpl.deleteMarkByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID());
         return "redirect:/book/info/" + book_id;
     }
 

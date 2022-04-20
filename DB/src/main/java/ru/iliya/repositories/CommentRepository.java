@@ -9,5 +9,6 @@ import java.util.List;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comments, Book> {
+
     List<Comments> findCommentsByBook(Book book);
 }
