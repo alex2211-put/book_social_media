@@ -9,12 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
-import ru.iliya.services.FavouritesService;
-import ru.iliya.services.RecommendationsService;
+import ru.iliya.services.*;
 import ru.iliya.entities.Comments;
 import ru.iliya.entities.Recommendations;
-import ru.iliya.services.BookSearchService;
-import ru.iliya.services.MarksService;
 
 import java.util.List;
 import java.util.Objects;
@@ -25,14 +22,13 @@ public class BookSearchController {
     @Autowired
     BookSearchService bookSearchService;
     @Autowired
-    MarksService marksService;
+    MarksServiceImpl marksServiceImpl;
     @Autowired
     RecommendationsService recommendationsService;
     @Autowired
     SecurityUserConverter securityUserConverter;
     @Autowired
     FavouritesService favouritesService;
-
 
     @GetMapping("/book/search") //book/search
     public String showBooksByTitle(@RequestParam(name = "title", required = false, defaultValue = "") String title,
@@ -50,14 +46,14 @@ public class BookSearchController {
                                @AuthenticationPrincipal UserDetails currentUser,
                                Model model) {
         User user = securityUserConverter.getUserByDetails(currentUser);
-        model.addAttribute("mark", marksService.findByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID()));
+        model.addAttribute("mark", marksServiceImpl.findByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID()));
         Recommendations recommendations = recommendationsService.findRecommendationByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
         if (recommendations == null) {
             recommendations = new Recommendations();
             recommendations.setRecommendationID(-1);
         }
         model.addAttribute("recommendation", recommendations);
-        List<Comments> comments = bookSearchService.getComments(book_id);
+        List<Comments> comments = bookSearchService.getCommentsByBookId(book_id);
         model.addAttribute("comments", comments);
         model.addAttribute("book",
                 bookSearchService.findBookById(book_id));
@@ -73,7 +69,7 @@ public class BookSearchController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         if (Objects.equals(favourites, "Add to favourites")) {
             favourites = "Remove from favourites";
-            favouritesService.setFavouritesByParams(user.getUserID(), Integer.parseInt(book_id));
+            favouritesService.setFavouritesByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
         } else {
             favourites = "Add to favourites";
             favouritesService.deleteFavouriteByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
@@ -96,7 +92,7 @@ public class BookSearchController {
                                 @PathVariable(name = "mark") String mark,
                                 @AuthenticationPrincipal UserDetails currentUser) {
         User user = securityUserConverter.getUserByDetails(currentUser);
-        marksService.setMarksByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID(), Integer.parseInt(mark));
+        marksServiceImpl.setMarksByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID(), Integer.parseInt(mark));
         return "redirect:/book/info/" + book_id;
     }
 
@@ -104,7 +100,7 @@ public class BookSearchController {
     public String reloadMark(@PathVariable(name = "book_id") String book_id,
                              @AuthenticationPrincipal UserDetails currentUser) {
         User user = securityUserConverter.getUserByDetails(currentUser);
-        marksService.deleteMarkByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID());
+        marksServiceImpl.deleteMarkByBookIdAndUserId(Integer.parseInt(book_id), user.getUserID());
         return "redirect:/book/info/" + book_id;
     }
 

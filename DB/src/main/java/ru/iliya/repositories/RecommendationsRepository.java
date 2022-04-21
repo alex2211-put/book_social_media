@@ -10,9 +10,13 @@ import java.util.List;
 
 @Repository
 public interface RecommendationsRepository extends JpaRepository<Recommendations, Integer> {
+
     List<Recommendations> findByUser(User user);
+
     void deleteRecommendationsByRecommendationID(int recommendationID);
+
     Recommendations findRecommendationsByBookAndUser(Book book, User user);
+
     Recommendations findRecommendationByRecommendationID (int recommendationId);
 }
 

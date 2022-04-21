@@ -9,13 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.FavouritesService;
 
 @Controller
 public class FavoritesController {
+
     @Autowired
     FavouritesService favouritesService;
     @Autowired

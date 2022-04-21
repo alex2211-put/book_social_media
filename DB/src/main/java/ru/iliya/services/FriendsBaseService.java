@@ -4,15 +4,15 @@ import ru.iliya.entities.Friends;
 
 import java.util.List;
 
-public interface FriendsService {
+public interface FriendsBaseService {
 
     void deleteFriendsByFriendID(int friendID);
 
-    List<Friends> findOutgoingRequestsByUserId(int userID);
+    List<Friends> findByUserID(int userID);
 
     List<Friends> findByUserIDAndUser2ID(int userID, int user2ID);
 
-    List<Friends> findIncomingRequestsByUserId(int userID);
+    List<Friends> findByUser2ID(int user2ID);
 
     void setFriendsByUserIDAndUser2ID(int userID, int user2ID);
 }

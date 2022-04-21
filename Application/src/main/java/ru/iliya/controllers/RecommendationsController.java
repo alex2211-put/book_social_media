@@ -16,6 +16,7 @@ import ru.iliya.services.RecommendationsService;
 
 @Controller
 public class RecommendationsController {
+
     @Autowired
     RecommendationsService recommendationsService;
     @Autowired

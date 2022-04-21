@@ -4,9 +4,9 @@ import ru.iliya.entities.Favourites;
 
 import java.util.List;
 
-public interface FavouritesService {
+public interface FavouritesBaseService {
 
-    void setFavouritesByUserIdAndBookId(int userID, int bookID);
+    void setFavouritesByParams(int userID, int bookID);
 
     List<Favourites> findFavouritesByUserID(int userID);
 
