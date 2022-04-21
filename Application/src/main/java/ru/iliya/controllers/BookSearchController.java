@@ -9,12 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.iliya.entities.User;
 import ru.iliya.security.SecurityUserConverter;
-import ru.iliya.services.FavouritesService;
-import ru.iliya.services.RecommendationsService;
+import ru.iliya.services.*;
 import ru.iliya.entities.Comments;
 import ru.iliya.entities.Recommendations;
-import ru.iliya.services.BookSearchServiceImpl;
-import ru.iliya.services.MarksServiceImpl;
 
 import java.util.List;
 import java.util.Objects;
@@ -23,7 +20,7 @@ import java.util.Objects;
 public class BookSearchController {
 
     @Autowired
-    BookSearchServiceImpl bookSearchService;
+    BookSearchService bookSearchService;
     @Autowired
     MarksServiceImpl marksServiceImpl;
     @Autowired
@@ -56,7 +53,7 @@ public class BookSearchController {
             recommendations.setRecommendationID(-1);
         }
         model.addAttribute("recommendation", recommendations);
-        List<Comments> comments = bookSearchService.getComments(book_id);
+        List<Comments> comments = bookSearchService.getCommentsByBookId(book_id);
         model.addAttribute("comments", comments);
         model.addAttribute("book",
                 bookSearchService.findBookById(book_id));
@@ -72,7 +69,7 @@ public class BookSearchController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         if (Objects.equals(favourites, "Add to favourites")) {
             favourites = "Remove from favourites";
-            favouritesService.setFavouritesByParams(user.getUserID(), Integer.parseInt(book_id));
+            favouritesService.setFavouritesByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));
         } else {
             favourites = "Add to favourites";
             favouritesService.deleteFavouriteByUserIdAndBookId(user.getUserID(), Integer.parseInt(book_id));

@@ -13,7 +13,7 @@ public class FavouritesServiceImpl implements FavouritesService {
     private FavouritesBaseService favouritesBaseService;
 
     @Override
-    public void setFavouritesByParams(int userID, int bookID) {
+    public void setFavouritesByUserIdAndBookId(int userID, int bookID) {
         favouritesBaseService.setFavouritesByParams(userID, bookID);
     }
 

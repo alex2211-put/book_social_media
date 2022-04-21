@@ -3,7 +3,6 @@ package ru.iliya.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Friends;
-import ru.iliya.repositories.BaseRepository;
 
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class FriendsServiceImpl implements FriendsService{
     }
 
     @Override
-    public List<Friends> findByUserID(int userID) {
+    public List<Friends> findOutgoingRequestsByUserId(int userID) {
         return friendsBaseService.findByUserID(userID);
     }
 
@@ -29,7 +28,7 @@ public class FriendsServiceImpl implements FriendsService{
     }
 
     @Override
-    public List<Friends> findByUser2ID(int user2ID) {
+    public List<Friends> findIncomingRequestsByUserId(int user2ID) {
         return friendsBaseService.findByUser2ID(user2ID);
     }
 

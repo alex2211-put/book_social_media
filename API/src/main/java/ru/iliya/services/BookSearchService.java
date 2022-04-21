@@ -17,7 +17,7 @@ public interface BookSearchService {
 
      List <Book> findBooksByTitleAuthorGenre(String title, String authorName, String genre);
 
-     List<Comments> getComments(String bookId);
+     List<Comments> getCommentsByBookId(String bookId);
 
      void addComment(String bookId, String userId, String comment);
 }

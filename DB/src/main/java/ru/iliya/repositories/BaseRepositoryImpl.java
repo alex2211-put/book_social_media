@@ -14,12 +14,6 @@ public class BaseRepositoryImpl implements BaseRepository {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
-    @Autowired
-    private MarksRepository marksRepository;
-    @Autowired
-    private CommentRepository commentRepository;
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public Book addBook(Book book) {
@@ -92,46 +86,6 @@ public class BaseRepositoryImpl implements BaseRepository {
     @Override
     public List<Book> findByGenre(String genre) {
         return bookRepository.findBooksByGenre(genre);
-    }
-
-    @Override
-    public Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId) {
-        return marksRepository.findMarksByBookIdAndUserId(bookId, userId);
-    }
-
-    @Override
-    public void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {
-        Marks marks = marksRepository.findMarksByBookIdAndUserId(bookId, userId);
-        if (marks == null) {
-            marksRepository.saveAndFlush(new Marks(bookId, userId, mark));
-        }
-    }
-
-    @Override
-    public List<Marks> findMarksByBookId(Integer bookId) {
-        return marksRepository.findMarksByBookId(bookId);
-    }
-
-    @Override
-    public void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId) {
-        marksRepository.deleteMarkByBookIdAndUserId(bookId, userId);
-    }
-
-    @Override
-    public List<Comments> findCommentsByBookId(Integer bookId) {
-        Book book = bookRepository.findBookByBookID(bookId);
-        return commentRepository.findCommentsByBook(book);
-    }
-
-    @Override
-    public void setCommentByBookIdAndUserId(Integer bookId, Integer userId, String comment) {
-        Book book = bookRepository.findBookByBookID(bookId);
-        User user = userRepository.findByUserID(userId);
-        Comments comments = new Comments();
-        comments.setBook(book);
-        comments.setComment(comment);
-        comments.setUser(user);
-        commentRepository.save(comments);
     }
 
     @Override

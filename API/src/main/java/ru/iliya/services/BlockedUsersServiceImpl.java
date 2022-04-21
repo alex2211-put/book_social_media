@@ -19,7 +19,7 @@ public class BlockedUsersServiceImpl implements BlockedUsersService {
 
     @Override
     public void setBlockedUsersByParams(int userID, int userIDBlocked) {
-        blockedUsersBaseService.setBlockedUsersByParams(userID, userIDBlocked);
+        blockedUsersBaseService.setBlockedUsersByUserIdAndUserIdBlocked(userID, userIDBlocked);
     }
 
     @Override

@@ -2,8 +2,6 @@ package ru.iliya.repositories;
 
 import ru.iliya.entities.Author;
 import ru.iliya.entities.Book;
-import ru.iliya.entities.Comments;
-import ru.iliya.entities.Marks;
 
 import java.util.List;
 
@@ -22,18 +20,6 @@ public interface BaseRepository{
     List <Book> findByGenre(String genre);
 
     List<Book> getAll();
-
-    Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId);
-
-    void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark);
-
-    List<Marks> findMarksByBookId(Integer bookId);
-
-    void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId);
-
-    List <Comments> findCommentsByBookId(Integer bookId);
-
-    void setCommentByBookIdAndUserId(Integer bookId, Integer userId, String comment);
 
     List <Book> findBooksByTitleAndAuthorsAndGenre(String title, List <Author> authors, String genre);
 

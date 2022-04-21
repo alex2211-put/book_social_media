@@ -138,8 +138,8 @@ public class UserSearchController {
     }
 
     private List<User> getFriendsForUser(User user) {
-        List<Friends> friends = friendsService.findByUserID(user.getUserID());
-        List<Friends> friends1 = friendsService.findByUser2ID(user.getUserID());
+        List<Friends> friends = friendsService.findOutgoingRequestsByUserId(user.getUserID());
+        List<Friends> friends1 = friendsService.findIncomingRequestsByUserId(user.getUserID());
         List<User> users = friends.stream().map(
                 friend -> userService.findUserByUserID(friend.getUser2ID())
         ).toList();
@@ -163,7 +163,7 @@ public class UserSearchController {
         List<Integer> idUsers = res.stream().map(
                 User::getUserID
         ).toList();
-        List<Friends> friends = friendsService.findByUser2ID(user.getUserID());
+        List<Friends> friends = friendsService.findIncomingRequestsByUserId(user.getUserID());
         List<Person> personList = new ArrayList<>();
         for (Friends friend : friends) {
             User user1 = userService.findUserByUserID(friend.getUserID());
@@ -186,7 +186,7 @@ public class UserSearchController {
         List<Integer> idUsers = res.stream().map(
                 User::getUserID
         ).toList();
-        List<Friends> friends = friendsService.findByUserID(user.getUserID());
+        List<Friends> friends = friendsService.findOutgoingRequestsByUserId(user.getUserID());
         List<Person> personList = new ArrayList<>();
         for (Friends friend : friends) {
             User user1 = userService.findUserByUserID(friend.getUser2ID());

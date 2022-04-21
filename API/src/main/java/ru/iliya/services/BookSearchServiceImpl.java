@@ -20,6 +20,8 @@ public class BookSearchServiceImpl implements BookSearchService{
     BaseRepository baseRepository;
     @Autowired
     AuthorRepository authorRepository;
+    @Autowired
+    CommentBaseService commentBaseService;
 
     @Override
     public Book findBookById(String bookId) {
@@ -93,12 +95,12 @@ public class BookSearchServiceImpl implements BookSearchService{
     }
 
     @Override
-    public List<Comments> getComments(String bookId) {
-        return baseRepository.findCommentsByBookId(Integer.parseInt(bookId));
+    public List<Comments> getCommentsByBookId(String bookId) {
+        return commentBaseService.findCommentsByBookId(Integer.parseInt(bookId));
     }
 
     @Override
     public void addComment(String bookId, String userId, String comment) {
-        baseRepository.setCommentByBookIdAndUserId(Integer.parseInt(bookId), Integer.parseInt(userId), comment);
+        commentBaseService.setCommentByBookIdAndUserId(Integer.parseInt(bookId), Integer.parseInt(userId), comment);
     }
 }

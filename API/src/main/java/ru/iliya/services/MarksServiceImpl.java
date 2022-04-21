@@ -11,25 +11,25 @@ import java.util.List;
 public class MarksServiceImpl implements MarksService{
 
     @Autowired
-    BaseRepository baseRepository;
+    MarksBaseService marksBaseService;
 
     @Override
     public Marks findByBookIdAndUserId(Integer bookId, Integer userId) {
-        return baseRepository.findMarksByBookIdAndUserId(bookId, userId);
+        return marksBaseService.findMarksByBookIdAndUserId(bookId, userId);
     }
 
     @Override
-    public List<Marks> findAllMarks(Integer bookId) {
-        return baseRepository.findMarksByBookId(bookId);
+    public List<Marks> findAllMarksByBookId(Integer bookId) {
+        return marksBaseService.findMarksByBookId(bookId);
     }
 
     @Override
     public void setMarksByBookIdAndUserId(Integer bookId, Integer userId, Integer mark) {
-        baseRepository.setMarksByBookIdAndUserId(bookId, userId, mark);
+        marksBaseService.setMarksByBookIdAndUserId(bookId, userId, mark);
     }
 
     @Override
     public void deleteMarkByBookIdAndUserId(Integer bookId, Integer userId) {
-        baseRepository.deleteMarkByBookIdAndUserId(bookId, userId);
+        marksBaseService.deleteMarkByBookIdAndUserId(bookId, userId);
     }
 }

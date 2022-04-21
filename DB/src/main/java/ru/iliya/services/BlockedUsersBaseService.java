@@ -10,5 +10,5 @@ public interface BlockedUsersBaseService {
 
     List<BlockedUsers> findByUserIDBlocked(int userIDBlocked);
 
-    void setBlockedUsersByParams(int userID, int userIDBlocked);
+    void setBlockedUsersByUserIdAndUserIdBlocked(int userID, int userIDBlocked);
 }

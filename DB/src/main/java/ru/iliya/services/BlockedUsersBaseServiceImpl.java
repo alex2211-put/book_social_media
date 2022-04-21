@@ -16,7 +16,7 @@ public class BlockedUsersBaseServiceImpl implements BlockedUsersBaseService{
     private BlockedUsersRepository blockedUsersRepository;
 
     @Override
-    public void setBlockedUsersByParams(int userID, int userIDBlocked) {
+    public void setBlockedUsersByUserIdAndUserIdBlocked(int userID, int userIDBlocked) {
         BlockedUsers blockedUsers = new BlockedUsers();
         blockedUsers.setUserIDBlocked(userIDBlocked);
         blockedUsers.setUserID(userID);
