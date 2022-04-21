@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.iliya.entities.Message;
 import ru.iliya.entities.User;
+import ru.iliya.helpers.LastMessage;
+import ru.iliya.helpers.OwnerDialog;
 import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.MessageServiceImpl;
 
@@ -26,44 +28,6 @@ public class MessagesController {
     SecurityUserConverter securityUserConverter;
     @Autowired
     UserService userService;
-
-    public static class LastMessage {
-        public User user;
-        public String message;
-
-        @Override
-        public String toString() {
-            return "LastMessage{" +
-                    "user=" + user +
-                    ", message='" + message + '\'' +
-                    ", ownerId='" + ownerId + '\'' +
-                    '}';
-        }
-
-        public String ownerId;
-
-        public LastMessage(User user, String message, String ownerId) {
-            this.user = user;
-            this.message = message;
-            this.ownerId = ownerId;
-        }
-    }
-
-    public static class OwnerDialog {
-        public String ownerId;
-        public String partnerId;
-        public List<Message> messages;
-        public String ownerNick;
-        public String partnerNick;
-
-        public OwnerDialog(String ownerId, List<Message> messages, String partnerId, String ownerNick, String partnerNick) {
-            this.ownerId = ownerId;
-            this.ownerNick = ownerNick;
-            this.messages = messages;
-            this.partnerId = partnerId;
-            this.partnerNick = partnerNick;
-        }
-    }
 
     @RequestMapping("/user/dialogs")
     public String showAllDialogsForUserParam(@AuthenticationPrincipal UserDetails currentUser,
@@ -85,8 +49,6 @@ public class MessagesController {
         return "no-dialogs-for-user";
     }
 
-    private List<Message> messages2 = new ArrayList<>();
-    String person = null;
 
     @GetMapping("/user/chat/{person}")
     public String showMessagesForUser(@PathVariable(name = "person") String person,
@@ -95,19 +57,8 @@ public class MessagesController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String owner = String.valueOf(user.getUserID());
         User friend = userService.findUserByUserID(Integer.parseInt(person));
-        List<Document> messages = messageService.getAllMessagesForDialog(owner, person);
-        if (this.person == null || !person.equals(owner)) {
-            messages2 = new ArrayList<>();
-            for (Document document : messages) {
-                messages2.add(new Message(
-                        document.get("text").toString(),
-                        document.get("from").toString(),
-                        document.get("to").toString(),
-                        "2022"));
-            }
-            this.person = owner;
-        }
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person, user.getNickname(), friend.getNickname()));
+        List<Message> messages = getMessagesForPersons(person, owner);
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname()));
         return "p2p-dialog";
     }
 
@@ -123,9 +74,22 @@ public class MessagesController {
             return "redirect:/user/chat/{person}";
         Message message1 = new Message(message, owner, person, "2022");
         messageService.writeToUser(message1);
-        messages2.add(message1);
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages2, person, user.getNickname(), friend.getNickname()));
+        List<Message> messages = getMessagesForPersons(person, owner);
+        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname()));
         return "redirect:/user/chat/{person}";
+    }
+
+    private List<Message> getMessagesForPersons(@PathVariable(name = "person") String person, String owner) {
+        List<Document> messagesDocs = messageService.getAllMessagesForDialog(owner, person);
+        List<Message> messages = new ArrayList<>();
+        for (Document document : messagesDocs) {
+            messages.add(new Message(
+                    document.get("text").toString(),
+                    document.get("from").toString(),
+                    document.get("to").toString(),
+                    "2022"));
+        }
+        return messages;
     }
 
 }
