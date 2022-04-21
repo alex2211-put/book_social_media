@@ -12,7 +12,7 @@ public interface FriendsService {
 
     List<Friends> findByUserIDAndUser2ID(int userID, int user2ID);
 
-    List<Friends> findIncomingRequestsByUserId(int user2ID);
+    List<Friends> findIncomingRequestsByUserId(int userID);
 
     void setFriendsByUserIDAndUser2ID(int userID, int user2ID);
 }
