@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class FavouritesBaseServiceImpl implements FavouritessDataBaseService {
+public class FavouritesDataBaseServiceImpl implements FavouritesDataBaseService {
 
     @Autowired
     private UserRepository userRepository;
