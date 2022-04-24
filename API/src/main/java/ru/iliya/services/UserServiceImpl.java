@@ -10,47 +10,47 @@ import java.util.*;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserBaseService userBaseService;
+    private UserDataBaseService userDataBaseService;
 
     @Override
     public List<User> findUserByFirstName(String firstName) {
-        return userBaseService.findUserByFirstName(firstName);
+        return userDataBaseService.findUserByFirstName(firstName);
     }
 
     @Override
     public void setUserByParams(String nickname, String firstName, String lastName, Date birthdate,
                                 String email, boolean openProfile, String hashPassword, int roleID, String imageLink) {
-        userBaseService.setUserByParams(nickname, firstName, lastName, birthdate, email, openProfile, hashPassword, roleID, imageLink);
+        userDataBaseService.setUserByParams(nickname, firstName, lastName, birthdate, email, openProfile, hashPassword, roleID, imageLink);
     }
 
     @Override
     public List<User> findUserByLastName(String lastName) {
-        return userBaseService.findUserByLastName(lastName);
+        return userDataBaseService.findUserByLastName(lastName);
     }
 
     @Override
     public User findUserByNickname(String nickname) {
-        return userBaseService.findUserByNickname(nickname);
+        return userDataBaseService.findUserByNickname(nickname);
     }
 
     @Override
     public List<User> findUserByEmail(String email) {
-        return userBaseService.findUserByEmail(email);
+        return userDataBaseService.findUserByEmail(email);
     }
 
     @Override
     public User findUserByUserID(int userID) {
-        return userBaseService.findUserByID(userID);
+        return userDataBaseService.findUserByID(userID);
     }
 
     @Override
     public List<User> findUserByFirstNameLastNameNickNameEmail(String search) {
         if (search.contains("@")) {
-            return userBaseService.findUserByEmail(search);
+            return userDataBaseService.findUserByEmail(search);
         }
-        User userByNickname = userBaseService.findUserByNickname(search);
-        List<User> usersByFirstName = userBaseService.findUserByFirstName(search);
-        List<User> usersByLastName = userBaseService.findUserByLastName(search);
+        User userByNickname = userDataBaseService.findUserByNickname(search);
+        List<User> usersByFirstName = userDataBaseService.findUserByFirstName(search);
+        List<User> usersByLastName = userDataBaseService.findUserByLastName(search);
         Set<User> uniqUsers = new HashSet<User>();
         uniqUsers.addAll(usersByFirstName);
         uniqUsers.addAll(usersByLastName);

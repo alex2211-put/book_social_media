@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class BlockedUsersBaseServiceImpl implements BlockedUsersBaseService{
+public class BlockedUsersDataBaseServiceImpl implements BlockedUsersDataBaseService {
 
     @Autowired
     private BlockedUsersRepository blockedUsersRepository;

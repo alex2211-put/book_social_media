@@ -10,7 +10,7 @@ import ru.iliya.repositories.*;
 import java.util.List;
 
 @Repository
-public class CommentBaseServiceImpl implements CommentBaseService{
+public class CommentsDataBaseServiceImpl implements CommentsDataBaseService {
 
     @Autowired
     private BookRepository bookRepository;

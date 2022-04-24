@@ -3,7 +3,6 @@ package ru.iliya.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Marks;
-import ru.iliya.repositories.BaseRepository;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
 public class MarksServiceImpl implements MarksService{
 
     @Autowired
-    MarksBaseService marksBaseService;
+    MarksDataBaseService marksBaseService;
 
     @Override
     public Marks findByBookIdAndUserId(Integer bookId, Integer userId) {

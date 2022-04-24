@@ -10,30 +10,30 @@ import java.util.List;
 public class FriendsServiceImpl implements FriendsService{
 
     @Autowired
-    private FriendsBaseService friendsBaseService;
+    private FriendsDataBaseService friendsDataBaseService;
 
     @Override
     public void deleteFriendsByFriendID(int friendID) {
-        friendsBaseService.deleteFriendsByFriendID(friendID);
+        friendsDataBaseService.deleteFriendsByFriendID(friendID);
     }
 
     @Override
     public List<Friends> findOutgoingRequestsByUserId(int userID) {
-        return friendsBaseService.findByUserID(userID);
+        return friendsDataBaseService.findByUserID(userID);
     }
 
     @Override
     public List<Friends> findByUserIDAndUser2ID(int userID, int user2ID) {
-        return friendsBaseService.findByUserIDAndUser2ID(userID, user2ID);
+        return friendsDataBaseService.findByUserIDAndUser2ID(userID, user2ID);
     }
 
     @Override
     public List<Friends> findIncomingRequestsByUserId(int user2ID) {
-        return friendsBaseService.findByUser2ID(user2ID);
+        return friendsDataBaseService.findByUser2ID(user2ID);
     }
 
     @Override
     public void setFriendsByUserIDAndUser2ID(int userID, int user2ID) {
-        friendsBaseService.setFriendsByUserIDAndUser2ID(userID, user2ID);
+        friendsDataBaseService.setFriendsByUserIDAndUser2ID(userID, user2ID);
     }
 }

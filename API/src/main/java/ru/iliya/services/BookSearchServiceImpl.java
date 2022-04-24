@@ -21,7 +21,7 @@ public class BookSearchServiceImpl implements BookSearchService{
     @Autowired
     AuthorRepository authorRepository;
     @Autowired
-    CommentBaseService commentBaseService;
+    CommentsDataBaseService commentsDataBaseService;
 
     @Override
     public Book findBookById(String bookId) {
@@ -96,11 +96,11 @@ public class BookSearchServiceImpl implements BookSearchService{
 
     @Override
     public List<Comments> getCommentsByBookId(String bookId) {
-        return commentBaseService.findCommentsByBookId(Integer.parseInt(bookId));
+        return commentsDataBaseService.findCommentsByBookId(Integer.parseInt(bookId));
     }
 
     @Override
     public void addComment(String bookId, String userId, String comment) {
-        commentBaseService.setCommentByBookIdAndUserId(Integer.parseInt(bookId), Integer.parseInt(userId), comment);
+        commentsDataBaseService.setCommentByBookIdAndUserId(Integer.parseInt(bookId), Integer.parseInt(userId), comment);
     }
 }

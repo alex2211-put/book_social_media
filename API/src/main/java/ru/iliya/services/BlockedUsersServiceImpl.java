@@ -10,20 +10,20 @@ import java.util.List;
 public class BlockedUsersServiceImpl implements BlockedUsersService {
 
     @Autowired
-    BlockedUsersBaseService blockedUsersBaseService;
+    BlockedUsersDataBaseService blockedUsersDataBaseService;
 
     @Override
     public List<BlockedUsers> findByUserIDBlocked(int userID) {
-        return blockedUsersBaseService.findByUserIDBlocked(userID);
+        return blockedUsersDataBaseService.findByUserIDBlocked(userID);
     }
 
     @Override
     public void setBlockedUsersByParams(int userID, int userIDBlocked) {
-        blockedUsersBaseService.setBlockedUsersByUserIdAndUserIdBlocked(userID, userIDBlocked);
+        blockedUsersDataBaseService.setBlockedUsersByUserIdAndUserIdBlocked(userID, userIDBlocked);
     }
 
     @Override
     public void deleteBlockedUsersByBlockID(int blockID) {
-        blockedUsersBaseService.deleteBlockedUsersByBlockID(blockID);
+        blockedUsersDataBaseService.deleteBlockedUsersByBlockID(blockID);
     }
 }

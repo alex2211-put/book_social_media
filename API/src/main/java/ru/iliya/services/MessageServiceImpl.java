@@ -7,7 +7,6 @@ import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Message;
 import ru.iliya.entities.User;
-import ru.iliya.repositories.BaseRepositoryImpl;
 import ru.iliya.repositories.MongoRepository;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class MessageServiceImpl implements MessageService{
     @Autowired
     MongoRepository mongoRepository;
     @Autowired
-    UserBaseService userBaseService;
+    UserDataBaseService userDataBaseService;
 
     @Override
     public List<User> getDialogsForUser(String owner) {
@@ -29,7 +28,7 @@ public class MessageServiceImpl implements MessageService{
         for (Document document : documents) {
             String[] user_ids = document.get("user").toString().replaceAll("[ \\[\\]]", "").split(",");
             for (String user_id : user_ids) {
-                User user = userBaseService.findUserByID(Integer.parseInt(user_id));
+                User user = userDataBaseService.findUserByID(Integer.parseInt(user_id));
                 users.add(user);
             }
         }

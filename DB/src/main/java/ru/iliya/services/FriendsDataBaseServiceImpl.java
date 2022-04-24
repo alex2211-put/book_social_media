@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class FriendsBaseServiceImpl implements FriendsBaseService{
+public class FriendsDataBaseServiceImpl implements FriendsDataBaseService {
 
     @Autowired
     private FriendsRepository friendsRepository;

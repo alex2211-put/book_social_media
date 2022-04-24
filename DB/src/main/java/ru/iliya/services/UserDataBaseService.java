@@ -5,7 +5,7 @@ import ru.iliya.entities.User;
 import java.util.Date;
 import java.util.List;
 
-public interface UserBaseService {
+public interface UserDataBaseService {
 
     void setUserByParams(String nickname, String firstName, String lastName, Date birthdate, String email, boolean openProfile, String hashPassword, int roleID, String imageLink);
 
