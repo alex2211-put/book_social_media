@@ -10,7 +10,7 @@ import java.util.List;
 public class FavouritesServiceImpl implements FavouritesService {
 
     @Autowired
-    private FavouritesBaseService favouritesBaseService;
+    private FavouritesDataBaseService favouritesBaseService;
 
     @Override
     public void setFavouritesByUserIdAndBookId(int userID, int bookID) {

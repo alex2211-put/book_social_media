@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class RecommendationsBaseServiceImpl implements RecommendationsBaseService{
+public class RecommendationsDataBaseServiceImpl implements RecommendationsDataBaseService {
 
     @Autowired
     private BookRepository bookRepository;

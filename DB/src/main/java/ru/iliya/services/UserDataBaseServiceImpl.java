@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public class UserBaseServiceImpl implements UserBaseService{
+public class UserDataBaseServiceImpl implements UserDataBaseService {
 
     @Autowired
     private UserRepository userRepository;

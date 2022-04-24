@@ -4,7 +4,7 @@ import ru.iliya.entities.Recommendations;
 
 import java.util.List;
 
-public interface RecommendationsBaseService {
+public interface RecommendationsDataBaseService {
 
     void setRecommendationsByParams(int userID, int bookID);
 

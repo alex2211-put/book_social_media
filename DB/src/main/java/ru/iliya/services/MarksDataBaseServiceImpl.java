@@ -8,7 +8,7 @@ import ru.iliya.repositories.MarksRepository;
 import java.util.List;
 
 @Repository
-public class MarksBaseServiceImpl implements MarksBaseService{
+public class MarksDataBaseServiceImpl implements MarksDataBaseService {
 
     @Autowired
     private MarksRepository marksRepository;

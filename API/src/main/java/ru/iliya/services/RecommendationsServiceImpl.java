@@ -10,30 +10,30 @@ import java.util.List;
 public class RecommendationsServiceImpl implements RecommendationsService {
 
     @Autowired
-    RecommendationsBaseService recommendationsBaseService;
+    RecommendationsDataBaseService recommendationsDataBaseService;
 
     @Override
     public void setRecommendationsByParams(int userID, int bookID) {
-        recommendationsBaseService.setRecommendationsByParams(userID, bookID);
+        recommendationsDataBaseService.setRecommendationsByParams(userID, bookID);
     }
 
     @Override
     public List<Recommendations> findRecommendationsByUserID(int userID) {
-        return recommendationsBaseService.findRecommendationsByUserID(userID);
+        return recommendationsDataBaseService.findRecommendationsByUserID(userID);
     }
 
     @Override
     public void deleteRecommendationsByRecommendationsID(int recommendationsID) {
-        recommendationsBaseService.deleteRecommendationsByRecommendationsID(recommendationsID);
+        recommendationsDataBaseService.deleteRecommendationsByRecommendationsID(recommendationsID);
     }
 
     @Override
     public Recommendations findRecommendationByRecommendationId(int recommendationId) {
-        return recommendationsBaseService.findRecommendationByRecommendationId(recommendationId);
+        return recommendationsDataBaseService.findRecommendationByRecommendationId(recommendationId);
     }
 
     @Override
     public Recommendations findRecommendationByUserIdAndBookId(int userId, int bookId) {
-        return recommendationsBaseService.findRecommendationByUserIdAndBookId(userId, bookId);
+        return recommendationsDataBaseService.findRecommendationByUserIdAndBookId(userId, bookId);
     }
 }

@@ -4,7 +4,7 @@ import ru.iliya.entities.Marks;
 
 import java.util.List;
 
-public interface MarksBaseService {
+public interface MarksDataBaseService {
 
     Marks findMarksByBookIdAndUserId(Integer bookId, Integer userId);
 

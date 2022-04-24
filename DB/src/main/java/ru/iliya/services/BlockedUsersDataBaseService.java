@@ -4,7 +4,7 @@ import ru.iliya.entities.BlockedUsers;
 
 import java.util.List;
 
-public interface BlockedUsersBaseService {
+public interface BlockedUsersDataBaseService {
 
     void deleteBlockedUsersByBlockID(int blockID);
 
