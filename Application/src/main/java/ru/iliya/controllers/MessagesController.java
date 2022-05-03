@@ -35,7 +35,6 @@ public class MessagesController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String userId = String.valueOf(user.getUserID());
         List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
-        System.out.println(users);
         List<LastMessage> lastMessages = new ArrayList<>();
         for (User user1 : users) {
             String message = messageService.getLastMessage(userId, user1);
@@ -49,7 +48,6 @@ public class MessagesController {
         return "no-dialogs-for-user";
     }
 
-
     @GetMapping("/user/chat/{person}")
     public String showMessagesForUser(@PathVariable(name = "person") String person,
                                       @AuthenticationPrincipal UserDetails currentUser,
@@ -58,7 +56,10 @@ public class MessagesController {
         String owner = String.valueOf(user.getUserID());
         User friend = userService.findUserByUserID(Integer.parseInt(person));
         List<Message> messages = getMessagesForPersons(person, owner);
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname()));
+        model.addAttribute(
+                "ownerDialog",
+                new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname())
+        );
         return "p2p-dialog";
     }
 
@@ -75,7 +76,10 @@ public class MessagesController {
         Message message1 = new Message(message, owner, person, "2022");
         messageService.writeToUser(message1);
         List<Message> messages = getMessagesForPersons(person, owner);
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname()));
+        model.addAttribute(
+                "ownerDialog",
+                new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname())
+        );
         return "redirect:/user/chat/{person}";
     }
 
