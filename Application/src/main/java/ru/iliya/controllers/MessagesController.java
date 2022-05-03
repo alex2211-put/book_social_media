@@ -1,6 +1,5 @@
 package ru.iliya.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -22,12 +21,18 @@ import java.util.List;
 @Controller
 public class MessagesController {
 
-    @Autowired
+    final
     MessageServiceImpl messageService;
-    @Autowired
+    final
     SecurityUserConverter securityUserConverter;
-    @Autowired
+    final
     UserService userService;
+
+    public MessagesController(MessageServiceImpl messageService, SecurityUserConverter securityUserConverter, UserService userService) {
+        this.messageService = messageService;
+        this.securityUserConverter = securityUserConverter;
+        this.userService = userService;
+    }
 
     @RequestMapping("/user/dialogs")
     public String showAllDialogsForUserParam(@AuthenticationPrincipal UserDetails currentUser,
