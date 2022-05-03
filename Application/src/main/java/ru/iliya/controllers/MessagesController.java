@@ -5760,7 +5760,8 @@ public class MessagesController {
         return "redirect:/user/chat/{person}";
     }
 
-    private List<Message> getMessagesForPersons(@PathVariable(name = "person") String person, String owner) {
+    private List<Message> getMessagesForPersons(@PathVariable(name = "person") String person,
+                                                String owner) {
         List<Document> messagesDocs = messageService.getAllMessagesForDialog(owner, person);
         List<Message> messages = new ArrayList<>();
         for (Document document : messagesDocs) {
