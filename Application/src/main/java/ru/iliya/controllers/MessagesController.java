@@ -12,8 +12,10 @@ import ru.iliya.helpers.OwnerDialog;
 import ru.iliya.security.SecurityUserConverter;
 import ru.iliya.services.MessageServiceImpl;
 
+import org.bson.Document;
 import ru.iliya.services.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -36,9 +38,14 @@ public class MessagesController {
     public String showAllDialogsForUserParam(@AuthenticationPrincipal UserDetails currentUser,
                                              Model model) {
         User user = securityUserConverter.getUserByDetails(currentUser);
-        List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
         String userId = String.valueOf(user.getUserID());
-        List<LastMessage> lastMessages = LastMessage.getLastMessagesList(users, userId);
+        List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
+        List<LastMessage> lastMessages = new ArrayList<>();
+        for (User user1 : users) {
+            String message = messageService.getLastMessage(userId, user1);
+            LastMessage lastMessage = new LastMessage(user1, message, userId);
+            lastMessages.add(lastMessage);
+        }
         model.addAttribute("lastMessages", lastMessages);
         if (!lastMessages.isEmpty()) {
             return "all-dialogs-for-user";
@@ -80,7 +87,6 @@ public class MessagesController {
         );
         return "redirect:/user/chat/{person}";
     }
-
 
 
 }
