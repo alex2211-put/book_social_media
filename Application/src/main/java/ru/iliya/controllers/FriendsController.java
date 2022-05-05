@@ -107,9 +107,7 @@ public class FriendsController {
         List<Person> personList = new ArrayList<>();
         for (Friends friend : friends) {
             User user1 = userService.findUserByUserID(friend.getUserID());
-            if (idUsers.contains(user1.getUserID())) {
-                continue;
-            } else {
+            if (!idUsers.contains(user1.getUserID())) {
                 personList.add(new Person(user1, friend));
             }
         }
@@ -130,9 +128,7 @@ public class FriendsController {
         List<Person> personList = new ArrayList<>();
         for (Friends friend : friends) {
             User user1 = userService.findUserByUserID(friend.getUser2ID());
-            if (idUsers.contains(user1.getUserID())) {
-                continue;
-            } else {
+            if (!idUsers.contains(user1.getUserID())) {
                 personList.add(new Person(user1, friend));
             }
         }

@@ -37,8 +37,6 @@ public class UserSearchController {
     @Autowired
     RecommendationsService recommendationsService;
 
-    String email;
-
     @GetMapping("/user_search") //user/search        value   showUsers
     public String showUsersByEmail(@RequestParam(name = "search", required = false, defaultValue = " ") String search,
                                    Model model) {
