@@ -82,4 +82,18 @@ public class MessageServiceImpl implements MessageService{
         }
         return mongoRepository.getLastMessagesForCollection(id);
     }
+
+    @Override
+    public List<Message> getMessagesForPersons(String person, String owner) {
+        List<Document> messagesDocs = getAllMessagesForDialog(owner, person);
+        List<Message> messages = new ArrayList<>();
+        for (Document document : messagesDocs) {
+            messages.add(new Message(
+                    document.get("text").toString(),
+                    document.get("from").toString(),
+                    document.get("to").toString(),
+                    "2022"));
+        }
+        return messages;
+    }
 }

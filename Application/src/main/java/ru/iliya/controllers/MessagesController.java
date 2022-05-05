@@ -1,6 +1,5 @@
 package ru.iliya.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -22,12 +21,18 @@ import java.util.List;
 @Controller
 public class MessagesController {
 
-    @Autowired
+    final
     MessageServiceImpl messageService;
-    @Autowired
+    final
     SecurityUserConverter securityUserConverter;
-    @Autowired
+    final
     UserService userService;
+
+    public MessagesController(MessageServiceImpl messageService, SecurityUserConverter securityUserConverter, UserService userService) {
+        this.messageService = messageService;
+        this.securityUserConverter = securityUserConverter;
+        this.userService = userService;
+    }
 
     @RequestMapping("/user/dialogs")
     public String showAllDialogsForUserParam(@AuthenticationPrincipal UserDetails currentUser,
@@ -35,7 +40,6 @@ public class MessagesController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String userId = String.valueOf(user.getUserID());
         List<User> users = messageService.getDialogsForUser(String.valueOf(user.getUserID()));
-        System.out.println(users);
         List<LastMessage> lastMessages = new ArrayList<>();
         for (User user1 : users) {
             String message = messageService.getLastMessage(userId, user1);
@@ -49,7 +53,6 @@ public class MessagesController {
         return "no-dialogs-for-user";
     }
 
-
     @GetMapping("/user/chat/{person}")
     public String showMessagesForUser(@PathVariable(name = "person") String person,
                                       @AuthenticationPrincipal UserDetails currentUser,
@@ -57,8 +60,11 @@ public class MessagesController {
         User user = securityUserConverter.getUserByDetails(currentUser);
         String owner = String.valueOf(user.getUserID());
         User friend = userService.findUserByUserID(Integer.parseInt(person));
-        List<Message> messages = getMessagesForPersons(person, owner);
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname()));
+        List<Message> messages = messageService.getMessagesForPersons(person, owner);
+        model.addAttribute(
+                "ownerDialog",
+                new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname())
+        );
         return "p2p-dialog";
     }
 
@@ -74,22 +80,13 @@ public class MessagesController {
             return "redirect:/user/chat/{person}";
         Message message1 = new Message(message, owner, person, "2022");
         messageService.writeToUser(message1);
-        List<Message> messages = getMessagesForPersons(person, owner);
-        model.addAttribute("ownerDialog", new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname()));
+        List<Message> messages = messageService.getMessagesForPersons(person, owner);
+        model.addAttribute(
+                "ownerDialog",
+                new OwnerDialog(owner, messages, person, user.getNickname(), friend.getNickname())
+        );
         return "redirect:/user/chat/{person}";
     }
 
-    private List<Message> getMessagesForPersons(@PathVariable(name = "person") String person, String owner) {
-        List<Document> messagesDocs = messageService.getAllMessagesForDialog(owner, person);
-        List<Message> messages = new ArrayList<>();
-        for (Document document : messagesDocs) {
-            messages.add(new Message(
-                    document.get("text").toString(),
-                    document.get("from").toString(),
-                    document.get("to").toString(),
-                    "2022"));
-        }
-        return messages;
-    }
 
 }

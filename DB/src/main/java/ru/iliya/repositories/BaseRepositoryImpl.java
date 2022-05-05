@@ -1,6 +1,5 @@
 package ru.iliya.repositories;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.iliya.entities.*;
 
@@ -10,10 +9,13 @@ import java.util.List;
 @Repository
 public class BaseRepositoryImpl implements BaseRepository {
 
-    @Autowired
-    private BookRepository bookRepository;
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final BookRepository bookRepository;
+    private final AuthorRepository authorRepository;
+
+    public BaseRepositoryImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+        this.bookRepository = bookRepository;
+        this.authorRepository = authorRepository;
+    }
 
     @Override
     public Book addBook(Book book) {
