@@ -22,4 +22,6 @@ public interface MessageService {
     }
 
     String getLastMessage(String userId, User user1);
+
+    List<Message> getMessagesForPersons(String person, String owner);
 }

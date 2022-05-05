@@ -7,7 +7,6 @@ import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.stereotype.Service;
 import ru.iliya.entities.Message;
 import ru.iliya.entities.User;
-import ru.iliya.repositories.BaseRepositoryImpl;
 import ru.iliya.repositories.MongoRepository;
 
 import java.util.ArrayList;
@@ -79,5 +78,19 @@ public class MessageServiceImpl implements MessageService{
             id = userId + '_' + partner;
         }
         return mongoRepository.getLastMessagesForCollection(id);
+    }
+
+    @Override
+    public List<Message> getMessagesForPersons(String person, String owner) {
+        List<Document> messagesDocs = getAllMessagesForDialog(owner, person);
+        List<Message> messages = new ArrayList<>();
+        for (Document document : messagesDocs) {
+            messages.add(new Message(
+                    document.get("text").toString(),
+                    document.get("from").toString(),
+                    document.get("to").toString(),
+                    "2022"));
+        }
+        return messages;
     }
 }
