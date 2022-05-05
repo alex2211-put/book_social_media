@@ -6,6 +6,7 @@ import ru.iliya.entities.User;
 
 import java.util.*;
 
+/// TODO test all methods
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
         return userDataBaseService.findUserByID(userID);
     }
 
+    /// TODO test - difficult tests
     @Override
     public List<User> findUserByFirstNameLastNameNickNameEmail(String search) {
         if (search.contains("@")) {

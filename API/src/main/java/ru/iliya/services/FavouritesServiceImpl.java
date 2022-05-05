@@ -6,6 +6,7 @@ import ru.iliya.entities.Favourites;
 
 import java.util.List;
 
+/// TODO test all methods
 @Service
 public class FavouritesServiceImpl implements FavouritesService {
 

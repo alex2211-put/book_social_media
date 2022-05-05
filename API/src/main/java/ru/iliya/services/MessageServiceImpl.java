@@ -20,6 +20,7 @@ public class MessageServiceImpl implements MessageService{
     @Autowired
     UserDataBaseService userDataBaseService;
 
+    /// TODO test
     @Override
     public List<User> getDialogsForUser(String owner) {
         List<Document> documents = mongoRepository.getDialogsForCollection(owner);
@@ -49,6 +50,7 @@ public class MessageServiceImpl implements MessageService{
         }
     }
 
+    /// TODO test
     @Override
     public List<Document> getAllMessagesForDialog(String owner, String partner) {
         String id;
@@ -67,6 +69,7 @@ public class MessageServiceImpl implements MessageService{
         return docStrings;
     }
 
+    /// TODO test
     @Override
     public String getLastMessage(String userId, User user1) {
         String id;

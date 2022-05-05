@@ -14,6 +14,7 @@ import ru.iliya.entities.Message;
 
 import java.util.*;
 
+/// TODO test all methods
 @Repository
 public class MongoRepositoryImpl implements MongoRepository {
 

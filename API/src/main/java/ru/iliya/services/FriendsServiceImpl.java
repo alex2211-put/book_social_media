@@ -6,6 +6,7 @@ import ru.iliya.entities.Friends;
 
 import java.util.List;
 
+/// TODO test all methods
 @Service
 public class FriendsServiceImpl implements FriendsService{
 

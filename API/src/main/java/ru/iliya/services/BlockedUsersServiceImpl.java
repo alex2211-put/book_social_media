@@ -6,6 +6,7 @@ import ru.iliya.entities.BlockedUsers;
 
 import java.util.List;
 
+/// TODO test all methods
 @Service
 public class BlockedUsersServiceImpl implements BlockedUsersService {
 

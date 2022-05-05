@@ -6,6 +6,7 @@ import ru.iliya.entities.Comments;
 
 import java.util.List;
 
+/// TODO test all methods
 @Service
 public class CommentServiceImpl implements CommentService{
 

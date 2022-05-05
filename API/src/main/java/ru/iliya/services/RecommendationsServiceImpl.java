@@ -6,6 +6,7 @@ import ru.iliya.entities.Recommendations;
 
 import java.util.List;
 
+/// TODO test all methods
 @Service
 public class RecommendationsServiceImpl implements RecommendationsService {
 

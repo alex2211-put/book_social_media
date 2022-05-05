@@ -12,7 +12,7 @@ import ru.iliya.repositories.BaseRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/// TODO test all methods
 @Service
 public class BookSearchServiceImpl implements BookSearchService{
 
@@ -43,6 +43,7 @@ public class BookSearchServiceImpl implements BookSearchService{
         return baseRepository.findByGenre(genre);
     }
 
+    /// TODO test - difficult tests
     @Override
     public List <Book> findBooksByTitleAuthorGenre(String title, String authorName, String genre) {
         boolean titleIsEmpty = title.isEmpty();
